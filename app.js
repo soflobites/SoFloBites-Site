@@ -1686,10 +1686,6 @@ function setupSuggestForm() {
             }
         });
     }
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        submitToNetlify(form);
-    });
 }
 // 12. Routing & Detailed Page Renderer
 function updateMeta(title, description) {
