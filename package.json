@@ -1,0 +1,16 @@
+{
+  "name": "soflo-bites",
+  "version": "1.0.0",
+  "description": "South Florida Restaurant Recommendations Guide",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx -y http-server -p 3000"
+  },
+  "keywords": [
+    "south-florida",
+    "restaurants",
+    "recommendations"
+  ],
+  "author": "",
+  "license": "ISC"
+}

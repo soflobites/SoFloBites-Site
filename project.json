@@ -1,0 +1,27 @@
+{
+  "name": "SoFlo Bites",
+  "description": "South Florida Restaurant Recommendations Guide",
+  "version": "1.0.0",
+  "pages": [
+    {
+      "name": "Home",
+      "path": "index.html"
+    }
+  ],
+  "design": [
+    {
+      "name": "Global Styles",
+      "path": "styles.css"
+    }
+  ],
+  "data": [
+    {
+      "name": "Restaurant Database & App Logic",
+      "path": "app.js"
+    }
+  ],
+  "publish": {
+    "directory": "./",
+    "command": "npx -y http-server -p 3000"
+  }
+}

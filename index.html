@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Primary Local SEO Optimization -->
+    <title>SoFlo Bites | Best Local Restaurants in South Florida</title>
+    <meta name="description" content="Discover the best dining in South Florida. Explore top recommendations in Miramar, Pembroke Pines, Weston, Boca Raton, and Miami, from waterfront date nights to family-friendly hidden gems. Accessible food that doesn't have to be extravagant.">
+    <meta name="keywords" content="South Florida restaurants, Miramar restaurants, Pembroke Pines dining, Weston food, Boca Raton restaurants, Miami dining, waterfront restaurants, family-friendly food, date night, Peruvian food, Italian food, sushi, local eats">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://soflobites.com/">
+    <meta property="og:title" content="SoFlo Bites | Best Local Restaurants in South Florida">
+    <meta property="og:description" content="Discover South Florida's finest local eats, from hidden gems to neighborhood classics. Filter by location, price, and tags like waterfront, date night, and family-friendly.">
+    <meta property="og:image" content="https://soflobites.com/soflo_bites_hero.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://soflobites.com/">
+    <meta property="twitter:title" content="SoFlo Bites | Best Local Restaurants in South Florida">
+    <meta property="twitter:description" content="Explore top-recommended local dining in South Florida, sorted by price, vibes, and specific must-try dishes.">
+    <meta property="twitter:image" content="https://soflobites.com/soflo_bites_hero.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍽️</text></svg>">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Javascript Core (Deferred for performance) -->
+    <script src="app.js" defer></script>
+</head>
+<body>
+
+    <!-- Upper Monitization / Sponsor Banner -->
+    <div style="background-color: #080c14; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 0.5rem; text-align: center; font-size: 0.75rem; color: #64748b;">
+        <span>Sponsored: Support our local food guide by booking reservations directly through the affiliate links below.</span>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo" id="header-logo-link">
+                <span class="logo-icon">🍽️</span>
+                <span class="logo-text">SoFlo<span>Bites</span></span>
+            </a>
+            <nav aria-label="Main navigation">
+                <ul class="nav-links">
+                    <li class="nav-link active"><a href="#" id="nav-home">Home</a></li>
+                    <li class="nav-link"><a href="#restaurant-grid" id="nav-explore">Explore Directory</a></li>
+                    <li class="nav-link"><a href="#best-of" id="nav-best-of">Best Of</a></li>
+                    <li class="nav-link"><a href="#about" id="nav-about">About</a></li>
+                </ul>
+            </nav>
+            <button class="suggest-btn-nav" onclick="window.location.hash = '#suggest-section'; return false;" id="suggest-cta-btn">
+                Share Feedback
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div id="home-view">
+        
+        <!-- Hero Section -->
+        <section class="hero" aria-label="Welcome banner">
+            <div class="hero-content">
+                <h1 class="hero-title">Discover the Best of <span>South Florida Dining</span></h1>
+                <p class="hero-description">
+                    Sharing the best local food that everyone can enjoy—from cozy neighborhood favorites to hidden coastal gems. Extraordinary flavor shouldn't have to be extravagant.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="#restaurant-grid" class="btn-primary" style="padding: 0.9rem 1.8rem; font-size: 1rem;" id="hero-find-btn">
+                        Find Restaurants Now
+                    </a>
+                    <a href="#suggest-section" class="btn-secondary" style="padding: 0.9rem 1.8rem; font-size: 1rem; color: #ffffff; border-color: rgba(255, 255, 255, 0.4);" id="hero-submit-btn">
+                        Share Feedback
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Listing and Filters -->
+        <div class="main-layout">
+
+            <!-- Sidebar Filters Column -->
+            <aside class="sidebar" aria-label="Filters">
+                
+                <!-- Search input block -->
+                <section class="filter-section search-section">
+                    <h2 class="filter-section-title">Search <span>Eats</span></h2>
+                    <div class="search-wrapper">
+                        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="search-input" class="search-input" placeholder="Search dish, type, location..." aria-label="Search restaurant name, description, or menu items">
+                    </div>
+                </section>
+
+                <!-- Location Selector block -->
+                <section class="filter-section">
+                    <h2 class="filter-section-title">Location <span>Area</span></h2>
+                    <div class="filter-list" role="group" aria-label="Filter by location">
+                        <button class="filter-item-btn active" data-location="all">
+                            <span class="filter-name">All Locations</span>
+                        </button>
+                        <button class="filter-item-btn" data-location="Aventura">
+                            <span class="filter-name">Aventura</span>
+                        </button>
+                        <button class="filter-item-btn" data-location="Plantation">
+                            <span class="filter-name">Plantation</span>
+                        </button>
+                        <button class="filter-item-btn" data-location="Coconut Creek">
+                            <span class="filter-name">Coconut Creek</span>
+                        </button>
+                        <button class="filter-item-btn" data-location="Pembroke Pines">
+                            <span class="filter-name">Pembroke Pines</span>
+                        </button>
+                        <button class="filter-item-btn" data-location="Southwest Ranches">
+                            <span class="filter-name">Southwest Ranches</span>
+                        </button>
+                        <button class="filter-item-btn" data-location="North Miami">
+                            <span class="filter-name">North Miami</span>
+                        </button>
+                        <button class="filter-item-btn" data-location="Brickell">
+                            <span class="filter-name">Brickell</span>
+                        </button>
+                        <button class="filter-item-btn" data-location="Miramar">
+                            <span class="filter-name">Miramar</span>
+                        </button>
+                        <button class="filter-item-btn" data-location="Weston">
+                            <span class="filter-name">Weston</span>
+                        </button>
+                        <button class="filter-item-btn" data-location="Boca Raton">
+                            <span class="filter-name">Boca Raton</span>
+                        </button>
+                        <button class="filter-item-btn" data-location="Miami">
+                            <span class="filter-name">Miami</span>
+                        </button>
+                        <button class="filter-item-btn" data-location="Doral">
+                            <span class="filter-name">Doral</span>
+                        </button>
+                        <button class="filter-item-btn" data-location="Fort Myers">
+                            <span class="filter-name">Fort Myers</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Tags / Vibes block -->
+                <section class="filter-section">
+                    <h2 class="filter-section-title">Vibe <span>Cuisine</span></h2>
+                    <div class="filter-list" role="group" aria-label="Filter by tags">
+                        <button class="filter-item-btn" data-tag="american">
+                            <span class="filter-name">American</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="asian">
+                            <span class="filter-name">Asian</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="british">
+                            <span class="filter-name">British</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="brunch">
+                            <span class="filter-name">Brunch</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="buffet">
+                            <span class="filter-name">Buffet</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="burgers">
+                            <span class="filter-name">Burgers</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="casual">
+                            <span class="filter-name">Casual</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="comfort food">
+                            <span class="filter-name">Comfort Food</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="cuban">
+                            <span class="filter-name">Cuban</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="date-night">
+                            <span class="filter-name">Date Night</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="ecuadorian">
+                            <span class="filter-name">Ecuadorian</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="family-friendly">
+                            <span class="filter-name">Family-friendly</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="happy hour">
+                            <span class="filter-name">Happy Hour</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="hawaiian">
+                            <span class="filter-name">Hawaiian</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="healthy eats">
+                            <span class="filter-name">Healthy Eats</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="hidden gem">
+                            <span class="filter-name">Hidden Gem</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="italian">
+                            <span class="filter-name">Italian</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="mediterranean">
+                            <span class="filter-name">Mediterranean</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="mexican">
+                            <span class="filter-name">Mexican</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="pasta">
+                            <span class="filter-name">Pasta</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="peruvian">
+                            <span class="filter-name">Peruvian</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="pizza">
+                            <span class="filter-name">Pizza</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="seafood">
+                            <span class="filter-name">Seafood</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="sports bar">
+                            <span class="filter-name">Sports Bar</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="trendy">
+                            <span class="filter-name">Trendy</span>
+                        </button>
+                        <button class="filter-item-btn" data-tag="waterfront">
+                            <span class="filter-name">Waterfront</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Dining Perks block -->
+                <section class="filter-section">
+                    <h2 class="filter-section-title">Dining <span>Perks</span></h2>
+                    <div class="filter-list" role="group" aria-label="Filter by dining perks">
+                        <button class="filter-item-btn" data-inkind="true" aria-label="Filter by inKind Rewards">
+                            <span class="filter-name">inKind Rewards</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Price Range block -->
+                <section class="filter-section">
+                    <h2 class="filter-section-title">Price <span>Range</span></h2>
+                    <div class="price-selectors" role="group" aria-label="Filter by price range">
+                        <button class="price-btn" data-price="$" aria-label="Inexpensive">$</button>
+                        <button class="price-btn" data-price="$$" aria-label="Moderate">$$</button>
+                        <button class="price-btn" data-price="$$$" aria-label="Expensive">$$$</button>
+                        <button class="price-btn" data-price="$$$$" aria-label="Luxury">$$$$</button>
+                    </div>
+                </section>
+
+                <!-- Reset block -->
+                <section class="filter-section reset-section">
+                    <button class="reset-filters-btn" id="reset-filters" aria-label="Reset all filters">
+                        Clear All Filters
+                    </button>
+                </section>
+
+            </aside>
+
+            <!-- Results Grid Column -->
+            <section class="content-area" aria-label="Restaurant listings">
+                
+                <!-- Filter Status Details -->
+                <div class="active-filters-container">
+                    <span class="active-filters-label" id="active-filters-label" style="display: none;">Active Filters:</span>
+                    <div id="active-filters-badges" style="display: inline-flex; flex-wrap: wrap; gap: 0.5rem;"></div>
+                    
+                    <div class="results-stats" style="margin-left: auto;">
+                        Found <span id="stats-number">0</span> matches
+                    </div>
+                </div>
+
+                <!-- Core Directory Grid -->
+                <div class="restaurant-grid" id="restaurant-grid">
+                    <!-- Dynamic rendering in app.js -->
+                </div>
+
+            </section>
+
+        </div>
+
+        <!-- Share Feedback Section -->
+        <section id="suggest-section" class="suggest-section" aria-label="Share feedback">
+            <div class="suggest-container">
+                <h2 class="suggest-title">Share Your Feedback</h2>
+                <p class="suggest-desc">
+                    Tell us about your South Florida dining experiences, suggest a new restaurant to add, or give us feedback on how to improve this website! We review all submissions to curate the ultimate guide.
+                </p>
+                
+                <form id="restaurant-suggest-form" class="suggest-form" name="feedback" method="POST" data-netlify="true" netlify data-netlify-honeypot="bot-field">
+<input type="hidden" name="form-name" value="feedback">
+<input type="text" name="bot-field" style="display:none">
+
+    <div class="form-group full-width">
+        <label for="suggest-type" class="form-label">Feedback Category *</label>
+        <select id="suggest-type" class="form-select" name="category" required>
+            <option value="recommendation" selected>Restaurant Recommendation (I want to suggest/review a place)</option>
+            <option value="website">Website Feedback (Suggestions for the site layout, features, or bugs)</option>
+        </select>
+    </div>
+
+    <!-- Restaurant Fields Wrapper -->
+    <div id="restaurant-fields-group" style="display: contents;">
+
+        <div class="form-group">
+            <label for="suggest-name" class="form-label" id="label-suggest-name">Restaurant Name *</label>
+            <input type="text" id="suggest-name" class="form-input" name="restaurantName" placeholder="e.g., Lopolito's Pizza" required>
+        </div>
+
+        <div class="form-group">
+            <label for="suggest-location" class="form-label" id="label-suggest-loc">Location (City) *</label>
+            <select id="suggest-location" class="form-select" name="city" required>
+                <option value="" disabled selected>Select location...</option>
+                <option value="Aventura">Aventura</option>
+                <option value="Boca Raton">Boca Raton</option>
+                <option value="Brickell">Brickell</option>
+                <option value="Coconut Creek">Coconut Creek</option>
+                <option value="Doral">Doral</option>
+                <option value="Fort Myers">Fort Myers</option>
+                <option value="Miami">Miami</option>
+                <option value="Miramar">Miramar</option>
+                <option value="North Miami">North Miami</option>
+                <option value="Pembroke Pines">Pembroke Pines</option>
+                <option value="Plantation">Plantation</option>
+                <option value="Southwest Ranches">Southwest Ranches</option>
+                <option value="Weston">Weston</option>
+                <option value="Other">Other South Florida City</option>
+            </select>
+        </div>
+
+        <div class="form-group full-width">
+            <label class="form-checkbox-group">
+                <input type="checkbox" id="suggest-visited" name="visited" checked>
+                <span class="form-checkbox-label">I have personally dined here!</span>
+            </label>
+        </div>
+
+        <div class="form-group full-width">
+            <label for="suggest-dishes" class="form-label" id="label-suggest-dishes">Must-Try Food Recommendations *</label>
+            <input type="text" id="suggest-dishes" class="form-input" name="mustTry" placeholder="e.g., Garlic rolls, Ceviche, Lomo saltado" required>
+        </div>
+
+        <div class="form-group">
+            <label for="suggest-price" class="form-label">Estimated Price Range</label>
+            <select id="suggest-price" class="form-select" name="price">
+                <option value="$">$</option>
+                <option value="$$">$$</option>
+                <option value="$$$">$$$</option>
+                <option value="$$$$">$$$$</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="suggest-hours" class="form-label">Opening Hours (Optional)</label>
+            <input type="text" id="suggest-hours" class="form-input" name="hours" placeholder="e.g., 11:30 AM - 10:00 PM">
+        </div>
+
+    </div>
+
+    <!-- General comments -->
+    <div class="form-group full-width">
+        <label for="suggest-desc" class="form-label" id="label-suggest-desc">Your Comments / Suggestions</label>
+        <textarea id="suggest-desc" class="form-textarea" name="comments" placeholder="Tell us about the restaurant vibes or what makes it special..."></textarea>
+    </div>
+
+    <div id="form-feedback-message" class="form-feedback"></div>
+
+    <button type="submit" class="submit-btn" id="suggest-submit-btn">
+        Submit Feedback
+    </button>
+
+</form>
+
+            </div>
+        </section>
+
+        </div><!-- #home-view -->
+        <div id="restaurant-detail-view" class="detail-page-container" style="display: none;"></div>
+        
+        <!-- About Page View -->
+        <div id="about-view" class="about-page-container" style="display: none;">
+            <div class="about-wrapper">
+                <!-- Back Navigation -->
+                <div class="about-back-nav">
+                    <a href="#" class="back-link" onclick="goBackToDirectory(event)">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                        Back to Explore Directory
+                    </a>
+                </div>
+
+                <!-- Hero Card -->
+                <div class="about-hero-card">
+                    <div class="about-hero-content">
+                        <span class="about-tagline">Behind SoFlo Bites</span>
+                        <h1 class="about-hero-title">For the Love of Local Flavor</h1>
+                        <p class="about-hero-subtitle">Sharing authentic South Florida dining experiences that are welcoming, delicious, and budget-friendly.</p>
+                    </div>
+                </div>
+
+                <!-- Content Grid -->
+                <div class="about-grid">
+                    <!-- Left Panel: Who We Are & Why -->
+                    <div class="about-main-content">
+                        <section class="about-section">
+                            <h2 class="about-section-title">Who We Are</h2>
+                            <p>First and foremost, we are <strong>local food enthusiasts</strong>. We aren't high-brow food critics looking for tiny foam drops on white tablecloths. We are people who live, work, and eat right here in South Florida. We love the hum of a busy neighborhood diner, the sizzle of a teppanyaki grill, and the aroma of freshly baked garlic rolls. Our passion is finding those special spots where the food is prepared with care and the hospitality makes you feel right at home.</p>
+                        </section>
+
+                        <section class="about-section">
+                            <h2 class="about-section-title">Why We Created SoFlo Bites</h2>
+                            <p>We created <strong>SoFlo Bites</strong> to solve a common dining dilemma: finding restaurant recommendations that actually work for everyone. Too many food blogs focus exclusively on hyper-expensive, exclusive, or overly conceptual hotspots. We believe that extraordinary flavor shouldn't require a second mortgage or a two-month waiting list.</p>
+                            <p>Our goal is to build a reliable directory of local spots that deliver fantastic food without the pretension or the extreme price tag. Whether you need a family-friendly weekend lunch, a waterfront date-night spot with sunset views, or a quick delivery favorite, we want to help you find it.</p>
+                        </section>
+                        
+                        <section class="about-section">
+                            <h2 class="about-section-title">Our Process</h2>
+                            <p>We don't believe in algorithmically generated lists or scraping old reviews. Our approach is simple and honest:</p>
+                            <ul class="about-process-list">
+                                <li>
+                                    <strong>Personal Visits:</strong> We walk through the doors, check out the atmosphere, and order from the menu just like any regular guest.
+                                </li>
+                                <li>
+                                    <strong>Signature Dish Testing:</strong> We highlight the exact must-try items (like the Lomo Saltado at Tacu Taku or the Star Luca Pizza at Mister O1) so you know exactly what to order on your first visit.
+                                </li>
+                                <li>
+                                    <strong>Value-First Evaluation:</strong> We evaluate spots based on the quality-to-price ratio. A great meal is even better when it represents a fair value.
+                                </li>
+                                <li>
+                                    <strong>Feature Verification:</strong> We confirm practical details—like whether a spot takes reservations, offers delivery/takeout options, or features waterfront seating—so you can plan your visit seamlessly.
+                                </li>
+                            </ul>
+                            <p style="margin-top: 2rem; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; border-top: 1px solid var(--border-color); padding-top: 1.5rem;">For suggestions or inquiries, please use our <a href="#suggest-section" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">Share Feedback</a> form.</p>
+                        </section>
+                    </div>
+
+                    <!-- Right Panel: Mission & Coverage -->
+                    <div class="about-sidebar">
+                        <!-- Mission Box -->
+                        <div class="about-sidebar-card mission-card">
+                            <h3 class="sidebar-card-title">Our Mission</h3>
+                            <p class="mission-text">To celebrate and support South Florida's local culinary community by connecting diners with accessible, authentic, and delicious restaurants that bring people together.</p>
+                        </div>
+
+                        <!-- Coverage Area Box -->
+                        <div class="about-sidebar-card coverage-card">
+                            <h3 class="sidebar-card-title">Our Coverage Area</h3>
+                            <p>We are actively exploring and reviewing dining spots across South Florida, with current recommendations focused in:</p>
+                            <div class="coverage-cities">
+                                <span class="city-chip">Aventura</span>
+                                <span class="city-chip">Boca Raton</span>
+                                <span class="city-chip">Brickell</span>
+                                <span class="city-chip">Coconut Creek</span>
+                                <span class="city-chip">Doral</span>
+                                <span class="city-chip">Fort Myers</span>
+                                <span class="city-chip">Miami</span>
+                                <span class="city-chip">Miramar</span>
+                                <span class="city-chip">North Miami</span>
+                                <span class="city-chip">Pembroke Pines</span>
+                                <span class="city-chip">Plantation</span>
+                                <span class="city-chip">Southwest Ranches</span>
+                                <span class="city-chip">Weston</span>
+                            </div>
+                            <p style="margin-top: 1.25rem; font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">Have a local spot in your neighborhood we should visit next? Share your recommendation using our feedback form!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Privacy Policy & Terms Page View -->
+        <div id="privacy-terms-view" class="privacy-terms-container" style="display: none;">
+            <div class="privacy-terms-wrapper">
+                <!-- Back Navigation -->
+                <div class="privacy-terms-back-nav">
+                    <a href="#" class="back-link" onclick="goBackToDirectory(event)">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                        Back to Explore Directory
+                    </a>
+                </div>
+
+                <div class="privacy-terms-content-card">
+                    <h1 class="privacy-terms-title">Privacy Policy & Terms of Service</h1>
+                    <p class="privacy-terms-subtitle">Last Updated: July 15, 2026. Please read our guidelines, practices, and policies.</p>
+
+                    <hr class="privacy-terms-divider">
+
+                    <div class="privacy-terms-layout">
+                        <!-- Left Navigation Sidebar for Document Quick Links -->
+                        <div class="privacy-terms-toc">
+                            <h3>Document Sections</h3>
+                            <ul>
+                                <li><a href="#privacy-terms-section-privacy" class="toc-link">1. Privacy Policy</a></li>
+                                <li><a href="#privacy-terms-section-cookies" class="toc-link">2. Cookies & AdSense</a></li>
+                                <li><a href="#privacy-terms-section-terms" class="toc-link">3. Terms of Service</a></li>
+                                <li><a href="#privacy-terms-section-affiliate" class="toc-link">4. Affiliate Disclosure</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Right Content Area -->
+                        <div class="privacy-terms-body-content">
+                            <!-- Section 1 -->
+                            <section id="privacy-terms-section-privacy" class="doc-section">
+                                <h2>1. Privacy Policy</h2>
+                                <p>At SoFlo Bites, we respect your privacy and are committed to protecting any personal information you share with us. This policy outlines how we collect, use, and store information when you browse our restaurant directory or submit recommendations.</p>
+                                <p><strong>Information We Collect:</strong> When you use our "Share Feedback" form to submit restaurant suggestions, we collect the details you voluntarily provide (such as the restaurant's name, location, and recommended dishes). We do not collect names or contact details unless you choose to provide them for inquiry responses.</p>
+                                <p><strong>How We Use Information:</strong> Any information collected is strictly used to evaluate and publish directory recommendations, verify details, and improve user experience across the site. We never sell, trade, or share any gathered data with third-party marketing companies.</p>
+                            </section>
+
+                            <!-- Section 2 -->
+                            <section id="privacy-terms-section-cookies" class="doc-section">
+                                <h2>2. Cookies & Google AdSense</h2>
+                                <p>This site utilizes cookies to optimize user experience, remember selected filter preferences, and support third-party monetization tools.</p>
+                                <p><strong>Google AdSense:</strong> We display advertisements served through Google AdSense. Google uses cookies (such as the DART cookie) to serve ads based on your visit to SoFlo Bites and other websites on the internet. You may opt out of personalized advertising by visiting Google's Ads Settings.</p>
+                            </section>
+
+                            <!-- Section 3 -->
+                            <section id="privacy-terms-section-terms" class="doc-section">
+                                <h2>3. Terms of Service</h2>
+                                <p>By accessing or using SoFlo Bites, you agree to comply with and be bound by the following Terms of Service:</p>
+                                <ul>
+                                    <li><strong>Site Content:</strong> All editorial writeups, logos, structure, and original content on SoFlo Bites are the intellectual property of the site owners. You may not copy, scrape, or republish directory data without prior written permission.</li>
+                                    <li><strong>Accuracy of Information:</strong> While we strive to maintain accurate opening hours, telephone numbers, addresses, and dining details, restaurants frequently change their policies. We are not liable for any discrepancies, closed doors, or price changes. We advise users to confirm reservations and dining options directly with the restaurant.</li>
+                                    <li><strong>User Submissions:</strong> By submitting recommendations or suggestions through our feedback form, you grant us the royalty-free, perpetual right to utilize and edit the descriptions for publication on the site.</li>
+                                </ul>
+                            </section>
+
+                            <!-- Section 4 -->
+                            <section id="privacy-terms-section-affiliate" class="doc-section">
+                                <h2>4. Affiliate & Referral Disclosure</h2>
+                                <p>Some restaurant pages may contain booking or ordering links from partners such as OpenTable, Resy, DoorDash, UberEats, or InKind. If these links are active, we may earn a small referral commission at no additional cost to you.</p>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Best Of View -->
+        <div id="best-of-view" class="best-of-container" style="display: none;">
+            <div class="best-of-wrapper">
+                <!-- Back Navigation -->
+                <div class="best-of-back-nav">
+                    <a href="#" class="back-link" onclick="goBackToDirectory(event)">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                        Back to Explore Directory
+                    </a>
+                </div>
+
+                <!-- Header -->
+                <div class="best-of-header">
+                    <span class="best-of-tagline">Curated Compilations</span>
+                    <h1 class="best-of-title">SoFlo's Best Of</h1>
+                    <p class="best-of-subtitle">Hand-picked culinary selections highlighting our top-performing spots in South Florida. Select a category below to open the list.</p>
+                </div>
+
+                <!-- Best Of Categories List Accordion -->
+                <div class="best-of-list" id="best-of-categories-list">
+                    <!-- Populated dynamically via app.js -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Best Of List Detail View -->
+        <div id="best-of-list-detail-view" class="best-of-list-detail-container" style="display: none;">
+            <!-- Populated dynamically via app.js -->
+        </div>
+    </main>
+
+    <!-- Detailed Modal -->
+    <div id="details-modal" class="modal" aria-hidden="true" role="dialog">
+        <div class="modal-content">
+            <button class="modal-close-btn" aria-label="Close details dialog">✕</button>
+            <div class="modal-img-container">
+                <img src="" alt="" class="modal-img">
+            </div>
+            <div class="modal-body">
+                <h2 class="modal-title">Restaurant Title</h2>
+                <div class="modal-meta-line">
+                    <span class="modal-location">Location</span>
+                    <span class="modal-price">$$</span>
+                </div>
+                
+                <h3 class="modal-section-title">About</h3>
+                <p class="modal-desc" style="font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 1.5rem;"></p>
+
+                <h3 class="modal-section-title">Must-Try Food Recommendation</h3>
+                <div class="must-try-box" style="margin-bottom: 1.5rem;">
+                    <div class="must-try-label">★ Guest Favorite</div>
+                    <div class="must-try-dish modal-dish" style="font-size: 1.05rem;">Dish Name</div>
+                </div>
+
+                <h3 class="modal-section-title">Dining Features</h3>
+                <div class="modal-features-box" id="modal-features-box" style="display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                    <!-- Dynamic rendering in app.js -->
+                </div>
+
+                <h3 class="modal-section-title">Opening Hours</h3>
+                <div class="modal-hours-grid">
+                    <!-- Dynamic rendering in app.js -->
+                </div>
+
+                <h3 class="modal-section-title">Location & Contact</h3>
+                <p class="modal-address" style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem;"></p>
+                <p class="modal-phone" style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.75rem; font-weight: 500;"></p>
+                <a href="" target="_blank" rel="noopener noreferrer" class="modal-map-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    Get Directions (Google Maps)
+                </a>
+
+                <div style="margin-top: 2rem; border-top: 1px solid var(--border-color); padding-top: 1.5rem; display: flex; justify-content: flex-end; gap: 1rem;">
+                    <button class="btn-secondary" onclick="closeDetailsModal()" id="modal-close-action">Close Details</button>
+                    <a href="" target="_blank" rel="noopener noreferrer" class="btn-primary modal-book-btn" style="padding: 0.75rem 1.5rem;">
+                        <!-- Icon loaded dynamically -->
+                        <span>Action</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google AdSense Bottom Horizontal Banner Placeholder -->
+    <section id="bottom-ad-banner" style="max-width: 1280px; margin: 2rem auto; padding: 0 2rem; text-align: center;" aria-label="Sponsored content">
+        <div style="background-color: var(--bg-card); border: 1px dashed rgba(255,255,255,0.1); border-radius: var(--border-radius-md); padding: 1rem; min-height: 90px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <span style="font-size: 0.65rem; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 0.5rem; font-weight: 600;">ADVERTISEMENT</span>
+            <!-- AdSense Code -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:728px;height:90px"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="1234567890"></ins>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">🍽️ SoFlo<span>Bites</span></div>
+            <ul class="footer-nav" aria-label="Footer Navigation">
+                <li class="footer-nav-link"><a href="#" id="footer-home">Home</a></li>
+                <li class="footer-nav-link"><a href="#restaurant-grid" id="footer-explore">Explore Directory</a></li>
+                <li class="footer-nav-link"><a href="#best-of" id="footer-best-of">Best Of</a></li>
+                <li class="footer-nav-link"><a href="#about" id="footer-about">About Us</a></li>
+                <li class="footer-nav-link"><a href="#privacy-terms" id="footer-privacy-terms">Privacy & Terms</a></li>
+                <li class="footer-nav-link"><a href="#suggest-section" id="footer-suggest">Share Feedback</a></li>
+            </ul>
+            <p class="footer-text">
+                © 2026 SoFlo Bites. Curating South Florida's best foods for all budgets. Aventura • Boca Raton • Brickell • Coconut Creek • Doral • Fort Myers • Miami • Miramar • North Miami • Pembroke Pines • Plantation • Southwest Ranches • Weston.
+            </p>
+            <p class="footer-affiliate-disclaimer">
+                Some restaurant pages may contain booking or ordering links from partners such as OpenTable, Resy, DoorDash, UberEats, or InKind. If these links are active, we may earn a small referral commission at no additional cost to you.
+            </p>
+        </div>
+    </footer>
+<!-- Hidden Netlify detection form -->
+<form name="feedback" method="POST" data-netlify="true" netlify data-netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="feedback">
+  <input type="text" name="bot-field">
+  <input type="text" name="category">
+  <input type="text" name="restaurantName">
+  <input type="text" name="city">
+  <input type="checkbox" name="visited">
+  <input type="text" name="mustTry">
+  <input type="text" name="price">
+  <input type="text" name="hours">
+  <textarea name="comments"></textarea>
+</form>
+
+</body>
+</html>
