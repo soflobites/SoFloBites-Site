@@ -2337,16 +2337,3 @@ function goBackToDirectory(event) {
 }
 window.goBackToDirectory = goBackToDirectory;
 
-    .catch((error) => {
-        if (submitBtn) {
-            submitBtn.innerText = originalText;
-            submitBtn.disabled = false;
-        }
-        if (feedbackDiv) {
-            feedbackDiv.className = "form-feedback error";
-            feedbackDiv.style.display = "block";
-            feedbackDiv.innerText = "There was an error submitting your feedback. Please try again.";
-        }
-        console.error(error);
-    });
-}
