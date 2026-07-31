@@ -2336,16 +2336,6 @@ function goBackToDirectory(event) {
     window.location.hash = "#restaurant-grid";
 }
 window.goBackToDirectory = goBackToDirectory;
-function submitToNetlify(form) {
-    const formData = new FormData(form);
-    const feedbackDiv = document.getElementById("form-feedback-message");
-    const submitBtn = document.getElementById("suggest-submit-btn");
-    const originalText = submitBtn ? submitBtn.innerText : "Submit Feedback";
-
-    if (submitBtn) {
-        submitBtn.innerText = "Submitting...";
-        submitBtn.disabled = true;
-    }
 
     fetch("/", {
         method: "POST",
