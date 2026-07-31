@@ -1217,6 +1217,46 @@ footer {
         margin: 3rem 1rem 0 1rem;
         border-radius: var(--border-radius-md);
     }
+
+    /* Bottom Ad Banner Responsive Styling */
+    #bottom-ad-banner {
+        padding: 0 1rem !important;
+    }
+    #bottom-ad-banner .adsbygoogle {
+        display: block !important;
+        width: 100% !important;
+        max-width: 320px !important;
+        height: 50px !important;
+        margin: 0 auto !important;
+    }
+    #bottom-ad-banner div {
+        min-height: 80px !important;
+    }
+
+    /* Privacy Policy & Terms of Service Mobile Styles */
+    .privacy-terms-wrapper {
+        padding: 0 1rem !important;
+        margin: 1.5rem auto !important;
+    }
+
+    .privacy-terms-content-card {
+        padding: 1.5rem !important;
+        border-radius: var(--border-radius-md) !important;
+    }
+
+    .privacy-terms-title {
+        font-size: 1.75rem !important;
+    }
+
+    .privacy-terms-layout {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+
+    .privacy-terms-toc {
+        position: static !important;
+        padding: 1.25rem !important;
+    }
 }
 
 /* Dining Features indicators styling */
