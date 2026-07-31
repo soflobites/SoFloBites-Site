@@ -2337,26 +2337,6 @@ function goBackToDirectory(event) {
 }
 window.goBackToDirectory = goBackToDirectory;
 
-    fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData).toString()
-    })
-    .then(() => {
-        if (submitBtn) {
-            submitBtn.innerText = originalText;
-            submitBtn.disabled = false;
-        }
-        if (feedbackDiv) {
-            feedbackDiv.className = "form-feedback success";
-            feedbackDiv.style.display = "block";
-            feedbackDiv.innerText = "Thank you! Your feedback has been submitted successfully.";
-        }
-        form.reset();
-        setTimeout(() => {
-            if (feedbackDiv) feedbackDiv.style.display = "none";
-        }, 8000);
-    })
     .catch((error) => {
         if (submitBtn) {
             submitBtn.innerText = originalText;
