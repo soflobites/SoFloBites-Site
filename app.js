@@ -14,59 +14,68 @@ const MONETIZATION_CONFIG = {
 // 2. Restaurant Database
 const RESTAURANT_DATA = [
     {
-        "id": "pizza-lovers",
-        "name": "Pizza Lovers",
-        "location": "Plantation",
-        "address": "1860 N Nob Hill Rd, Plantation, FL 33322",
-        "priceRange": "$$",
-        "priceLevel": 2,
+        "id": "la-birra-bar",
+        "name": "La Birra Bar",
+        "location": "Weston",
+        "address": "1830 Main St, Weston, FL 33326",
+        "priceRange": "$",
+        "priceLevel": 1,
         "tags": [
-            "Italian",
-            "Pizza",
-            "Pasta",
+            "Burgers",
+            "Casual",
             "Family-friendly",
-            "Comfort Food",
-            "Casual"
+            "Comfort Food"
         ],
-        "mustTry": "Homemade Spaguetti & Meatballs",
-        "description": "A nice, cozy and relaxed restaurant decorated to look like Italy. Famous for their freshly baked garlic rolls, stone-baked pizzas, and fresh homemade pastas, it's the perfect spot for a relaxed dinner with great Italian cooking.",
-        "longDescription": "A nice, cozy and relaxed restaurant decorated to look like Italy. Famous for their freshly baked garlic rolls drenched in olive oil and minced garlic, stone-baked pizzas, and fresh homemade pastas, it's the perfect spot for a relaxed dinner. The warm, inviting dining room features traditional Italian decor, warm lighting, and a relaxed atmosphere. While it doesn't feel like a grandmother's house, the exceptional Italian cooking certainly tastes like it, bringing you comfort and quality in every single bite.",
+        "mustTry": "Crispy Onion Burger",
+        "description": "An award-winning artisanal burger joint originating from Buenos Aires and now taking Weston by storm. Famous for their soft, house-made buns and proprietary beef blends that melt in your mouth.",
+        "longDescription": "An award-winning artisanal burger joint originating from Buenos Aires and now taking Weston by storm. Famous for their soft, house-made cloud buns and proprietary beef blends that melt in your mouth. Featuring a modern, upscale restro ambiance with sleek, chic lounge elements, La Birra Bar makes everyday burger nights feel like a gourmet event.",
         "hours": {
-            "Monday - Thursday": "11:30 AM - 10:00 PM",
-            "Friday - Saturday": "11:30 AM - 10:00 PM",
-            "Sunday": "12:30 PM - 10:00 PM"
+            "Monday - Thursday": "11:00 AM - 11:00 PM",
+            "Friday": "11:00 AM - 12:00 AM",
+            "Saturday": "12:00 PM - 12:00 AM",
+            "Sunday": "11:00 AM - 11:00 PM"
         },
-        "image": "images/photo-coming-soon.jpg",
-        "imageAlt": "Photo coming soon for Pizza Lovers in Plantation, Florida",
-        "offersReservations": true,
+        "image": "images/la-birra-bar-golden-burger-sweet-potato-fries-weston.jpg",
+        "imageAlt": "Award-winning gourmet burger with crispy bacon and melted cheese served alongside sweet potato fries at La Birra Bar in Weston, Florida",
+        "offersReservations": false,
         "offersDeliveryTakeout": true,
-        "phone": "(954) 306-3297",
-        "reserveUrl": {
-            "resy": "https://resy.com/",
-            "phone": "tel:+19543063297"
-        },
+        "phone": "(786) 979-2693",
+        "reserveUrl": null,
         "orderUrl": {
             "toast": "https://www.toasttab.com/",
             "ubereats": "https://www.ubereats.com/",
-            "doordash": "https://www.doordash.com/",
-            "phone": "tel:+19543063297"
+            "postmates": "https://postmates.com/"
         },
-        "mapsUrl": "https://maps.google.com/?q=Pizza+Lovers+1860+N+Nob+Hill+Rd+Plantation+FL+33322",
+        "mapsUrl": "https://maps.google.com/?q=La+Birra+Bar+1830+Main+St+Weston+FL+33326",
         "otherLocations": [
-            "Weston"
+            "North Miami Beach",
+            "Doral",
+            "Coral Gables",
+            "Wynwood",
+            "Fort Lauderdale"
         ],
         "greatDishes": [
             {
-                "name": "Homemade Spaguetti & Meatballs",
-                "description": "Fresh house-made spaghetti tossed in a rich San Marzano tomato pulp sauce, served with tender beef and veal meatballs and finished with shaved Parmigiano cheese."
+                "name": "Crispy Onion Burger",
+                "description": "Artisanal burger featuring a 4oz Black Angus Argentinian beef patty cooked to a perfect medium temperature, topped with American cheese, crispy bacon, a mountain of crunchy fried onions, and house secret mayo on freshly baked homemade bread."
             },
             {
-                "name": "Amalfi Pizza",
-                "description": "An authentic stone-baked pizza topped with rich San Marzano tomato sauce, fresh mozzarella, and creamy buffalo mozzarella cheese."
+                "name": "Crispy Dubai",
+                "description": "The award-winning 2026 World Championship Dubai burger: a 4oz prime Black Angus Argentinian beef patty cooked medium by default, layered with melted white cheese, crispy golden onions, and luxurious truffle-infused chimichurri mayo on warm homemade bread."
             },
             {
-                "name": "Margherita Italian Pizza",
-                "description": "Traditional Italian-style crust layered with premium San Marzano tomato sauce, melted mozzarella, and fresh aromatic basil leaves."
+                "name": "Chocolate Milkshake",
+                "description": "Thick, creamy chocolate milkshake topped with fresh whipped cream and chocolate drizzle."
+            }
+        ],
+        "images": [
+            {
+                "path": "images/la-birra-bar-golden-burger-sweet-potato-fries-weston.jpg",
+                "alt": "Award-winning gourmet burger with crispy bacon and melted cheese served alongside sweet potato fries at La Birra Bar in Weston, Florida"
+            },
+            {
+                "path": "images/la-birra-bar-dining-interior-weston.jpg",
+                "alt": "Modern, upscale industrial dining room interior of La Birra Bar in Weston, Florida"
             }
         ]
     },
@@ -126,6 +135,16 @@ const RESTAURANT_DATA = [
                 "name": "Pulpo Anticuchero",
                 "description": "Tender seared octopus marinated in our legendary house 'anticuchera' sauce, served with traditional Peruvian toasted crispy corn and golden yellow potatoes."
             }
+        ],
+        "images": [
+            {
+                "path": "images/embarcadero-41-peruvian-cuisine-pembroke-pines.jpg",
+                "alt": "Fresh Peruvian ceviche at Embarcadero 41 in Pembroke Pines, Florida"
+            },
+            {
+                "path": "images/embarcadero-41-exterior-pembroke-pines.jpg",
+                "alt": "Modern exterior building of Embarcadero 41 in Pembroke Pines, Florida"
+            }
         ]
     },
     {
@@ -157,8 +176,8 @@ const RESTAURANT_DATA = [
             "Friday - Saturday": "5:00 PM - 10:00 PM",
             "Sunday": "5:00 PM - 9:30 PM"
         },
-        "image": "images/photo-coming-soon.jpg",
-        "imageAlt": "Uptown dining at Bistro 821 on 5th Ave South in Naples, Florida",
+        "image": "images/bistro-821-chilean-sea-bass-naples.jpg",
+        "imageAlt": "Pan-seared Chilean Sea Bass served over fresh green asparagus and mashed potatoes at Bistro 821 in Naples, Florida",
         "offersReservations": true,
         "offersDeliveryTakeout": true,
         "phone": "(239) 261-5821",
@@ -519,8 +538,8 @@ const RESTAURANT_DATA = [
             "Sunday - Thursday": "11:00 AM - 8:00 PM",
             "Friday - Saturday": "11:00 AM - 9:00 PM"
         },
-        "image": "images/photo-coming-soon.jpg",
-        "imageAlt": "Fresh fish tacos at El Sid Taqueria in Vero Beach, Florida",
+        "image": "images/el-sid-taqueria-truck-interior-vero-beach.jpg",
+        "imageAlt": "Rustic yellow Ford pickup truck turned service counter inside the colorful interior of El Sid Taqueria in Vero Beach, Florida",
         "offersReservations": false,
         "offersDeliveryTakeout": true,
         "phone": "(772) 234-8299",
@@ -770,8 +789,8 @@ const RESTAURANT_DATA = [
             "Sunday": "11:30 AM - 11:00 PM",
             "Tuesday": "11:00 AM - 11:00 PM"
         },
-        "image": "images/photo-coming-soon.jpg",
-        "imageAlt": "Photo coming soon for Tacology in Brickell, Miami, Florida",
+        "image": "images/tacology-brickell-rooftop-terrace-miami.jpg",
+        "imageAlt": "Lush garden terrace balcony under neon sign for Tacology at Brickell City Centre in Miami, Florida",
         "offersReservations": true,
         "offersDeliveryTakeout": true,
         "phone": "(786) 347-5368",
@@ -799,6 +818,16 @@ const RESTAURANT_DATA = [
             {
                 "name": "Queso Fundido",
                 "description": "Melted artisanal Mexican cheeses baked bubbly-hot, served with warm corn tortillas for dipping (add chorizo optional)."
+            }
+        ],
+        "images": [
+            {
+                "path": "images/tacology-brickell-rooftop-terrace-miami.jpg",
+                "alt": "Lush garden terrace balcony under neon sign for Tacology at Brickell City Centre in Miami, Florida"
+            },
+            {
+                "path": "images/tacology-brickell-city-centre-exterior-miami.jpg",
+                "alt": "Modern steel and glass exterior of Tacology fine quality tacos at Brickell City Centre in Miami, Florida"
             }
         ]
     },
@@ -857,58 +886,59 @@ const RESTAURANT_DATA = [
         ]
     },
     {
-        "id": "la-birra-bar",
-        "name": "La Birra Bar",
-        "location": "Weston",
-        "address": "1830 Main St, Weston, FL 33326",
-        "priceRange": "$",
-        "priceLevel": 1,
+        "id": "pizza-lovers",
+        "name": "Pizza Lovers",
+        "location": "Plantation",
+        "address": "1860 N Nob Hill Rd, Plantation, FL 33322",
+        "priceRange": "$$",
+        "priceLevel": 2,
         "tags": [
-            "Burgers",
-            "Casual",
+            "Italian",
+            "Pizza",
+            "Pasta",
             "Family-friendly",
-            "Comfort Food"
+            "Comfort Food",
+            "Casual"
         ],
-        "mustTry": "Crispy Onion Burger",
-        "description": "An award-winning artisanal burger joint originating from Buenos Aires and now taking Weston by storm. Famous for their soft, house-made buns and proprietary beef blends that melt in your mouth.",
-        "longDescription": "An award-winning artisanal burger joint originating from Buenos Aires and now taking Weston by storm. Famous for their soft, house-made cloud buns and proprietary beef blends that melt in your mouth. Featuring a modern, upscale restro ambiance with sleek, chic lounge elements, La Birra Bar makes everyday burger nights feel like a gourmet event.",
+        "mustTry": "Homemade Spaguetti & Meatballs",
+        "description": "A nice, cozy and relaxed restaurant decorated to look like Italy. Famous for their freshly baked garlic rolls, stone-baked pizzas, and fresh homemade pastas, it's the perfect spot for a relaxed dinner with great Italian cooking.",
+        "longDescription": "A nice, cozy and relaxed restaurant decorated to look like Italy. Famous for their freshly baked garlic rolls drenched in olive oil and minced garlic, stone-baked pizzas, and fresh homemade pastas, it's the perfect spot for a relaxed dinner. The warm, inviting dining room features traditional Italian decor, warm lighting, and a relaxed atmosphere. While it doesn't feel like a grandmother's house, the exceptional Italian cooking certainly tastes like it, bringing you comfort and quality in every single bite.",
         "hours": {
-            "Monday - Thursday": "11:00 AM - 11:00 PM",
-            "Friday": "11:00 AM - 12:00 AM",
-            "Saturday": "12:00 PM - 12:00 AM",
-            "Sunday": "11:00 AM - 11:00 PM"
+            "Monday - Thursday": "11:30 AM - 10:00 PM",
+            "Friday - Saturday": "11:30 AM - 10:00 PM",
+            "Sunday": "12:30 PM - 10:00 PM"
         },
         "image": "images/photo-coming-soon.jpg",
-        "imageAlt": "Photo coming soon for La Birra Bar in Weston, Florida",
-        "offersReservations": false,
+        "imageAlt": "Photo coming soon for Pizza Lovers in Plantation, Florida",
+        "offersReservations": true,
         "offersDeliveryTakeout": true,
-        "phone": "(786) 979-2693",
-        "reserveUrl": null,
+        "phone": "(954) 306-3297",
+        "reserveUrl": {
+            "resy": "https://resy.com/",
+            "phone": "tel:+19543063297"
+        },
         "orderUrl": {
             "toast": "https://www.toasttab.com/",
             "ubereats": "https://www.ubereats.com/",
-            "postmates": "https://postmates.com/"
+            "doordash": "https://www.doordash.com/",
+            "phone": "tel:+19543063297"
         },
-        "mapsUrl": "https://maps.google.com/?q=La+Birra+Bar+1830+Main+St+Weston+FL+33326",
+        "mapsUrl": "https://maps.google.com/?q=Pizza+Lovers+1860+N+Nob+Hill+Rd+Plantation+FL+33322",
         "otherLocations": [
-            "North Miami Beach",
-            "Doral",
-            "Coral Gables",
-            "Wynwood",
-            "Fort Lauderdale"
+            "Weston"
         ],
         "greatDishes": [
             {
-                "name": "Crispy Onion Burger",
-                "description": "Artisanal burger featuring a 4oz Black Angus Argentinian beef patty cooked to a perfect medium temperature, topped with American cheese, crispy bacon, a mountain of crunchy fried onions, and house secret mayo on freshly baked homemade bread."
+                "name": "Homemade Spaguetti & Meatballs",
+                "description": "Fresh house-made spaghetti tossed in a rich San Marzano tomato pulp sauce, served with tender beef and veal meatballs and finished with shaved Parmigiano cheese."
             },
             {
-                "name": "Crispy Dubai",
-                "description": "The award-winning 2026 World Championship Dubai burger: a 4oz prime Black Angus Argentinian beef patty cooked medium by default, layered with melted white cheese, crispy golden onions, and luxurious truffle-infused chimichurri mayo on warm homemade bread."
+                "name": "Amalfi Pizza",
+                "description": "An authentic stone-baked pizza topped with rich San Marzano tomato sauce, fresh mozzarella, and creamy buffalo mozzarella cheese."
             },
             {
-                "name": "Chocolate Milkshake",
-                "description": "Thick, creamy chocolate milkshake topped with fresh whipped cream and chocolate drizzle."
+                "name": "Margherita Italian Pizza",
+                "description": "Traditional Italian-style crust layered with premium San Marzano tomato sauce, melted mozzarella, and fresh aromatic basil leaves."
             }
         ]
     },
@@ -1296,6 +1326,16 @@ const RESTAURANT_DATA = [
                 "name": "Nutella French Toast",
                 "description": "Thick challah bread French toast layered with creamy Nutella, topped with fresh mixed berries and a dusting of powdered sugar."
             }
+        ],
+        "images": [
+            {
+                "path": "images/brimstone-seafood-pasta-shrimp-pembroke-pines.jpg",
+                "alt": "Creamy seafood scampi pasta with shrimp and artichoke hearts at Brimstone Woodfire Grill in Pembroke Pines, Florida"
+            },
+            {
+                "path": "images/brimstone-woodfire-grill-exterior-pembroke-pines.jpg",
+                "alt": "Brimstone Woodfire Grill building exterior at the Shops at Pembroke Gardens in Pembroke Pines, Florida"
+            }
         ]
     },
     {
@@ -1423,8 +1463,8 @@ const RESTAURANT_DATA = [
             "Saturday": "11:30 AM - 2:00 AM",
             "Sunday": "11:00 AM - 12:00 AM"
         },
-        "image": "images/photo-coming-soon.jpg",
-        "imageAlt": "Irish pub interior at Johnmartin's Restaurant & Bar in Coral Gables, Florida",
+        "image": "images/johnmartins-irish-pub-storefront-coral-gables.jpg",
+        "imageAlt": "Modern painted grey exterior storefront with large windows of Johnmartin's Restaurant & Bar on Miracle Mile in Coral Gables, Florida",
         "offersReservations": true,
         "offersDeliveryTakeout": true,
         "phone": "(305) 209-0609",
@@ -1577,8 +1617,8 @@ const RESTAURANT_DATA = [
             "Monday - Saturday": "11:30 AM - 10:00 PM",
             "Sunday": "11:30 AM - 9:00 PM"
         },
-        "image": "images/photo-coming-soon.jpg",
-        "imageAlt": "Premium dining at Hillstone on Miracle Mile in Coral Gables, Florida",
+        "image": "images/hillstone-american-restaurant-coral-gables.jpg",
+        "imageAlt": "Modern brick storefront of Hillstone on Miracle Mile in Coral Gables, Florida",
         "offersReservations": true,
         "offersDeliveryTakeout": false,
         "phone": "(305) 529-0141",
@@ -1631,8 +1671,8 @@ const RESTAURANT_DATA = [
             "Saturday": "12:00 PM - 12:00 AM",
             "Sunday": "11:00 AM - 10:00 PM"
         },
-        "image": "images/photo-coming-soon.jpg",
-        "imageAlt": "Photo coming soon for Negroni Bistro & Sushi Bar in Weston, Florida",
+        "image": "images/negroni-bistro-sushi-bar-pergola-terrace-weston.jpg",
+        "imageAlt": "Chic wooden pergola terrace and lush hanging ferns exterior at Negroni Bistro & Sushi Bar in Weston Town Center, Florida",
         "offersReservations": true,
         "offersDeliveryTakeout": true,
         "phone": "(954) 444-0096",
@@ -1663,6 +1703,16 @@ const RESTAURANT_DATA = [
             {
                 "name": "Ceviche",
                 "description": "Traditional ceviche with fresh mahi mahi cured in zesty leche de tigre, tossed with red onions, red peppers, avocado, sweet potato chunks, Peruvian corn, and fresh cilantro."
+            }
+        ],
+        "images": [
+            {
+                "path": "images/negroni-bistro-sushi-bar-pergola-terrace-weston.jpg",
+                "alt": "Chic wooden pergola terrace and lush hanging ferns exterior at Negroni Bistro & Sushi Bar in Weston Town Center, Florida"
+            },
+            {
+                "path": "images/negroni-bistro-sushi-bar-patio-dining-weston.jpg",
+                "alt": "Sophisticated outdoor patio seating area with black and white striped sofas and wicker chairs under a canopy of ferns at Negroni in Weston, Florida"
             }
         ]
     },
@@ -1753,8 +1803,8 @@ const RESTAURANT_DATA = [
         "hours": {
             "Monday - Sunday": "10:00 AM - 9:00 PM"
         },
-        "image": "images/photo-coming-soon.jpg",
-        "imageAlt": "Artisanal tarts and breads at Paul Bakery in Sunrise, Florida",
+        "image": "images/paul-bakery-french-pastry-escargot-raisin-sunrise.jpg",
+        "imageAlt": "Traditional French pain aux raisins pastry close-up on a display counter at Paul Bakery in Sunrise, Florida",
         "offersReservations": false,
         "offersDeliveryTakeout": true,
         "phone": "(954) 846-0344",
@@ -1777,6 +1827,16 @@ const RESTAURANT_DATA = [
             {
                 "name": "1/2 Flute with Jam",
                 "description": "Half of a freshly baked traditional French baguette, served with butter and fruit jam."
+            }
+        ],
+        "images": [
+            {
+                "path": "images/paul-bakery-french-pastry-escargot-raisin-sunrise.jpg",
+                "alt": "Traditional French pain aux raisins pastry close-up on a display counter at Paul Bakery in Sunrise, Florida"
+            },
+            {
+                "path": "images/paul-bakery-storefront-outdoor-patio-sunrise.jpg",
+                "alt": "Outdoor patio dining area and facade of Paul Bakery & Restaurant in Sunrise, Florida"
             }
         ]
     },
@@ -1836,6 +1896,16 @@ const RESTAURANT_DATA = [
                 "name": "Challah French Toast",
                 "description": "Indulgent thick-cut challah bread French toast topped with cinnamon sour cream, delicate cardamom cream, sweet blueberry coulis, and toasted walnuts."
             }
+        ],
+        "images": [
+            {
+                "path": "images/lb-eatery-wine-french-toast-pembroke-pines.jpg",
+                "alt": "Gourmet French toast with fresh fruits and a glass of red wine at LB Eatery in Pembroke Pines, Florida"
+            },
+            {
+                "path": "images/lb-eatery-storefront-warm-lights-pembroke-pines.jpg",
+                "alt": "Warmly lit storefront exterior of LB Eatery at night featuring string lights and comfortable window tables in Pembroke Pines, Florida"
+            }
         ]
     },
     {
@@ -1848,7 +1918,8 @@ const RESTAURANT_DATA = [
         "tags": [
             "Date Night",
             "Trendy",
-            "American"
+            "American",
+            "Brunch"
         ],
         "mustTry": "Drunken Shrimp",
         "description": "An upscale-casual American winery and restaurant at the Shops at Pembroke Gardens, offering modern dining, a full-service bar, and an interactive wine-tasting room.",
@@ -1921,8 +1992,8 @@ const RESTAURANT_DATA = [
             "Monday - Saturday": "11:00 AM - 11:00 PM",
             "Sunday": "11:00 AM - 10:00 PM"
         },
-        "image": "images/photo-coming-soon.jpg",
-        "imageAlt": "Italian wood-fired pizza at Villagio in Sunrise, Florida",
+        "image": "images/villagio-italian-restaurant-sunrise.jpg",
+        "imageAlt": "Elegant stucco exterior and outdoor patio seating at Villagio in Sawgrass Mills Sunrise, Florida",
         "offersReservations": true,
         "offersDeliveryTakeout": false,
         "phone": "(954) 846-2176",
@@ -1961,7 +2032,8 @@ const RESTAURANT_DATA = [
         "tags": [
             "Casual",
             "Comfort Food",
-            "Hidden Gem"
+            "Hidden Gem",
+            "Italian"
         ],
         "mustTry": "Moscow",
         "description": "A charming, European-style cafe in Plantation. Famous for their paper-thin, fresh-cooked sweet and savory crepes and artisan coffee in a warm, cozy setting.",
@@ -2022,8 +2094,8 @@ const RESTAURANT_DATA = [
             "Saturday": "12:30 PM - 10:30 PM",
             "Sunday": "12:30 PM - 9:30 PM"
         },
-        "image": "images/photo-coming-soon.jpg",
-        "imageAlt": "Photo coming soon for Ke-uH in Weston, Florida",
+        "image": "images/ke-uh-weston-restaurant-exterior.jpg",
+        "imageAlt": "Sleek exterior storefront of Ke-uH Japanese restaurant in Weston, Florida",
         "offersReservations": true,
         "offersDeliveryTakeout": true,
         "phone": "(954) 900-2278",
@@ -2587,9 +2659,14 @@ function renderRestaurants() {
                 inKind
             </span>
         ` : "";
+        const imgs = rest.images || [{ path: rest.image, alt: rest.imageAlt }];
         card.innerHTML = `
             <div class="card-img-container">
-                <img src="${rest.image}" alt="${rest.imageAlt || (rest.name + ' food recommendations')}" class="card-img" loading="lazy">
+                <img src="${rest.image}" alt="${rest.imageAlt || (rest.name + ' food recommendations')}" class="card-img" loading="lazy" id="card-img-${rest.id}">
+                ${imgs.length > 1 ? `
+                    <button class="carousel-arrow prev" onclick="cycleCardImage(event, '${rest.id}', -1)" aria-label="Previous image">‹</button>
+                    <button class="carousel-arrow next" onclick="cycleCardImage(event, '${rest.id}', 1)" aria-label="Next image">›</button>
+                ` : ''}
                 <span class="card-location-badge">${rest.location}</span>
                 <span class="card-price-badge" title="Price Category: ${rest.priceRange}">${rest.priceRange}</span>
             </div>
@@ -3228,7 +3305,11 @@ function renderDetailedPageMarkup(rest) {
             <!-- Header Section -->
             <div class="detail-header-block">
                 <div class="detail-image-box">
-                    <img src="${rest.image}" alt="${rest.imageAlt || (rest.name + ' food recommendations')}" class="detail-main-img">
+                    <img src="${rest.image}" alt="${rest.imageAlt || (rest.name + ' food recommendations')}" class="detail-main-img" id="detail-img-${rest.id}">
+                    ${(rest.images || [{ path: rest.image, alt: rest.imageAlt }]).length > 1 ? `
+                        <button class="carousel-arrow prev" onclick="cycleDetailImage(event, '${rest.id}', -1)" aria-label="Previous image">‹</button>
+                        <button class="carousel-arrow next" onclick="cycleDetailImage(event, '${rest.id}', 1)" aria-label="Next image">›</button>
+                    ` : ''}
                     <span class="detail-location-badge">${rest.location}</span>
                     <span class="detail-price-badge" title="Price Range: ${rest.priceRange}">${rest.priceRange}</span>
                 </div>
@@ -3414,4 +3495,37 @@ function goBackToDirectory(event) {
     window.location.hash = "#restaurant-grid";
 }
 window.goBackToDirectory = goBackToDirectory;
+// Carousel Cycle Functions for Multiple Restaurant Images
+window.cycleCardImage = function(event, id, direction) {
+    if (event) event.stopPropagation();
+    const img = document.getElementById(`card-img-${id}`);
+    const rest = RESTAURANT_DATA.find(r => r.id === id);
+    if (!img || !rest) return;
+    const imgs = rest.images || [{ path: rest.image, alt: rest.imageAlt }];
+    if (imgs.length <= 1) return;
+    
+    let currentIndex = parseInt(img.getAttribute("data-current-index") || "0", 10);
+    currentIndex = (currentIndex + direction + imgs.length) % imgs.length;
+    
+    const nextImgObj = imgs[currentIndex];
+    img.src = nextImgObj.path;
+    img.alt = nextImgObj.alt;
+    img.setAttribute("data-current-index", currentIndex);
+};
 
+window.cycleDetailImage = function(event, id, direction) {
+    if (event) event.stopPropagation();
+    const img = document.getElementById(`detail-img-${id}`);
+    const rest = RESTAURANT_DATA.find(r => r.id === id);
+    if (!img || !rest) return;
+    const imgs = rest.images || [{ path: rest.image, alt: rest.imageAlt }];
+    if (imgs.length <= 1) return;
+    
+    let currentIndex = parseInt(img.getAttribute("data-current-index") || "0", 10);
+    currentIndex = (currentIndex + direction + imgs.length) % imgs.length;
+    
+    const nextImgObj = imgs[currentIndex];
+    img.src = nextImgObj.path;
+    img.alt = nextImgObj.alt;
+    img.setAttribute("data-current-index", currentIndex);
+};

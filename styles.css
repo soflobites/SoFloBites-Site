@@ -2530,4 +2530,47 @@ footer {
     background-color: rgba(217, 93, 57, 0.05);
     transform: translateY(-2px);
 }
-
+/* Carousel Navigation Arrows */
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.25s ease;
+    user-select: none;
+}
+.carousel-arrow:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.carousel-arrow.prev {
+    left: 8px;
+}
+.carousel-arrow.next {
+    right: 8px;
+}
+.detail-image-box .carousel-arrow {
+    width: 44px;
+    height: 44px;
+    font-size: 2rem;
+}
+.detail-image-box .carousel-arrow.prev {
+    left: 16px;
+}
+.detail-image-box .carousel-arrow.next {
+    right: 16px;
+}
