@@ -66,6 +66,7 @@
                     <li class="nav-link"><a href="#restaurant-grid" id="nav-explore">Explore Directory</a></li>
                     <li class="nav-link"><a href="#best-of" id="nav-best-of">Best Of</a></li>
                     <li class="nav-link"><a href="#about" id="nav-about">About</a></li>
+                    <li class="nav-link"><a href="https://www.soflostays.co/#" target="_blank" rel="noopener noreferrer" style="color: #0d9488; font-weight: 700;">🌴 Hotel Guide</a></li>
                 </ul>
             </nav>
             <button class="suggest-btn-nav" onclick="window.location.hash = '#suggest-section'; return false;" id="suggest-cta-btn">
@@ -676,21 +677,47 @@
     <!-- Footer -->
     <footer>
         <div class="footer-container">
-            <div class="footer-logo">🍽️ SoFlo<span>Bites</span></div>
-            <ul class="footer-nav" aria-label="Footer Navigation">
-                <li class="footer-nav-link"><a href="#" id="footer-home">Home</a></li>
-                <li class="footer-nav-link"><a href="#restaurant-grid" id="footer-explore">Explore Directory</a></li>
-                <li class="footer-nav-link"><a href="#best-of" id="footer-best-of">Best Of</a></li>
-                <li class="footer-nav-link"><a href="#about" id="footer-about">About Us</a></li>
-                <li class="footer-nav-link"><a href="#privacy-terms" id="footer-privacy-terms">Privacy & Terms</a></li>
-                <li class="footer-nav-link"><a href="#suggest-section" id="footer-suggest">Share Feedback</a></li>
-            </ul>
-            <p class="footer-text">
-                © 2026 SoFlo Bites. Curating South Florida's best foods for all budgets. Aventura • Boca Raton • Brickell • Coconut Creek • Doral • Fort Myers • Miami • Miramar • North Miami • Pembroke Pines • Plantation • Southwest Ranches • Weston • Coral Gables • Naples • Sebastian • Sunrise • Vero Beach.
-            </p>
-            <p class="footer-affiliate-disclaimer">
-                Some restaurant pages may contain booking or ordering links from partners such as OpenTable, Resy, DoorDash, UberEats, or InKind. If these links are active, we may earn a small referral commission at no additional cost to you.
-            </p>
+            <div class="footer-grid">
+                <!-- Branding column -->
+                <div class="footer-brand">
+                    <a href="#" class="footer-logo" style="text-decoration: none;">
+                        <span class="logo-icon">🍽️</span>
+                        <span class="logo-text">SoFlo<span>Bites</span></span>
+                    </a>
+                    <p class="footer-tagline">South Florida's premier independent food and dining directory.</p>
+                </div>
+                <!-- Links column -->
+                <div class="footer-links">
+                    <h4 class="footer-title">Directory</h4>
+                    <ul>
+                        <li><a href="#" onclick="window.location.hash = '#restaurant-grid'; return false;">Explore Food</a></li>
+                        <li><a href="#best-of">Best Eats Lists</a></li>
+                        <li><a href="#about">About Our Guide</a></li>
+                    </ul>
+                </div>
+                <!-- Sister Guides column -->
+                <div class="footer-links">
+                    <h4 class="footer-title">Our Sister Guides</h4>
+                    <ul>
+                        <li><a href="https://www.soflostays.co/#" target="_blank" rel="noopener noreferrer">🌴 SoFlo Stays (Hotel Guide)</a></li>
+                    </ul>
+                </div>
+                <!-- Legal Column -->
+                <div class="footer-links">
+                    <h4 class="footer-title">Legal</h4>
+                    <ul>
+                        <li><a href="#privacy-terms">Privacy &amp; Cookies</a></li>
+                        <li><a href="#privacy-terms">AdSense Policies</a></li>
+                        <li><a href="#privacy-terms">Affiliate Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copy">&copy; 2026 SoFlo Bites. All rights reserved. Made with love in Florida.</p>
+                <p class="footer-affiliate-disclaimer">
+                    Disclaimer: SoFlo Bites is a reader-supported culinary resource. When you click reservation or ordering links and complete transactions through our affiliate partners (OpenTable, Resy, DoorDash, UberEats, or InKind), we may earn a small referral commission at absolutely no extra cost to you. Advertisements are dynamically served via Google AdSense.
+                </p>
+            </div>
         </div>
     </footer>
 
