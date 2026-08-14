@@ -28,7 +28,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Crispy Onion Burger",
         "description": "An award-winning artisanal burger joint originating from Buenos Aires and now taking Weston by storm. Famous for their soft, house-made buns and proprietary beef blends that melt in your mouth.",
-        "longDescription": "An award-winning artisanal burger joint originating from Buenos Aires and now taking Weston by storm. Famous for their soft, house-made cloud buns and proprietary beef blends that melt in your mouth. Featuring a modern, upscale restro ambiance with sleek, chic lounge elements, La Birra Bar makes everyday burger nights feel like a gourmet event.",
+        "longDescription": "La Birra Bar brings a gourmet twist to the classic burger experience, blending Argentinian culinary craftsmanship with a sleek, modern atmosphere that feels right at home in Weston. Originating in Buenos Aires, the restaurant has earned international recognition for its award‑winning burgers, each crafted with house‑made cloud buns and proprietary beef blends designed to melt in your mouth. The attention to detail is evident in every bite, from the texture of the bun to the balance of flavors in each specialty creation.\n\nWhat sets La Birra Bar apart in South Florida’s dining scene is its ability to elevate comfort food into something truly memorable. The chic lounge‑inspired interior creates a refined yet approachable vibe, making it a great choice for date nights, casual celebrations, or simply treating yourself to a high‑quality meal. Guests can expect a menu that feels both familiar and innovative, with options ranging from classic favorites to bold, chef‑driven combinations.\n\nLa Birra Bar is ideal for diners who appreciate premium ingredients, modern presentation, and a restaurant that transforms everyday dining into a gourmet experience. It’s a must‑visit for burger lovers seeking something beyond the ordinary.",
         "hours": {
             "Monday - Thursday": "11:00 AM - 11:00 PM",
             "Friday": "11:00 AM - 12:00 AM",
@@ -94,7 +94,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Acevichado Roll",
         "description": "A wonderful, upscale Peruvian eatery in Pembroke Pines, serving highly rated ceviches, seafood plates, and tender anticucho meats in a sleek contemporary dining room.",
-        "longDescription": "A wonderful, upscale Peruvian eatery in Pembroke Pines, serving highly rated ceviches, seafood plates, and tender anticucho meats in a sleek contemporary dining room. Standard menu highlights include fresh raw fish ceviches, lomo saltado, and beautifully grilled anticucho skewers, making it an excellent stop for Peruvian food lovers.",
+        "longDescription": "Embarcadero 41 brings the vibrant flavors of Peru to Pembroke Pines with an upscale dining experience centered around fresh seafood, bold spices, and beautifully plated traditional dishes. Known for its highly rated ceviches, tender anticucho skewers, and classic lomo saltado, the restaurant blends authenticity with modern presentation in a sleek, contemporary dining room. Each dish highlights the bright, citrus‑forward flavors and meticulous techniques that define Peruvian cuisine.\n\nThe atmosphere at Embarcadero 41 is polished yet welcoming, making it a great choice for both casual dinners and special occasions. Guests can expect attentive service, a well‑curated menu, and a dining experience that feels thoughtfully crafted from start to finish. Whether you’re a longtime fan of Peruvian food or exploring the cuisine for the first time, the restaurant offers a balanced mix of familiar favorites and exciting new flavors.\n\nEmbarcadero 41 is perfect for diners who appreciate fresh seafood, bold seasonings, and a refined take on traditional dishes. It’s a standout option in South Florida for anyone seeking high‑quality Peruvian cuisine in a stylish setting.",
         "hours": {
             "Monday - Thursday": "11:30 AM - 9:30 PM",
             "Friday - Saturday": "11:30 AM - 10:30 PM",
@@ -169,7 +169,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Chilean Sea Bass",
         "description": "An established, upscale bistro on Naples' famous 5th Avenue South, serving a delicious fusion of Mediterranean-influenced pastas, fresh seafood, and premium steaks in an elegant, vibrant setting.",
-        "longDescription": "An established, upscale bistro on Naples' famous 5th Avenue South, serving a delicious fusion of Mediterranean-influenced pastas, fresh seafood, and premium steaks in an elegant, vibrant setting. Guests can enjoy dining in the sophisticated art-filled dining room or sit on the bustling outdoor patio for prime people-watching on 5th Avenue.",
+        "longDescription": "Bistro 821 is a beloved staple on Naples’ iconic 5th Avenue South, offering an upscale yet approachable dining experience that blends Mediterranean influences with coastal Florida flavors. Known for its fresh seafood, premium steaks, and beautifully crafted pastas, the restaurant has earned a loyal following for its consistent quality and vibrant atmosphere. The art‑filled dining room provides an elegant backdrop for a night out, while the outdoor patio offers prime people‑watching along one of Naples’ most popular streets.\n\nWhat makes Bistro 821 stand out is its ability to balance sophistication with warmth. The menu features a thoughtful mix of classic dishes and creative chef‑driven options, all prepared with fresh ingredients and attention to detail. Whether you’re enjoying a leisurely dinner, celebrating a special occasion, or simply exploring Naples’ dining scene, the restaurant delivers a polished experience without feeling overly formal.\n\nBistro 821 is ideal for guests who appreciate refined flavors, a lively setting, and a restaurant that captures the charm of 5th Avenue South. It’s a must‑visit for anyone seeking a memorable meal in the heart of Naples.",
         "hours": {
             "Monday": "Closed",
             "Tuesday - Thursday": "5:00 PM - 9:30 PM",
@@ -222,7 +222,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Pork Gyoza",
         "description": "A chic, energetic sushi bar and lounge at the Shops at Pembroke Gardens, serving creative signature sushi rolls, hot Japanese appetizers, and bold specialty cocktails.",
-        "longDescription": "Ra Sushi Bar brings a high-energy dining experience with a vibrant, club-like sushi lounge environment at the Shops at Pembroke Gardens. Famous for its inventive specialty rolls, fresh sashimi platters, and popular late-night happy hours, the venue is a favorite for local foodies and groups. Guests can dine in the sleek, colorful dining room or enjoy drinks and bites on the bustling outdoor patio.",
+        "longDescription": "Ra Sushi Bar brings a high‑energy, modern dining experience to the Shops at Pembroke Gardens, blending inventive sushi creations with a vibrant, lounge‑style atmosphere. Known for its specialty rolls, fresh sashimi platters, and popular late‑night happy hours, the restaurant has become a favorite among local foodies, groups, and anyone looking for a fun night out. The colorful interior, upbeat music, and sleek design create a lively environment that feels more like a social destination than a traditional sushi spot.\n\nThe menu at Ra Sushi Bar offers a wide range of options, from classic rolls to bold, fusion‑inspired combinations that showcase creativity and fresh ingredients. Guests can enjoy dining indoors in the stylish, club‑like space or relax on the bustling outdoor patio with drinks and shared plates. The restaurant’s energetic vibe makes it a great choice for celebrations, casual meetups, or evenings when you want a meal that feels exciting and social.\n\nRa Sushi Bar is perfect for diners who enjoy modern Japanese cuisine, inventive flavors, and a lively atmosphere. It’s a standout option in Pembroke Pines for sushi lovers seeking a fun, contemporary dining experience.",
         "hours": {
             "Monday - Sunday": "11:00 AM - 12:00 AM"
         },
@@ -283,7 +283,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Chicken Parmigiana",
         "description": "A modern Italian restaurant on 5th Avenue South in Naples, serving rustic yet refined pizzas, fresh handmade pastas, and classic seafood entrees in an open-air, stylish space.",
-        "longDescription": "A modern Italian restaurant on 5th Avenue South in Naples, serving rustic yet refined pizzas, fresh handmade pastas, and classic seafood entrees in an open-air, stylish space. With a focus on fresh ingredients and modern presentation, Caffe Milano brings a vibrant dining atmosphere and classic Italian hospitality to the heart of Naples.",
+        "longDescription": "Caffe Milano brings modern Italian dining to the heart of Naples’ 5th Avenue South, offering a vibrant blend of rustic flavors, fresh ingredients, and contemporary presentation. Known for its handmade pastas, wood‑fired pizzas, and classic seafood dishes, the restaurant delivers a refined yet approachable take on Italian cuisine. The open‑air, stylish dining space creates a lively atmosphere that feels both sophisticated and relaxed, making it a popular choice for locals and visitors alike.\n\nWhat sets Caffe Milano apart is its commitment to quality and authenticity. Each dish is crafted with care, highlighting traditional Italian techniques while embracing modern culinary trends. Guests can enjoy a menu that ranges from comforting classics to innovative seasonal specials, all served with warm hospitality and attention to detail. The location on 5th Avenue South adds to the experience, offering a perfect setting for a leisurely lunch, romantic dinner, or evening out in Naples’ bustling downtown.\n\nCaffe Milano is ideal for diners who appreciate fresh ingredients, flavorful dishes, and a stylish environment. It’s a must‑visit for anyone seeking a memorable Italian meal in Naples.",
         "hours": {
             "Monday - Thursday": "11:30 AM - 10:30 PM",
             "Friday - Saturday": "11:30 AM - 11:00 PM",
@@ -337,7 +337,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Grilled Octopus Appetizer",
         "description": "A trendy, light-filled bistro blending authentic Greek culinary traditions with a vibrant, modern atmosphere. Their outdoor patio features a lovely setting with plants, umbrellas, and fans to beat the heat, plus beautiful lights at night.",
-        "longDescription": "A trendy, light-filled bistro blending authentic Greek culinary traditions with a vibrant, modern atmosphere in Coconut Creek. Their outdoor patio features a lovely setting with plants, umbrellas, and fans to beat the heat, plus beautiful ambient lights at night. The kitchen features fresh Mediterranean seafood, marinated skewers, and healthy organic plates, all paired with a curated selection of Greek wines. It's clean, modern, and consistently delicious.",
+        "longDescription": "Ethos Greek Bistro brings a fresh, modern take on Mediterranean dining to Coconut Creek, blending authentic Greek flavors with a bright, contemporary atmosphere. The restaurant’s light‑filled interior and charming outdoor patio create a welcoming environment perfect for casual lunches, relaxed dinners, or evenings out with friends. With lush plants, umbrellas, fans, and ambient lighting, the patio offers one of the most inviting outdoor dining experiences in the area.\n\nThe menu at Ethos focuses on clean, flavorful dishes made with high‑quality ingredients. Guests can expect fresh seafood, marinated skewers, organic plates, and classic Greek favorites prepared with a modern twist. The curated selection of Greek wines adds to the experience, offering thoughtful pairings that complement the restaurant’s vibrant flavors. Ethos is known for its consistency, friendly service, and ability to deliver a meal that feels both wholesome and indulgent.\n\nEthos Greek Bistro is perfect for diners who appreciate Mediterranean cuisine, fresh ingredients, and a stylish yet relaxed setting. It’s a standout choice in Coconut Creek for anyone seeking delicious Greek food in a beautiful environment.",
         "hours": {
             "Monday - Thursday": "11:30 AM - 10:00 PM",
             "Friday - Saturday": "11:30 AM - 11:00 PM",
@@ -390,7 +390,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Lomo Saltado",
         "description": "A cozy neighborhood dining room serving homestyle Peruvian specialties like Chaufa rice, tallarin verde, and lomo saltado.",
-        "longDescription": "A cozy neighborhood dining room serving homestyle Peruvian specialties in Pembroke Pines. Famous for its lomo saltado, creamy green tallarin noodles, and chaufa fried rice, it offers friendly service and incredibly consistent quality.",
+        "longDescription": "Tacu Taku Peruvian Kitchen offers a cozy, homestyle dining experience in Pembroke Pines, serving classic Peruvian comfort dishes with warmth and consistency. Known for its flavorful lomo saltado, creamy tallarín verde, and satisfying chaufa fried rice, the restaurant focuses on traditional recipes prepared with care. The intimate dining room and friendly service create a welcoming environment that feels like a neighborhood favorite.\n\nWhat makes Tacu Taku special is its commitment to authentic flavors and approachable dishes. The menu highlights the bold seasonings and hearty textures that define Peruvian cuisine, offering a mix of familiar favorites and regional specialties. Whether you’re stopping in for a casual lunch or enjoying a relaxed dinner, the restaurant delivers a meal that feels comforting and thoughtfully prepared.\n\nTacu Taku is ideal for diners who enjoy homestyle cooking, generous portions, and a laid‑back atmosphere. It’s a great option in Pembroke Pines for anyone seeking delicious Peruvian food without the formality of upscale dining.",
         "hours": {
             "Monday - Thursday": "12:00 PM - 9:00 PM",
             "Friday - Saturday": "12:00 PM - 10:00 PM",
@@ -442,13 +442,13 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Spinach Tagliolini",
         "description": "An oceanfront bistro offering spectacular seaside views and a menu centered on fresh local seafood, grilled meats, and citrus-infused flavors in an upscale yet relaxed setting.",
-        "longDescription": "An oceanfront bistro offering spectacular seaside views and a menu centered on fresh local seafood, grilled meats, and citrus-infused flavors in an upscale yet relaxed setting. Perfect for a romantic dinner or sunset dining, Citrus Grillhouse is a local favorite for its coastal breezes and scratch-made recipes.",
+        "longDescription": "Citrus Grillhouse offers one of the most scenic dining experiences in Vero Beach, combining oceanfront views with a menu centered on fresh seafood, grilled meats, and citrus‑inspired flavors. The restaurant’s upscale yet relaxed atmosphere makes it a popular choice for romantic dinners, sunset meals, and special occasions. With its breezy coastal setting and scratch‑made recipes, Citrus Grillhouse captures the essence of Florida’s seaside dining.\n\nThe menu highlights high‑quality ingredients and thoughtful preparation, offering dishes that feel both refined and approachable. Guests can enjoy fresh local catches, flavorful grilled entrees, and seasonal specials that showcase the restaurant’s commitment to freshness. The oceanfront location enhances the experience, providing a beautiful backdrop that elevates every meal.\n\nCitrus Grillhouse is perfect for diners who appreciate coastal cuisine, stunning views, and a polished dining environment. It’s a must‑visit in Vero Beach for anyone seeking an elegant yet relaxed meal by the water.",
         "hours": {
             "Monday - Saturday": "11:30 AM - 1:30 PM, 5:00 PM - 8:30 PM",
             "Sunday": "Closed"
         },
-        "image": "images/citrus-grillhouse-spinach-tagliolini-vero-beach.jpg",
-        "imageAlt": "Spinach Tagliolini pasta served at Citrus Grillhouse in Vero Beach, Florida",
+        "image": "images/citrus-grillhouse-food-plates-vero-beach.jpg",
+        "imageAlt": "Three gourmet seafood and pasta dishes including shrimp risotto, grilled fish with orzo, and orecchiette pasta at Citrus Grillhouse in Vero Beach, Florida",
         "offersReservations": true,
         "offersDeliveryTakeout": false,
         "phone": "(772) 234-4114",
@@ -472,6 +472,16 @@ const RESTAURANT_DATA = [
                 "name": "Endive Salad",
                 "description": "Chopped Belgian endive tossed with sharp blue cheese crumbles, sweet candied pecans, and fresh chives, dressed in a zesty sherry-dijon vinaigrette."
             }
+        ],
+        "images": [
+            {
+                "path": "images/citrus-grillhouse-food-plates-vero-beach.jpg",
+                "alt": "Three gourmet seafood and pasta dishes including shrimp risotto, grilled fish with orzo, and orecchiette pasta at Citrus Grillhouse in Vero Beach, Florida"
+            },
+            {
+                "path": "images/citrus-grillhouse-storefront-exterior-vero-beach.jpg",
+                "alt": "Grand stucco building exterior and palm trees of Citrus Grillhouse in Vero Beach, Florida"
+            }
         ]
     },
     {
@@ -489,7 +499,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Mac & Cheese",
         "description": "A beloved all-you-care-to-eat salad bar restaurant returning to Fort Myers. Offers a 50-foot salad bar, hot soups, fresh focaccia, and house-made bakery items.",
-        "longDescription": "A beloved all-you-care-to-eat salad bar restaurant returning to Fort Myers. Famous for its 50-foot soup and salad bar, baked potatoes, sourdough focaccia, and soft-serve ice cream, this casual spot is perfect for healthy family-friendly dining.",
+        "longDescription": "Sweet Tomatoes returns to Fort Myers with its beloved all‑you‑care‑to‑eat salad bar concept, offering a fresh, family‑friendly dining experience centered around wholesome ingredients and customizable meals. Known for its expansive 50‑foot salad and soup bar, baked potatoes, sourdough focaccia, and soft‑serve ice cream, the restaurant provides a casual environment perfect for quick lunches, relaxed dinners, and healthy dining options.\n\nWhat makes Sweet Tomatoes stand out is its focus on variety and freshness. Guests can build their own salads, explore rotating soup selections, and enjoy a range of comfort‑food sides that cater to different tastes and dietary preferences. The bright, welcoming atmosphere makes it a great choice for families, groups, and anyone seeking a satisfying meal without the heaviness of traditional dining.\n\nSweet Tomatoes is ideal for diners who appreciate simple, fresh ingredients and a relaxed, buffet‑style experience. It’s a reliable favorite in Fort Myers for healthy, customizable meals.",
         "hours": {
             "Monday - Saturday": "10:30 AM - 9:00 PM",
             "Sunday": "10:30 AM - 8:00 PM"
@@ -533,7 +543,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Carne Asada Tacos",
         "description": "A vibrant, casual beachfront taco joint in Vero Beach, serving up fresh tacos, chips, and refreshing soft-serve ice cream just steps from the ocean.",
-        "longDescription": "A vibrant, casual beachfront taco joint in Vero Beach, serving up fresh tacos, chips, and refreshing soft-serve ice cream just steps from the ocean. Popular for quick lunch stops and family dinners, El Sid Taqueria offers a cheerful atmosphere with outdoor seating right on Ocean Drive.",
+        "longDescription": "El Sid Taqueria brings a cheerful, beachfront dining experience to Vero Beach, offering fresh tacos, chips, and refreshing soft‑serve ice cream just steps from the ocean. The vibrant, casual atmosphere makes it a popular spot for quick lunches, relaxed dinners, and family outings. With outdoor seating right on Ocean Drive, guests can enjoy coastal breezes and lively street views while savoring flavorful Mexican‑inspired dishes.\n\nThe menu focuses on simple, fresh ingredients prepared with care. Guests can expect a variety of tacos, house‑made salsas, and satisfying sides that pair perfectly with the restaurant’s laid‑back vibe. The soft‑serve ice cream adds a fun touch, making El Sid a great stop for both meals and sweet treats.\n\nEl Sid Taqueria is perfect for diners who enjoy casual coastal dining, fresh flavors, and a lively outdoor setting. It’s a standout option in Vero Beach for anyone seeking a fun, relaxed meal by the ocean.",
         "hours": {
             "Sunday - Thursday": "11:00 AM - 8:00 PM",
             "Friday - Saturday": "11:00 AM - 9:00 PM"
@@ -563,6 +573,16 @@ const RESTAURANT_DATA = [
                 "name": "House-Made Tortilla Chips",
                 "description": "Crispy, fresh-fried tortilla chips served salted and warm, perfect for pairing with our house salsas or guacamole."
             }
+        ],
+        "images": [
+            {
+                "path": "images/el-sid-taqueria-truck-interior-vero-beach.jpg",
+                "alt": "Rustic yellow Ford pickup truck turned service counter inside the colorful interior of El Sid Taqueria in Vero Beach, Florida"
+            },
+            {
+                "path": "images/el-sid-taqueria-storefront-vero-beach.jpg",
+                "alt": "Peach-colored stucco storefront exterior of El Sid Taqueria in Vero Beach, Florida, showing steps, a wooden bench, and palm trees"
+            }
         ]
     },
     {
@@ -580,7 +600,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Cangrejada con Patacón",
         "description": "Helmed by Chef Alejandra Espinoza, this Michelin-guided culinary gem in North Miami masterfully elevates traditional Ecuadorian flavors into an upscale, globally inspired dining experience in a sleek, intimate space.",
-        "longDescription": "Tucked away in North Miami, Cotoa is a culinary gem that masterfully elevates traditional Ecuadorian flavors into an upscale, globally inspired dining experience. Helmed by Chef Alejandra Espinoza, this Michelin-guided restaurant offers a sophisticated menu where ancestral South American ingredients meet modern cooking techniques. The sleek, intimate space matches the artistry on the plate, making it a standout destination for food enthusiasts seeking a vibrant, story-driven meal. From beautifully plated ceviches to rich, comforting mains, Cotoa delivers an unforgettable journey through the diverse landscapes of Ecuador.",
+        "longDescription": "Cotoa is one of North Miami’s most exciting culinary destinations, offering a refined and deeply personal interpretation of Ecuadorian cuisine. Led by Chef Alejandra Espinoza, the restaurant blends ancestral South American ingredients with modern cooking techniques, resulting in dishes that feel both rooted in tradition and elevated for contemporary dining. As a Michelin‑guided establishment, Cotoa emphasizes craftsmanship, storytelling, and artistic presentation, making every plate feel like part of a larger cultural narrative.\nThe intimate, sleek dining room enhances the experience, creating a space where guests can fully appreciate the creativity and detail behind each dish. From vibrant ceviches to rich, comforting mains inspired by Ecuador’s diverse regions, the menu showcases bold flavors and thoughtful composition. Cotoa is ideal for diners who enjoy globally inspired cuisine, chef‑driven menus, and restaurants that offer more than just a meal — they offer an experience.\nWhether you’re exploring Ecuadorian food for the first time or seeking a standout fine‑casual restaurant in North Miami, Cotoa delivers a memorable, story‑driven dining journey.",
         "hours": {
             "Monday - Tuesday": "Closed",
             "Wednesday - Thursday": "5:30 PM - 9:00 PM",
@@ -634,7 +654,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Lobster-N-Crab Cake",
         "description": "A popular waterfront spot in Sebastian right on the Indian River, featuring a sandy beach dining area, grilled seafood specials, and an energetic, laid-back tropical vibe.",
-        "longDescription": "A popular waterfront spot in Sebastian right on the Indian River, featuring a sandy beach dining area, grilled seafood specials, and an energetic, laid-back tropical vibe. Known for its oak-grilled cooking methods, diners can bury their toes in the sand while enjoying views of the passing boats and marine wildlife.",
+        "longDescription": "Squid Lips is a beloved waterfront staple in Sebastian, offering a laid‑back tropical dining experience right on the Indian River. Known for its sandy beach seating area, oak‑grilled seafood specials, and lively coastal atmosphere, the restaurant captures the essence of Florida’s relaxed riverfront lifestyle. Guests can enjoy fresh seafood while watching boats drift by, spotting marine wildlife, and soaking in the breezy, open‑air environment.\nThe menu highlights grilled favorites, casual coastal bites, and tropical cocktails that pair perfectly with the restaurant’s beachy vibe. Squid Lips is a great choice for families, groups, and anyone looking for a fun, casual meal with a scenic backdrop. The sandy dining area adds a unique touch, allowing guests to literally bury their toes in the sand while enjoying lunch or dinner.\nSquid Lips is ideal for diners who appreciate unfussy, flavorful seafood and a lively waterfront setting. It’s a must‑visit in Sebastian for anyone seeking a relaxed, tropical dining experience by the water.",
         "hours": {
             "Monday - Sunday": "11:00 AM - 9:00 PM"
         },
@@ -684,7 +704,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Blue Crab and Sweet Corn Fritters",
         "description": "A casual, family-friendly coastal tavern located at Disney's Vero Beach Resort, serving up American favorites and fresh seafood in a relaxed beachside setting.",
-        "longDescription": "A warm, inviting coastal tavern located right inside Disney's Vero Beach Resort & Spa, Wind & Waves Grill highlights fresh local seafood, hand-crafted pizzas, and signature flatbreads. With its airy dining room and open kitchen design, it's the perfect spot for resort guests and visitors alike to enjoy a relaxed beachside breakfast or dinner.",
+        "longDescription": "Wind & Waves Grill offers a warm, coastal dining experience inside Disney’s Vero Beach Resort & Spa, blending fresh local ingredients with a relaxed, family‑friendly atmosphere. The restaurant features an airy dining room, open kitchen design, and a menu centered around fresh seafood, hand‑crafted pizzas, and signature flatbreads. Whether you’re enjoying breakfast before a day at the beach or settling in for a casual dinner, the restaurant delivers a comforting, beachside vibe that feels quintessentially Florida.\nGuests can expect friendly service, approachable dishes, and a setting that appeals to both resort visitors and locals. The menu balances classic coastal flavors with Disney’s signature attention to detail, making it a reliable choice for families, couples, and groups. The open kitchen adds a fun, interactive element, allowing diners to watch chefs prepare pizzas and flatbreads fresh to order.\nWind & Waves Grill is perfect for anyone seeking a relaxed, seaside meal with consistent quality and a welcoming atmosphere. It’s a standout option in Vero Beach for casual coastal dining.",
         "hours": {
             "Breakfast": "8:00 AM - 11:00 AM Daily",
             "Dinner": "5:00 PM - 9:00 PM Daily"
@@ -714,6 +734,16 @@ const RESTAURANT_DATA = [
                 "name": "Wood-Fired Pizza",
                 "description": "Freshly prepared hand-tossed flatbread pizzas baked in our signature wood-fired oven."
             }
+        ],
+        "images": [
+            {
+                "path": "images/wind-and-waves-grill.jpg",
+                "alt": "Blueberry Lemon Ricotta Pancakes served with bacon at Wind & Waves Grill"
+            },
+            {
+                "path": "images/wind-and-waves-grill-dining-room-vero-beach.jpg",
+                "alt": "Warmly lit interior dining room of Wind & Waves Grill at Disney's Vero Beach Resort, featuring high wooden ceilings and modern round light fixtures"
+            }
         ]
     },
     {
@@ -730,7 +760,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Pan-Fried Gyoza",
         "description": "A relaxed, contemporary Japanese restaurant centered entirely around its iconic 'sushi river' bar, offering an interactive, casual dining experience.",
-        "longDescription": "Blue Ginger offers a relaxed, contemporary Japanese dining experience centered entirely around its iconic 'sushi river' bar and table seating. Featuring an intimate, casual vibe, it is a fantastic local spot for a laid-back date night, a quick bite with friends, or a fun, interactive family dinner where you can watch the sushi plates glide by.",
+        "longDescription": "Blue Ginger offers a charming, contemporary Japanese dining experience in Southwest Ranches, centered around its iconic “sushi river” bar — a fun, interactive conveyor system that delivers fresh sushi plates directly to guests. The restaurant’s intimate, casual vibe makes it a great choice for laid‑back date nights, quick bites with friends, or family dinners where the dining experience becomes part of the entertainment.\nThe menu features a variety of sushi rolls, sashimi, and Japanese‑inspired small plates, all prepared with fresh ingredients and approachable flavors. The sushi river adds a playful twist, allowing guests to sample different dishes at their own pace. The relaxed atmosphere, friendly service, and unique dining format make Blue Ginger a local favorite for those seeking something different from traditional sushi restaurants.\nBlue Ginger is ideal for diners who enjoy casual Japanese cuisine, interactive dining, and a cozy neighborhood setting. It’s a standout spot in Southwest Ranches for fun, flavorful meals.",
         "hours": {
             "Monday - Thursday": "3:00 PM - 10:00 PM",
             "Friday": "3:00 PM - 11:00 PM",
@@ -782,7 +812,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Asada Steak Tacos",
         "description": "A vibrant, stylish rooftop Mexican restaurant at Brickell City Centre. Delivers creative tacos, fresh ceviches, and premium margaritas in an upbeat, contemporary environment.",
-        "longDescription": "Located on the 4th floor of Brickell City Centre, Tacology is a stylish, open-air Mexican restaurant. The design blends rustic elements with neon lights and a lively bar, making it a fantastic destination for trendy date nights or post-work happy hours. The kitchen serves artisanal street food, fresh tableside guacamole, and a curated selection of tequila and mezcal cocktails.",
+        "longDescription": "Tacology brings a stylish, modern Mexican dining experience to Brickell City Centre, offering an open‑air restaurant design that blends rustic elements with neon accents and a lively bar scene. Located on the 4th floor, the restaurant feels vibrant and energetic, making it a popular destination for trendy date nights, group outings, and post‑work happy hours.\nThe menu focuses on artisanal street food, fresh tableside guacamole, and a curated selection of tequila and mezcal cocktails. Guests can enjoy beautifully plated tacos, flavorful small bites, and creative drinks in a setting that feels both upscale and approachable. The open layout and upbeat music contribute to the restaurant’s social atmosphere, making it a great choice for evenings when you want a meal that feels fun and immersive.\nTacology is perfect for diners who enjoy modern Mexican cuisine, stylish environments, and a lively Brickell vibe. It’s a standout option for anyone seeking bold flavors and a trendy dining experience.",
         "hours": {
             "Monday - Thursday": "11:30 AM - 11:00 PM",
             "Friday - Saturday": "11:30 AM - 12:00 AM",
@@ -848,13 +878,13 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Firecracker Shrimp",
         "description": "A lively, family-friendly beachfront restaurant in Vero Beach, open early for breakfast and staying open late, famous for its tropical cocktails, fresh seafood, and sweeping ocean views.",
-        "longDescription": "A lively, family-friendly beachfront restaurant in Vero Beach, open early for breakfast and staying open late, famous for its tropical cocktails, fresh seafood, and sweeping ocean views. Offering broad menu selections, a large outdoor patio, and a kids-friendly environment, it is the perfect spot for weekend brunch or family dinners.",
+        "longDescription": "Mulligan’s Beach House is a lively, family‑friendly beachfront restaurant in Vero Beach, offering sweeping ocean views, tropical cocktails, and a broad menu that caters to all ages. Open early for breakfast and staying open late, the restaurant is a go‑to spot for weekend brunches, casual lunches, and relaxed family dinners. The large outdoor patio provides a breezy, coastal setting perfect for enjoying seafood dishes, refreshing drinks, and Florida sunshine.\nThe menu features a mix of fresh seafood, comfort‑food classics, and kid‑friendly options, making it a reliable choice for groups and families. Mulligan’s energetic atmosphere, friendly service, and beachfront location create a fun, approachable dining experience that feels quintessentially Vero Beach.\nMulligan’s Beach House is ideal for diners who enjoy casual coastal dining, ocean views, and a lively environment. It’s a must‑visit for anyone seeking a relaxed meal by the water.",
         "hours": {
             "Sunday - Thursday": "7:00 AM - 10:00 PM",
             "Friday - Saturday": "7:00 AM - 12:00 AM"
         },
-        "image": "images/photo-coming-soon.jpg",
-        "imageAlt": "Seaside dining at Mulligan's Beach House in Vero Beach, Florida",
+        "image": "images/mulligans-beach-house-storefront-vero-beach.jpg",
+        "imageAlt": "Storefront exterior of Mulligan's Beach House Bar & Grill in Vero Beach, Florida, showing a blue awning, beach chairs, and a large sailfish statue",
         "offersReservations": true,
         "offersDeliveryTakeout": true,
         "phone": "(772) 492-6744",
@@ -883,6 +913,16 @@ const RESTAURANT_DATA = [
                 "name": "Best Burger On Beach",
                 "description": "A juicy, seasoned beef patty grilled to order and served with fresh lettuce, tomato, onion, and pickles on a toasted bun."
             }
+        ],
+        "images": [
+            {
+                "path": "images/mulligans-beach-house-storefront-vero-beach.jpg",
+                "alt": "Storefront exterior of Mulligan's Beach House Bar & Grill in Vero Beach, Florida, showing a blue awning, beach chairs, and a large sailfish statue"
+            },
+            {
+                "path": "images/mulligans-beach-house-lifeguard-chair-vero-beach.jpg",
+                "alt": "Giant green wooden beach lifeguard chair with painted signs for Mulligan's Beach House Bar & Grill in Vero Beach, Florida"
+            }
         ]
     },
     {
@@ -902,7 +942,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Homemade Spaguetti & Meatballs",
         "description": "A nice, cozy and relaxed restaurant decorated to look like Italy. Famous for their freshly baked garlic rolls, stone-baked pizzas, and fresh homemade pastas, it's the perfect spot for a relaxed dinner with great Italian cooking.",
-        "longDescription": "A nice, cozy and relaxed restaurant decorated to look like Italy. Famous for their freshly baked garlic rolls drenched in olive oil and minced garlic, stone-baked pizzas, and fresh homemade pastas, it's the perfect spot for a relaxed dinner. The warm, inviting dining room features traditional Italian decor, warm lighting, and a relaxed atmosphere. While it doesn't feel like a grandmother's house, the exceptional Italian cooking certainly tastes like it, bringing you comfort and quality in every single bite.",
+        "longDescription": "Pizza Lovers offers a cozy, inviting Italian dining experience in Plantation, blending traditional flavors with a warm, home‑style atmosphere. Known for its freshly baked garlic rolls drenched in olive oil and minced garlic, stone‑baked pizzas, and homemade pastas, the restaurant delivers comforting Italian dishes prepared with care. The dining room features classic Italian décor, warm lighting, and a relaxed ambiance that makes guests feel right at home.\nWhat sets Pizza Lovers apart is its commitment to quality and consistency. Each dish highlights fresh ingredients and traditional cooking methods, resulting in meals that feel both familiar and satisfying. Whether you’re enjoying a casual dinner, celebrating with family, or craving authentic Italian comfort food, the restaurant offers a welcoming environment and flavors that evoke the warmth of home cooking.\nPizza Lovers is perfect for diners who appreciate hearty Italian dishes, cozy settings, and a relaxed dining experience. It’s a standout spot in Plantation for comforting, high‑quality Italian cuisine.",
         "hours": {
             "Monday - Thursday": "11:30 AM - 10:00 PM",
             "Friday - Saturday": "11:30 AM - 10:00 PM",
@@ -958,7 +998,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "JOEs Club",
         "description": "A trendy Danish juice bar and coffee shop located inside Aventura Mall, popular for its fresh-pressed custom juices, signature flatbread sandwiches, and energetic club-like soundtrack.",
-        "longDescription": "A trendy Danish juice bar and coffee shop located inside Aventura Mall, popular for its fresh-pressed custom juices, signature flatbread sandwiches, and energetic club-like soundtrack. Popular with shoppers looking for a quick, healthy boost, it offers a distinct, modern atmosphere with premium coffees, shakes, and freshly prepared flatbread options.",
+        "longDescription": "Joe & The Juice brings a trendy, modern juice bar and café experience to Aventura Mall, offering fresh‑pressed juices, premium coffees, shakes, and signature flatbread sandwiches in a sleek, energetic environment. The Danish brand is known for its club‑like soundtrack, minimalist design, and health‑focused menu, making it a popular stop for shoppers seeking a quick, nutritious boost.\nThe menu features customizable juices, protein shakes, espresso drinks, and light bites that cater to a variety of dietary preferences. Guests can enjoy a vibrant atmosphere that feels both stylish and approachable, with friendly staff and fast service ideal for busy mall visitors. Joe & The Juice is perfect for anyone looking for a refreshing drink, a healthy snack, or a modern café experience during a day of shopping.\nIt’s a standout option in Aventura Mall for fresh, energizing drinks and quick, flavorful bites.",
         "hours": {
             "Monday - Sunday": "9:00 AM - 10:00 PM"
         },
@@ -1012,7 +1052,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Peach Bellini Meatballs",
         "description": "A warm, family-owned Italian kitchen in Miramar. Famous for their peach bellini meatballs, artisanal pizzas, and rich lasagna in a cozy setting.",
-        "longDescription": "A warm, family-owned Italian kitchen in Miramar. Famous for their peach bellini meatballs, artisanal pizzas, and rich lasagna in a cozy setting. They feature an extensive wine selection, homemade marinara, and a very popular pasta menu, making it an excellent stop for comfort dining with family or a relaxed date night.",
+        "longDescription": "Rosalia’s Kitchen offers a warm, family‑owned Italian dining experience in Miramar, known for its peach bellini meatballs, artisanal pizzas, rich lasagna, and homemade marinara. The cozy dining room and friendly service create an inviting environment perfect for family dinners, relaxed date nights, or casual evenings out.\nThe menu highlights classic Italian comfort dishes prepared with care and high‑quality ingredients. Guests can enjoy a wide selection of pastas, pizzas, and house specialties paired with an extensive wine list that complements the restaurant’s rich flavors. Rosalia’s Kitchen stands out for its consistency, welcoming atmosphere, and ability to deliver meals that feel both comforting and elevated.\nIt’s an excellent choice for diners seeking hearty Italian cuisine, warm hospitality, and a relaxed neighborhood setting in Miramar.",
         "hours": {
             "Monday - Thursday": "11:00 AM - 10:00 PM",
             "Friday": "11:00 AM - 11:00 PM",
@@ -1067,7 +1107,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Tostada De Atun",
         "description": "An ultra-chic, two-story Mexican cantina in Brickell overlooking the water, featuring a gorgeous dining room, high-end traditional Mexican specialties, and a lively bar scene.",
-        "longDescription": "An ultra-chic, two-story Mexican cantina in Brickell overlooking the water, featuring a gorgeous dining room, high-end traditional Mexican specialties, and a lively bar scene. Diners can experience gourmet Mexican cuisine, standard legacy mezcal and tequila menus, and beautiful terrace seating directly over the Miami River.",
+        "longDescription": "Cantina La Veinte offers one of Brickell’s most luxurious Mexican dining experiences, featuring a stunning two‑story interior overlooking the water and a menu centered on high‑end traditional Mexican cuisine. The restaurant blends ornate décor, bold flavors, and a lively bar scene to create an atmosphere that feels both glamorous and vibrant.\nGuests can enjoy gourmet Mexican dishes, beautifully crafted cocktails, and an extensive mezcal and tequila selection. The terrace seating directly over the Miami River adds a dramatic touch, making it a popular choice for date nights, celebrations, and evenings when you want a meal that feels special.\nCantina La Veinte is ideal for diners who appreciate upscale Mexican cuisine, stylish environments, and waterfront views. It’s a standout destination in Brickell for a luxurious, flavorful dining experience.",
         "hours": {
             "Monday - Wednesday": "12:30 PM - 11:00 PM",
             "Thursday": "12:30 PM - 12:00 AM",
@@ -1101,7 +1141,17 @@ const RESTAURANT_DATA = [
                 "description": "Crispy rolled tortillas filled with savory braised short rib, topped with a spicy house sauce, shredded lettuce, fresh cream, and crumbled queso fresco."
             }
         ],
-        "inkindUrl": "https://inkind.com/partners/cantina-la-veinte?utm_source=soflobites"
+        "inkindUrl": "https://inkind.com/partners/cantina-la-veinte?utm_source=soflobites",
+        "images": [
+            {
+                "path": "images/cantina-la-veinte-mexican-tostada-octopus-brickell.jpg",
+                "alt": "High-end Mexican tostada de atun, pulpo a las brasas (grilled octopus), and short rib flautas at Cantina La Veinte overlooking the Brickell waterfront in Miami, Florida"
+            },
+            {
+                "path": "images/cantina-la-veinte-interior-flags-brickell.jpg",
+                "alt": "Vibrant indoor dining room decorated with international flags and hanging bougainvillea at Cantina La Veinte in Brickell, Miami, Florida"
+            }
+        ]
     },
     {
         "id": "mister-o1",
@@ -1119,7 +1169,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Bella Margherita Pizza",
         "description": "An extraordinary pizzeria famous for its iconic star-shaped pizzas with creamy ricotta stuffed inside the folded points. Originating in Miami Beach and expanding to Pembroke Pines, it serves crisp, thin crusts in a chic modern setting.",
-        "longDescription": "An extraordinary pizzeria famous for its iconic star-shaped pizzas with creamy ricotta stuffed inside the folded points in Pembroke Pines. Originating in Miami Beach, it serves crisp, thin crusts in a chic modern setting. Features a lively open kitchen, high ceilings, and exceptional Italian ingredients.",
+        "longDescription": "Mister 01 brings its award‑winning, Miami‑born pizza concept to Pembroke Pines with a chic, modern dining room and a menu centered around exceptional Italian ingredients. Best known for its iconic star‑shaped pizzas — each point filled with creamy ricotta — the restaurant blends creativity with tradition in a way that feels both playful and refined. The crisp, thin crusts are crafted using high‑quality flour and imported toppings, resulting in pizzas that are light, flavorful, and beautifully balanced.\nThe lively open kitchen and high ceilings add to the energetic atmosphere, making Mister 01 a great choice for casual dinners, date nights, or gatherings with friends. Guests can watch chefs stretch dough, assemble pizzas, and slide them into the oven, creating a fun, interactive dining experience. The menu also features fresh salads, artisanal appetizers, and specialty pies that highlight the restaurant’s commitment to quality.\nMister 01 is perfect for diners who appreciate inventive Italian cuisine, modern design, and a restaurant that transforms pizza into a gourmet experience. It’s a standout spot in Pembroke Pines for anyone seeking exceptional, handcrafted pies.",
         "hours": {
             "Monday - Thursday": "11:30 AM - 10:00 PM",
             "Friday - Saturday": "11:30 AM - 11:00 PM",
@@ -1185,7 +1235,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Best Fish & Chips in the US",
         "description": "A lively, upscale British-inspired tavern at the Shops at Pembroke Gardens. Offers a self-pour draft beer wall, traditional pub fare, and an energetic outdoor patio.",
-        "longDescription": "A lively, upscale British-inspired tavern at the Shops at Pembroke Gardens. Famous for its self-pour draft beer wall, traditional pub fare like bangers & mash, and an energetic outdoor patio, the venue serves a wide selection of international brews in a rich wood-accented dining room that captures classic British charm.",
+        "longDescription": "The Pub brings a lively, British‑inspired tavern experience to the Shops at Pembroke Gardens, offering classic pub fare, international brews, and a warm, wood‑accented dining room that captures the charm of traditional British pubs. Known for its self‑pour draft beer wall, the restaurant allows guests to sample a variety of beers at their own pace, adding a fun, interactive element to the dining experience.\nThe menu features favorites like bangers & mash, fish and chips, shepherd’s pie, and hearty comfort dishes that pair perfectly with the extensive beer selection. The energetic outdoor patio and bustling indoor bar make The Pub a great choice for happy hours, casual dinners, and weekend gatherings. Whether you’re stopping in for a pint, enjoying a meal with friends, or catching a game, the atmosphere feels welcoming and lively.\nThe Pub is ideal for diners who enjoy classic British flavors, a wide beer selection, and a vibrant social setting. It’s a standout option in Pembroke Pines for relaxed, upscale‑casual dining.",
         "hours": {
             "Monday - Wednesday": "12:00 PM - 11:00 PM",
             "Thursday": "12:00 PM - 12:00 AM",
@@ -1242,12 +1292,12 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Char Grilled Spanish Octopus & Chorizo",
         "description": "An upscale oceanfront pool bar and grill at the Costa d'Este Beach Resort, offering refreshing tropical cocktails, fresh ceviches, and casual beachside fare under the palm trees.",
-        "longDescription": "An upscale oceanfront pool bar and grill at the Costa d'Este Beach Resort, offering refreshing tropical cocktails, fresh ceviches, and casual beachside fare under the palm trees. Nestled in a tropical pool deck layout, it is perfect for relaxing with ocean views and enjoying scratch-made resort dining.",
+        "longDescription": "Cabana Bar offers a breezy, upscale poolside dining experience at Costa d’Este Beach Resort in Vero Beach, blending tropical cocktails, fresh ceviches, and casual coastal fare with stunning ocean views. Nestled among palm trees and a stylish pool deck, the bar provides a relaxed yet refined atmosphere perfect for resort guests and visitors seeking a laid‑back meal by the water.\nThe menu highlights fresh ingredients and beach‑friendly dishes, including seafood bites, refreshing salads, and tropical drinks crafted with house‑made mixers. Guests can enjoy the ocean breeze, comfortable lounge seating, and a setting that feels both luxurious and approachable. Cabana Bar is a great choice for afternoon cocktails, casual lunches, or sunset bites after a day at the beach or pool.\nIt’s ideal for diners who appreciate resort‑style dining, oceanfront views, and a relaxed tropical vibe. Cabana Bar is one of Vero Beach’s best spots for enjoying scratch‑made coastal fare in a beautiful outdoor setting.",
         "hours": {
             "Monday - Sunday": "7:30 AM - 11:00 AM, 11:00 AM - 3:00 PM, 5:00 PM - 10:00 PM"
         },
-        "image": "images/photo-coming-soon.jpg",
-        "imageAlt": "Beachside pool deck dining at Cabana Bar in Vero Beach, Florida",
+        "image": "images/cabana-bar-stuffed-appetizers-vero-beach.jpg",
+        "imageAlt": "Gourmet stuffed appetizers topped with melted cheese, tomato sauce, chives, and a fresh lime wedge at Cabana Bar in Vero Beach, Florida",
         "offersReservations": false,
         "offersDeliveryTakeout": false,
         "phone": "(772) 562-9919",
@@ -1268,6 +1318,16 @@ const RESTAURANT_DATA = [
                 "name": "Cuban Style Skirt Steak",
                 "description": "Classic Cuban-style skirt steak (churrasco) grilled to order, topped with grilled onions, fresh cilantro, and served with a flavorful chimichurri sauce."
             }
+        ],
+        "images": [
+            {
+                "path": "images/cabana-bar-stuffed-appetizers-vero-beach.jpg",
+                "alt": "Gourmet stuffed appetizers topped with melted cheese, tomato sauce, chives, and a fresh lime wedge at Cabana Bar in Vero Beach, Florida"
+            },
+            {
+                "path": "images/cabana-bar-pool-deck-vero-beach.jpg",
+                "alt": "Breezy pool deck at Costa d’Este Beach Resort with palm trees lit in red, lounge chairs, and ocean views in Vero Beach, Florida"
+            }
         ]
     },
     {
@@ -1287,7 +1347,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Shrimp Scampi",
         "description": "A premium, energetic woodfire grill serving exceptional steaks, flatbreads, and fresh seafood in a sophisticated atmosphere. Popular for its lively bar scene and outdoor patio dining.",
-        "longDescription": "Located at the Shops at Pembroke Gardens, Brimstone Woodfire Grill delivers a premium American dining experience focused on oak-grilled steaks, local seafood, and artisan flatbreads. The interior features warm wood accents, a massive brick fire hearth, and a bustling open bar, making it an excellent option for upscale-casual date nights, business lunches, or happy hour gatherings on the breezy outdoor patio.",
+        "longDescription": "Brimstone Woodfire Grill delivers a polished American dining experience at the Shops at Pembroke Gardens, focusing on oak‑grilled steaks, fresh seafood, artisan flatbreads, and chef‑driven comfort dishes. The restaurant’s warm wood accents, massive brick fire hearth, and bustling open bar create an inviting atmosphere that feels both upscale and approachable.\nGuests can enjoy a menu centered around bold flavors and high‑quality ingredients, with dishes that highlight the restaurant’s woodfire cooking techniques. Whether you’re stopping in for a business lunch, enjoying a date night, or meeting friends for happy hour, Brimstone offers a versatile dining experience with attentive service and a lively ambiance. The breezy outdoor patio adds another layer of charm, making it a great spot for evening cocktails or weekend meals.\nBrimstone Woodfire Grill is perfect for diners who appreciate premium American cuisine, polished interiors, and a restaurant that balances sophistication with comfort. It’s a standout option in Pembroke Pines for elevated yet relaxed dining.",
         "hours": {
             "Monday": "11:30 AM - 9:00 PM",
             "Tuesday - Thursday": "11:30 AM - 10:00 PM",
@@ -1355,7 +1415,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "The Bar Burger",
         "description": "A legendary, historic pub and neighborhood staple in Coral Gables on Giralda Avenue, serving classic bar favorites, ice-cold beers, and late-night vibes since 1946.",
-        "longDescription": "A legendary, historic pub and neighborhood staple in Coral Gables on Giralda Avenue, serving classic bar favorites, ice-cold beers, and late-night vibes since 1946. Featuring historic wood paneling, multiple screens for local sports, and daily happy hours, it remains one of the area's favorite social gathering spots.",
+        "longDescription": "The Bar is a beloved Coral Gables institution, offering classic pub fare, ice‑cold beers, and lively late‑night vibes on Giralda Avenue since 1946. With its historic wood paneling, vintage charm, and multiple screens for local sports, the pub has long served as a neighborhood gathering spot for friends, families, and longtime regulars.\nThe menu features approachable bar favorites, from wings and burgers to sandwiches and shareable appetizers, all served in a cozy, nostalgic setting. Daily happy hours and a welcoming staff contribute to the pub’s enduring popularity, making it a great choice for casual meetups, game nights, or relaxed evenings out. The Bar’s long history and consistent atmosphere give it a timeless appeal that resonates with locals and visitors alike.\nIt’s ideal for diners who enjoy classic pub environments, friendly service, and a piece of Coral Gables history. The Bar remains one of the area’s most iconic social spots.",
         "hours": {
             "Monday - Sunday": "3:00 PM - 3:00 AM"
         },
@@ -1403,7 +1463,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Cast Iron Pancake",
         "description": "A MICHELIN Bib Gourmand-winning Cuban-American diner in Coconut Grove. Chef Michael Beltran blends classic American diner culture with homestyle Cuban specialties.",
-        "longDescription": "A MICHELIN Bib Gourmand-winning Cuban-American diner in Coconut Grove. Chef Michael Beltran blends classic American diner culture with homestyle Cuban specialties. The diner features a bright, retro-inspired dining room, an open coffee counter, and a spacious outdoor terrace, serving breakfast all day, legendary pastelitos, and Cuban-style diner sandwiches.",
+        "longDescription": "Chug’s Diner brings a MICHELIN Bib Gourmand‑recognized Cuban‑American dining experience to Coconut Grove, blending classic diner culture with homestyle Cuban flavors crafted by Chef Michael Beltran. The bright, retro‑inspired dining room features an open coffee counter, pastelito display, and spacious outdoor terrace, creating a welcoming environment perfect for breakfast, lunch, or dinner.\nThe menu highlights comforting dishes like Cuban‑style sandwiches, all‑day breakfast plates, fresh pastries, and inventive takes on traditional favorites. Chug’s is known for its legendary pastelitos, rich Cuban coffees, and dishes that balance nostalgia with modern culinary creativity. The diner’s approachable atmosphere and consistent quality make it a favorite among locals, families, and food enthusiasts exploring Miami’s vibrant dining scene.\nChug’s Diner is ideal for diners who appreciate hearty comfort food, Cuban flavors, and a relaxed, stylish setting. It’s a standout spot in Coconut Grove for delicious, thoughtfully crafted meals.",
         "hours": {
             "Monday - Tuesday": "7:30 AM - 3:00 PM",
             "Wednesday - Saturday": "7:30 AM - 10:00 PM",
@@ -1456,7 +1516,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Fish & Chips",
         "description": "A newly renovated, beloved Irish pub on Miracle Mile, offering draft beers, single malt whiskeys, and a menu blending traditional Irish fare with contemporary American pub dishes.",
-        "longDescription": "A newly renovated, beloved Irish pub on Miracle Mile, offering draft beers, single malt whiskeys, and a menu blending traditional Irish fare with contemporary American pub dishes. The warm interior blends cozy Irish pub details with modern styling, making it an excellent stop for a relaxed pint or date night dinner.",
+        "longDescription": "JohnMartin’s Restaurant & Bar brings a newly renovated Irish pub experience to Miracle Mile, blending traditional Irish charm with modern design elements. Known for its draft beers, single malt whiskeys, and a menu that combines classic Irish fare with contemporary American pub dishes, the restaurant offers a warm, inviting environment perfect for casual dinners, date nights, or relaxed evenings out.\nThe interior features cozy Irish pub details — dark wood accents, warm lighting, and comfortable seating — paired with updated styling that gives the space a fresh, polished feel. Guests can enjoy shepherd’s pie, fish and chips, burgers, and creative small plates alongside a well‑curated drink selection. The lively bar scene and friendly service contribute to the restaurant’s welcoming atmosphere.\nJohnMartin’s is ideal for diners who enjoy hearty comfort food, quality drinks, and a blend of tradition and modernity. It’s a standout destination on Miracle Mile for relaxed, flavorful dining.",
         "hours": {
             "Monday - Wednesday": "4:00 PM - 12:00 AM",
             "Thursday - Friday": "4:00 PM - 2:00 AM",
@@ -1510,7 +1570,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Chicken & Pork Gyoza",
         "description": "A stunning, multi-sensory Japanese restaurant and lounge overlooking the Miami River, serving premium sushi, gyoza, and pan-Asian favorites in a high-design setting.",
-        "longDescription": "Tanuki River Landing is a magnificent Japanese concept offering scenic riverfront dining in Miami. Known for its incredible design—featuring a monumental half-man, half-tanuki statue—the venue specializes in hot and cold pan-Asian plates, fresh sushi river flows, and custom cocktails. It is a premium destination for a trendy date night or an upscale weekend dining experience by the water.",
+        "longDescription": "Tanuki River Landing offers one of Miami’s most visually striking Japanese dining experiences, featuring a monumental half‑man, half‑tanuki statue and scenic riverfront views. The restaurant blends modern Japanese design with pan‑Asian culinary influences, creating a premium dining environment perfect for trendy date nights, upscale gatherings, and weekend dinners by the water.\nThe menu highlights hot and cold Asian plates, fresh sushi river flows, and creative cocktails crafted with premium ingredients. Guests can enjoy beautifully plated dishes in a setting that feels immersive and artistic, with indoor and outdoor seating that showcases the restaurant’s waterfront location. The combination of bold flavors, stylish décor, and a vibrant atmosphere makes Tanuki River Landing a standout in Miami’s competitive dining scene.\nIt’s ideal for diners who appreciate modern Japanese cuisine, unique design, and elevated waterfront dining.",
         "hours": {
             "Monday - Thursday, Sunday": "12:00 PM - 11:00 PM",
             "Friday - Saturday": "12:00 PM - 12:00 AM"
@@ -1560,7 +1620,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Ceviche Ball",
         "description": "A welcoming, family-centric spot specializing in Japanese-Peruvian Nikkei fusion with a touch of Hawaiian influence, serving creative rolls, fresh ceviches, and savory hot dishes.",
-        "longDescription": "A welcoming, family-centric spot specializing in Japanese-Peruvian Nikkei fusion with a touch of Hawaiian influence. The sleek, contemporary dining room serves creative signature rolls, fresh ceviches, and savory hot dishes like Hawaiian noodles. It is a favorite for local professionals and casual family dinners.",
+        "longDescription": "Ohana offers a welcoming, family‑centric dining experience in Doral, blending Japanese‑Peruvian Nikkei flavors with Hawaiian influences. The sleek, contemporary dining room provides a comfortable setting for both casual family dinners and meals with friends, featuring creative signature rolls, fresh ceviches, and savory hot dishes like Hawaiian noodles.\nThe menu highlights bold, fusion‑driven flavors that showcase the restaurant’s diverse culinary inspiration. Guests can expect fresh ingredients, vibrant presentations, and dishes that balance Japanese technique with Peruvian spice and Hawaiian comfort. Ohana’s approachable atmosphere and consistent quality make it a favorite among local professionals and families seeking flavorful, modern cuisine.\nIt’s ideal for diners who enjoy fusion dishes, relaxed environments, and a menu that offers something for everyone. Ohana is a standout spot in Doral for creative, satisfying meals.",
         "hours": {
             "Monday - Thursday": "11:30 AM - 10:00 PM",
             "Friday": "11:30 AM - 11:00 PM",
@@ -1612,7 +1672,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Ding's Crispy Chicken Sandwich",
         "description": "An exceptionally polished, upscale dining institution on Miracle Mile in Coral Gables, renowned for its impeccable service, sushi platters, and USDA Prime steaks.",
-        "longDescription": "An exceptionally polished, upscale dining institution on Miracle Mile in Coral Gables, renowned for its impeccable service, sushi platters, and USDA Prime steaks. Popular with local professionals and celebrating couples, it offers an elegant, dim-lit dining room and stellar American dining.",
+        "longDescription": "Hillstone is a polished, upscale dining institution on Miracle Mile, known for its impeccable service, USDA Prime steaks, fresh sushi platters, and refined American dishes. The elegant, dim‑lit dining room creates a sophisticated atmosphere perfect for date nights, business dinners, and special occasions.\nThe menu features high‑quality ingredients prepared with precision, offering a mix of classic American favorites and elevated specialties. Guests can enjoy expertly crafted cocktails, attentive service, and a dining experience that feels consistently luxurious. Hillstone’s reputation for excellence makes it a popular choice among local professionals, celebrating couples, and anyone seeking a memorable meal in Coral Gables.\nIt’s ideal for diners who appreciate premium ingredients, polished interiors, and a restaurant that delivers exceptional service every time.",
         "hours": {
             "Monday - Saturday": "11:30 AM - 10:00 PM",
             "Sunday": "11:30 AM - 9:00 PM"
@@ -1663,7 +1723,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Macaroni alla Vodka",
         "description": "An upscale-casual global bistro and sushi bar at Weston Town Center. Serves a unique fusion of international classics, Latin sushi rolls, and craft cocktails.",
-        "longDescription": "Negroni Bistro & Sushi Bar at Weston Town Center brings a sophisticated dining experience with a global menu. The chic bistro features an elegant indoor dining room, a sleek sushi bar, and a leafy outdoor terrace. Diners can experience a unique combination of international dishes—ranging from artisanal pastas and steaks to Latin-inspired sushi rolls—paired with high-end mixology.",
+        "longDescription": "Negroni Bistro & Sushi Bar brings a polished, globally inspired dining experience to Weston Town Center, offering a chic blend of international cuisine, modern mixology, and stylish ambiance. The restaurant features an elegant indoor dining room, a sleek sushi bar, and a leafy outdoor terrace that creates a relaxed yet upscale environment perfect for date nights, social gatherings, and leisurely weekend meals.\nThe menu highlights a unique fusion of flavors, ranging from artisanal pastas and premium steaks to Latin‑inspired sushi rolls crafted with fresh ingredients and thoughtful presentation. Guests can enjoy a diverse selection of dishes that reflect Negroni’s global culinary approach, along with expertly crafted cocktails that elevate the dining experience. The restaurant’s refined atmosphere and attentive service make it a standout destination for those seeking a sophisticated meal in Weston.\nNegroni Bistro & Sushi Bar is ideal for diners who appreciate international cuisine, stylish settings, and a menu that offers both comfort and creativity. It’s one of Weston’s most polished dining options.",
         "hours": {
             "Monday - Wednesday": "12:00 PM - 10:00 PM",
             "Thursday": "12:00 PM - 12:00 AM",
@@ -1732,7 +1792,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Cajun Spiced New York Strip",
         "description": "A popular, high-energy gastropub located on the upper level of the upscale Aventura Mall, offering creative American dishes, craft beers, and weekend bottomless brunches.",
-        "longDescription": "A popular, high-energy gastropub offering creative American food, craft beers, and cocktails located on the upper level of the upscale Aventura Mall. Famous for its weekend bottomless brunch and highly social atmosphere, the venue draws a lively crowd of locals, mall shoppers, and young professionals. The sprawling indoor space features a distinctive rustic-industrial design, a massive draft beer selection, and an impressive 1,200-square-foot open-air patio overlooking the mall's vibrant plaza, making it perfect for business lunches, happy hours, and weekend catchups.",
+        "longDescription": "Tap 42 Craft Kitchen & Bar brings a high‑energy gastropub experience to the upper level of Aventura Mall, offering creative American dishes, craft beers, and a lively social atmosphere. Known for its weekend bottomless brunch, the restaurant attracts a vibrant crowd of locals, young professionals, and mall visitors looking for a fun, flavorful meal.\nThe sprawling indoor space features rustic‑industrial décor, a massive draft beer selection, and an impressive 1,200‑square‑foot open‑air patio overlooking the mall’s bustling plaza. Guests can enjoy inventive burgers, shareable appetizers, fresh salads, and signature cocktails in a setting that feels both stylish and approachable. Tap 42 is a great choice for business lunches, happy hours, weekend catchups, and evenings when you want a meal that feels social and energetic.\nIt’s ideal for diners who enjoy modern American cuisine, craft drinks, and a lively atmosphere. Tap 42 stands out as one of Aventura’s most popular dining destinations.",
         "hours": {
             "Monday - Thursday": "11:30 AM - 11:00 PM",
             "Friday": "11:30 AM - 12:00 AM",
@@ -1799,7 +1859,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "1/2 Croque Monsieur & Tomato Soup",
         "description": "An authentic French bakery and cafe at Sawgrass Mills, offering freshly baked artisanal breads, puff pastries, tarts, and savory sandwiches with classic Parisian flair.",
-        "longDescription": "An authentic French bakery and cafe at Sawgrass Mills, offering freshly baked artisanal breads, puff pastries, tarts, and savory sandwiches with classic Parisian flair. Guests can stop for a quick butter croissant or sit for a relaxed coffee and savory lunch in the traditional French cafe setting.",
+        "longDescription": "Paul Bakery brings authentic French café culture to Sawgrass Mills, offering freshly baked artisanal breads, delicate pastries, savory sandwiches, and classic Parisian desserts. The bakery’s warm, traditional décor creates a charming environment perfect for relaxed breakfasts, casual lunches, or afternoon coffee breaks.\nGuests can enjoy buttery croissants, flaky puff pastries, fruit tarts, baguette sandwiches, and rich espresso drinks crafted with European flair. Whether you’re stopping in for a quick bite or sitting down for a leisurely meal, Paul Bakery delivers a taste of France with consistent quality and attention to detail. The café’s inviting atmosphere and elegant presentation make it a favorite among shoppers seeking a refined break from the mall’s bustle.\nPaul Bakery is ideal for diners who appreciate French pastries, artisanal breads, and a cozy European café experience. It’s a standout spot in Sunrise for classic French baking.",
         "hours": {
             "Monday - Sunday": "10:00 AM - 9:00 PM"
         },
@@ -1857,7 +1917,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Pesto Fettuccine",
         "description": "An exceptional fermentation-forward dining concept serving artisanal naturally leavened sourdough pizzas, house-made pastas, and natural wines.",
-        "longDescription": "Located at the Shops at Pembroke Gardens, LB Eatery & Wine is a culinary gem specializing in a fermentation-forward menu. Under the direction of artisanal bakers, they serve magnificent sourdough pizzas baked crisp in their custom ovens, alongside silky house-made pastas and fresh seasonal salads. Guests can enjoy their food paired with a curated selection of natural and small-production wines in a chic, contemporary dining room.",
+        "longDescription": "LB Eatery & Wine offers a fermentation‑forward dining experience at the Shops at Pembroke Gardens, specializing in sourdough pizzas, house‑made pastas, and fresh seasonal salads crafted with artisanal techniques. The chic, contemporary dining room provides a stylish backdrop for meals that highlight craftsmanship, creativity, and high‑quality ingredients.\nThe restaurant’s sourdough pizzas are baked crisp in custom ovens, delivering complex flavors and airy textures that showcase the artistry behind the dough. Guests can also enjoy silky pastas, vibrant salads, and a curated selection of natural and small‑production wines that pair beautifully with the menu. LB Eatery & Wine is a great choice for date nights, relaxed dinners, and evenings when you want a meal that feels both modern and thoughtfully prepared.\nIt’s ideal for diners who appreciate artisanal cooking, fermentation‑driven flavors, and a polished dining environment. LB Eatery & Wine is one of Pembroke Pines’ most unique culinary gems.",
         "hours": {
             "Monday - Tuesday": "9:00 AM - 2:00 PM",
             "Wednesday - Thursday": "9:00 AM - 2:00 PM, 6:00 PM - 9:00 PM",
@@ -1922,8 +1982,8 @@ const RESTAURANT_DATA = [
             "Brunch"
         ],
         "mustTry": "Drunken Shrimp",
-        "description": "An upscale-casual American winery and restaurant at the Shops at Pembroke Gardens, offering modern dining, a full-service bar, and an interactive wine-tasting room.",
-        "longDescription": "Located at the Shops at Pembroke Gardens, Cooper's Hawk Winery & Restaurant offers a sophisticated American menu designed to pair perfectly with their own proprietary wines. The expansive venue features a modern, upscale dining room, a busy full-service bar, and a welcoming wine-tasting room where guests can sample flights before their meal. It is a fantastic destination for romantic date nights, corporate lunches, or celebratory family dinners.",
+        "description": "An upscale-casual American winery and restaurant in Pembroke Pines, offering contemporary dining, a full-service bar, and an interactive wine-tasting room.",
+        "longDescription": "Cooper’s Hawk Winery & Restaurant offers a refined American dining experience designed to pair perfectly with the brand’s proprietary wines. The expansive venue features a modern dining room, a bustling full‑service bar, and a welcoming wine‑tasting room where guests can sample flights before their meal.\nThe menu highlights contemporary American dishes crafted with fresh ingredients and bold flavors, including signature entrees, shareable appetizers, and seasonal specials. Cooper’s Hawk is a popular choice for romantic date nights, corporate lunches, celebratory dinners, and gatherings with friends. The combination of polished service, consistent quality, and a unique wine‑driven concept makes it a standout dining destination in Pembroke Pines.\nIt’s ideal for diners who enjoy elevated American cuisine, curated wine pairings, and a sophisticated yet approachable atmosphere.",
         "hours": {
             "Monday - Thursday": "11:00 AM - 9:00 PM",
             "Friday": "11:00 AM - 10:00 PM",
@@ -1987,7 +2047,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Spaghetti Meatballs",
         "description": "A bustling, upscale Italian restaurant at the Colonnade Outlets at Sawgrass Mills, serving traditional wood-fired pizzas, hearty pasta dishes, and fresh seafood under patio awnings.",
-        "longDescription": "A bustling, upscale Italian restaurant at the Colonnade Outlets at Sawgrass Mills, serving traditional wood-fired pizzas, hearty pasta dishes, and fresh seafood under patio awnings. Known for its generous portions and authentic recipes, it is a favorite for shoppers looking for quality Italian cooking.",
+        "longDescription": "Villagio brings classic Italian dining to the Colonnade Outlets at Sawgrass Mills, offering wood‑fired pizzas, hearty pastas, fresh seafood, and generous portions in a lively, upscale environment. The restaurant’s spacious patio seating and warm interior create a welcoming atmosphere perfect for shoppers seeking a high‑quality meal after a day at the outlets.\nThe menu features traditional Italian recipes prepared with care, from comforting pasta dishes to crisp pizzas baked in a wood‑fired oven. Villagio is known for its consistency, friendly service, and ability to deliver satisfying meals that feel both authentic and approachable. Whether you’re enjoying lunch with family or settling in for a relaxed dinner, the restaurant offers a reliable and flavorful Italian dining experience.\nVillagio is ideal for diners who appreciate classic Italian cooking, generous portions, and a lively atmosphere. It’s a favorite in Sunrise for quality Italian fare.",
         "hours": {
             "Monday - Saturday": "11:00 AM - 11:00 PM",
             "Sunday": "11:00 AM - 10:00 PM"
@@ -2037,7 +2097,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Moscow",
         "description": "A charming, European-style cafe in Plantation. Famous for their paper-thin, fresh-cooked sweet and savory crepes and artisan coffee in a warm, cozy setting.",
-        "longDescription": "Tucked away in a quiet Plantation shopping plaza, Saffrano Crepes & Coffee is a charming European-style cafe that has become a neighborhood secret. Specializing in paper-thin, fresh-cooked sweet and savory crepes, the cafe offers a warm, cozy interior and casual outdoor tables. It is a fantastic spot for a quiet breakfast, weekend brunch with family, or a sweet afternoon pick-me-up paired with a custom latte.",
+        "longDescription": "Saffrano Crepes & Coffee is a charming European‑style café tucked away in a quiet Plantation plaza, offering fresh sweet and savory crepes made to order. The cozy interior and casual outdoor seating create a warm, inviting environment perfect for quiet breakfasts, weekend brunches, or afternoon treats paired with custom lattes.\nThe menu features paper‑thin crepes filled with fresh ingredients, from fruit‑forward sweet options to savory combinations crafted with meats, cheeses, and vegetables. Guests can enjoy a relaxed café experience that feels both comforting and refined, with friendly service and a neighborhood atmosphere that makes Saffrano a local favorite.\nIt’s ideal for diners who enjoy European café culture, fresh crepes, and cozy settings. Saffrano Crepes & Coffee is one of Plantation’s best hidden gems.",
         "hours": {
             "Monday - Thursday": "8:30 AM - 9:00 PM",
             "Friday - Saturday": "8:30 AM - 10:00 PM",
@@ -2087,7 +2147,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Pork Gyozas",
         "description": "An elegant, contemporary Japanese restaurant at Weston Town Center. Serves sophisticated sushi, raw plates, and tapas in a sleek, high-design dining room.",
-        "longDescription": "An elegant, contemporary Japanese restaurant at Weston Town Center. Serves sophisticated sushi rolls, raw plates, and tapas in a sleek, high-design dining room. Famous for their spicy honey shrimp, fresh yellowtail jalapeño, and high-quality sushi selection, it is a favorite for upscale date nights, special celebrations, and business lunches.",
+        "longDescription": "Ke‑uH offers an elegant Japanese dining experience at Weston Town Center, featuring sophisticated sushi rolls, raw plates, and tapas served in a sleek, high‑design dining room. Known for its spicy honey shrimp, fresh yellowtail jalapeño, and premium sushi selection, the restaurant delivers a refined yet approachable take on modern Japanese cuisine.\nThe stylish interior and polished service make Ke‑uH a popular choice for upscale date nights, business lunches, and special celebrations. Guests can enjoy beautifully plated dishes crafted with fresh ingredients and attention to detail, along with a menu that balances classic Japanese flavors with contemporary creativity.\nKe‑uH is ideal for diners who appreciate high‑quality sushi, elegant design, and a restaurant that consistently delivers a premium dining experience. It’s one of Weston’s top spots for modern Japanese cuisine.",
         "hours": {
             "Monday - Thursday": "12:00 PM - 3:30 PM, 5:00 PM - 10:00 PM",
             "Friday": "12:00 PM - 10:30 PM",
@@ -2140,7 +2200,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Tuna Tacos",
         "description": "An exciting, interactive conveyor belt sushi dining experience at Sawgrass Mills Mall, where fresh sushi plates glide right by your table for instant enjoyment.",
-        "longDescription": "An exciting, interactive conveyor belt sushi dining experience at Sawgrass Mills Mall, where fresh sushi plates glide right by your table for instant enjoyment. Diners can select their favorite rolls and hot appetizers directly from the rotating belt or order fresh custom creations directly from the sushi chefs.",
+        "longDescription": "Sushigami offers a fun, interactive conveyor‑belt sushi experience inside Sawgrass Mills Mall, where fresh sushi plates glide past guests for instant selection. The restaurant blends convenience with creativity, allowing diners to choose from a rotating assortment of rolls, sashimi, and small plates or order custom creations directly from the sushi chefs.\nThe lively atmosphere and fast service make Sushigami a great choice for quick lunches, casual dinners, or family outings. The conveyor belt adds an entertaining element that appeals to both adults and kids, making the dining experience feel dynamic and engaging.\nSushigami is ideal for diners who enjoy fresh sushi, interactive dining, and a casual mall‑friendly environment. It’s a standout option in Sunrise for fun, flavorful meals.",
         "hours": {
             "Monday - Saturday": "10:00 AM - 9:00 PM",
             "Sunday": "10:00 AM - 8:00 PM"
@@ -2188,7 +2248,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Eggs Benedicts",
         "description": "An incredibly beautiful, flower-draped English-style breakfast and brunch boutique eatery. Serves creative egg dishes, fluffy pancakes, and luxury afternoon tea service.",
-        "longDescription": "Tucked away in the Weston Commons strip mall, Little Hen is an incredibly beautiful, flower-draped English-style breakfast and brunch boutique eatery. Decorated in soft pastel blues, warm wood tables, and gorgeous floral installations, this chic spot features a cozy, premium dining room and a breezy outdoor patio. Known for their organic egg plates, signature rose-infused waffles, and luxury afternoon tea service, it is a favorite for trendy brunch get-togethers and weekend family breakfast.",
+        "longDescription": "Little Hen is a beautifully designed English‑style breakfast and brunch boutique tucked away in Weston Commons, offering a charming, flower‑draped dining experience. The restaurant features soft pastel décor, warm wood tables, and stunning floral installations that create a cozy, premium atmosphere perfect for trendy brunch gatherings and weekend family breakfasts.\nThe menu highlights organic egg plates, signature rose‑infused waffles, fresh pastries, and a luxury afternoon tea service that feels both indulgent and elegant. Guests can enjoy a breezy outdoor patio or settle into the intimate indoor dining room for a meal that balances comfort with sophistication.\nLittle Hen is ideal for diners who appreciate beautifully presented dishes, boutique café aesthetics, and a refined brunch experience. It’s one of Weston’s most Instagram‑worthy dining spots.",
         "hours": {
             "Monday - Friday": "8:00 AM - 3:00 PM",
             "Saturday - Sunday": "8:00 AM - 4:00 PM"
@@ -2240,7 +2300,7 @@ const RESTAURANT_DATA = [
         ],
         "mustTry": "Malloreddus Alla Campidanese",
         "description": "A premium house-made fresh pasta kitchen by Eataly inside Aventura Mall, offering guests a front-row seat to watch chefs handcraft and cook authentic Italian pasta recipes.",
-        "longDescription": "A premium house-made fresh pasta kitchen by Eataly inside Aventura Mall, offering guests a front-row seat to watch chefs handcraft and cook authentic Italian pasta recipes. Guests can enjoy fine Italian wines alongside fresh tagliatelle, cacio e pepe, and other culinary classics prepared from scratch in a vibrant market-style setting.",
+        "longDescription": "Il Pastaio di Eataly brings authentic Italian pasta craftsmanship to Aventura Mall, offering guests a front‑row seat to watch chefs handcraft fresh pasta in a vibrant, market‑style setting. The restaurant highlights traditional Italian recipes prepared from scratch, including tagliatelle, cacio e pepe, and other regional classics.\nGuests can enjoy fine Italian wines alongside freshly made dishes that emphasize quality ingredients and time‑honored techniques. The lively atmosphere and open kitchen create an immersive dining experience perfect for pasta lovers, families, and shoppers seeking a high‑quality meal.\nIl Pastaio di Eataly is ideal for diners who appreciate authentic Italian cuisine, fresh pasta, and a bustling market environment. It’s one of Aventura’s top spots for true Italian cooking.",
         "hours": {
             "Monday - Sunday": "12:00 PM - 9:00 PM"
         },
@@ -2288,8 +2348,8 @@ const RESTAURANT_DATA = [
             "Hidden Gem"
         ],
         "mustTry": "Carne Asada Tacos",
-        "description": "El Gallo Taqueria, is a hidden culinary gem that delivers highly rated, authentic Mexican street food in a vibrant setting. Tucked away in the Weston Commons strip mall, this boutique eatery packs massive flavor into a cozy, contemporary space. The restaurant sets an upbeat, welcoming mood by blending modern design with a nice soundtrack, making it an excellent stop for a casual date night, quick lunch, or family dinner.",
-        "longDescription": "El Gallo Taqueria, is a hidden culinary gem that delivers highly rated, authentic Mexican street food in a vibrant setting. Tucked away in the Weston Commons strip mall, this boutique eatery packs massive flavor into a cozy, contemporary space. The restaurant sets an upbeat, welcoming mood by blending modern design with a nice soundtrack, making it an excellent stop for a casual date night, quick lunch, or family dinner.",
+        "description": "A hidden gem in Weston Commons serving up highly rated, authentic Mexican street food, bold tacos, and fresh salsas in a cozy, vibrant, and contemporary setting.",
+        "longDescription": "El Gallo Taqueria is a hidden gem in Weston Commons, offering highly rated, authentic Mexican street food in a vibrant, contemporary setting. The cozy dining room blends modern design with an upbeat soundtrack, creating a welcoming environment perfect for casual date nights, quick lunches, or relaxed family dinners.\nThe menu highlights bold, flavorful tacos, fresh salsas, and traditional Mexican dishes prepared with care and high‑quality ingredients. Guests can enjoy a lively atmosphere and friendly service that make El Gallo feel like a neighborhood favorite.\nEl Gallo Taqueria is ideal for diners who appreciate authentic Mexican flavors, casual settings, and a restaurant that delivers big flavor in a small, stylish space. It’s one of Weston’s best spots for Mexican street food.",
         "hours": {
             "Monday - Thursday": "11:30 AM - 9:00 PM",
             "Friday - Saturday": "11:30 AM - 9:30 PM",
@@ -2870,8 +2930,9 @@ const BEST_OF_CATEGORIES = [
         "description": "Intimate dining rooms, mood-setting lighting, and stellar menus. These local spots are perfect for romantic evenings, anniversaries, or memorable double dates.",
         "icon": "🍷",
         "introParagraphs": [
-            "A great date night is about more than just grabbing a bite; it’s about connection. In a busy world, finding a spot with the right lighting, comfortable booths, and a relaxed pace allows couples to escape the daily grind and focus on each other. South Florida has no shortage of dining options, but many date-night spots are either hyper-expensive or too loud for a real conversation. We believe romance shouldn't require a second mortgage or screaming over loud music.",
-            "To choose these date-night favorites, we looked for places that offer a distinct, inviting atmosphere—whether it’s the quiet candlelit tables of Mister O1 or the scenic outdoor patio at Ethos Greek Bistro. We personally visited each spot, tasting their recommended sharing dishes, assessing the attentiveness of the service, and verifying that they offer reservations so your evening starts smoothly without long waits."
+            "A great date night is about more than just choosing a restaurant — it’s about creating a moment. In a fast‑paced world, couples need spaces that feel intentional: warm lighting, comfortable seating, attentive service, and an atmosphere that encourages connection rather than distraction. South Florida has no shortage of dining options, but many “romantic” spots are either prohibitively expensive or too loud to enjoy a real conversation. We believe romance shouldn’t require shouting over music or paying luxury‑level prices for a simple dinner.",
+            "To curate this list, we focused on restaurants that deliver a balanced combination of ambiance, quality, and comfort. We personally visited each location, noting details like lighting, noise levels, pacing of service, and the availability of reservations — because nothing kills a date night faster than a 45‑minute wait. We also sampled their recommended sharing dishes, from the elegant sushi rolls at Ke‑uH to the cozy Italian comfort plates at Pizza Lovers, ensuring each spot offers food that enhances the experience rather than distracts from it.",
+            "Whether you’re planning a first date, celebrating an anniversary, or simply carving out time together, these restaurants offer the perfect backdrop for meaningful moments. And if you’re planning a romantic weekend getaway, you can explore our sister site <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> for boutique hotels and beachfront escapes."
         ],
         "experiences": [
             {
@@ -2913,8 +2974,9 @@ const BEST_OF_CATEGORIES = [
         "description": "Take in gorgeous ocean, canal, or intracoastal water views. These recommendations combine excellent dining with scenic South Florida outdoor breeze.",
         "icon": "🌅",
         "introParagraphs": [
-            "South Florida's coastal beauty is one of our greatest treasures, and there is nothing quite like dining with a view of the water. Whether it's watching yachts cruise down a canal or catching a golden sunset over the bay, waterfront dining captures the true essence of the Florida lifestyle. However, many waterfront spots trade scenery for food quality, serving overpriced, mediocre dishes simply because of their location.",
-            "Our waterfront selections were chosen because they deliver on both fronts: exceptional views and equally exceptional food. We visited docks, canals, and baysides across the region to find spots like the Rusty Pelican and Ethos Greek Bistro, where you can feel the ocean breeze while enjoying scratch-made recipes. We verified their outdoor seating configurations, checked that their pricing remains fair for the quality of food, and confirmed directions and parking accessibility."
+            "Dining by the water is one of South Florida’s greatest pleasures. Whether it’s watching yachts glide down a canal, listening to waves crash along the shoreline, or catching a golden sunset over the bay, waterfront dining captures the essence of our coastal lifestyle. But not all waterfront restaurants are created equal — many rely solely on their views, serving overpriced or mediocre food simply because of their location.",
+            "Our selections highlight restaurants that excel in both scenery and culinary quality. We visited docks, canals, marinas, and beachfront patios across the region, evaluating each spot for food consistency, fair pricing, and the overall dining experience. We verified outdoor seating layouts, checked for shade and breeze comfort, and confirmed parking accessibility — because waterfront dining should feel relaxing, not stressful. From the oceanfront elegance of Citrus Grillhouse to the breezy tropical charm of Mulligan’s Beach House, each restaurant on this list offers memorable views paired with scratch‑made recipes.",
+            "These spots are perfect for sunset dinners, celebratory meals, or weekend outings with family and friends. And if you’re planning a waterfront staycation, you can explore <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> for curated beachfront hotels and coastal resorts."
         ],
         "experiences": [
             {
@@ -2956,8 +3018,9 @@ const BEST_OF_CATEGORIES = [
         "description": "Welcoming environments with generous portions, relaxed atmospheres, and crowds-pleasing menus. These eateries are perfect for large family dinners or weekend lunches.",
         "icon": "🍕",
         "introParagraphs": [
-            "Dining out with family should be a joyful experience, but finding a place that satisfies toddlers, teens, and grandparents alike can be a logistical challenge. The ideal family-friendly restaurant needs to be welcoming and forgiving of noise, while still serving high-quality, delicious meals. Too often, 'kid-friendly' spots mean compromising on food quality and sitting in uninspired, brightly lit chains.",
-            "We chose these family-friendly standouts by focusing on local eateries that offer spacious seating, warm hospitality, and menus with broad appeal. From the massive portions at Pizza Lovers to the gourmet burger varieties at La Birra Bar, these spots make dining out with a group feel like a special treat. We personally verified their noise levels, space for strollers, quick service times, and delivery options for those nights when you'd rather eat at home."
+            "Dining out with family should feel joyful, not stressful — but finding a restaurant that satisfies toddlers, teens, and grandparents at the same time can be surprisingly difficult. Many “kid‑friendly” spots sacrifice food quality, while upscale restaurants often feel too formal or cramped for families. We believe family dining should offer both comfort and great food without compromise.",
+            "To curate this list, we focused on restaurants that offer spacious seating, warm hospitality, and menus with broad appeal. We personally evaluated noise levels, stroller space, table comfort, and service speed — because families need environments that are forgiving, flexible, and welcoming. We also checked for delivery and takeout options for those nights when staying home is the better choice. From the great portions at Pizza Lovers to the gourmet burger varieties at La Birra Bar, these restaurants make dining out with a group feel like a treat rather than a chore.",
+            "Whether you’re planning a weekend lunch, a birthday dinner, or a casual weeknight outing, these spots deliver quality food and a family‑friendly atmosphere. And if you’re planning a family getaway, explore <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> for hotels with spacious rooms and kid‑friendly amenities."
         ],
         "experiences": [
             {
@@ -2999,8 +3062,9 @@ const BEST_OF_CATEGORIES = [
         "description": "Unassuming strip-mall spots, cozy family-owned bistros, and places that focus entirely on scratch-made local flavors. These local secrets deserve to be on everyone's radar.",
         "icon": "💎",
         "introParagraphs": [
-            "The true culinary heart of South Florida lies in its neighborhood strip malls, industrial parks, and quiet side streets. These hidden gems are often family-operated spots that don't have massive marketing budgets, relying instead on word-of-mouth and the sheer quality of their food. Discovering these places is one of the greatest pleasures of being a local food enthusiast.",
-            "These selections were chosen for their authenticity, scratch-made recipes, and exceptional value. We discovered spots like Tacu Taku Peruvian Kitchen and Rosalia's Kitchen by exploring off-the-beaten-path neighborhoods and listening to recommendations from locals. Each gem was evaluated on the passion of its kitchen, the uniqueness of its flavors, and its dedication to providing a warm, friendly atmosphere that makes you feel like family."
+            "South Florida’s true culinary magic often hides in strip malls, industrial parks, and quiet neighborhood corners. These hidden gems don’t rely on flashy marketing or trendy décor — they rely on passion, authenticity, and unforgettable flavors. Discovering these places is one of the greatest joys of being a local food enthusiast, and it’s exactly why we created this list.",
+            "We explored off‑the‑beaten‑path neighborhoods, listened to local recommendations, and visited family‑run kitchens that pour heart and soul into every dish. Each restaurant was evaluated for its scratch‑made recipes, unique flavors, and welcoming atmosphere. Spots like Tacu Taku Peruvian Kitchen and Rosalia’s Kitchen stood out for their dedication to quality and the warmth of their hospitality.",
+            "Hidden gems are perfect for adventurous diners, comfort‑food lovers, and anyone seeking authentic local flavor. And if you love discovering under‑the‑radar hotels and boutique stays, check out <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> for curated lodging options across South Florida."
         ],
         "experiences": [
             {
@@ -3042,8 +3106,9 @@ const BEST_OF_CATEGORIES = [
         "description": "Indulgent breakfast classics, bottomless mimosas, and relaxing mid-day vibes. These local spots serve up the ultimate weekend brunch experiences.",
         "icon": "🥞",
         "introParagraphs": [
-            "Brunch is more than just a meal; it's a weekend ritual. It's the perfect opportunity to slow down, catch up with friends, and indulge in sweet pancakes, savory eggs benedict, or classic brunch cocktails. South Florida's dining scene features a wide array of brunch options, from charming garden cafes to chef-driven bistros.",
-            "We chose these brunch favorites because they deliver incredible morning classics, fresh ingredients, and a relaxed, welcoming atmosphere. From the elegant French-style garden seating of Little Hen to the gourmet skillet pancakes at Chug's Diner, these local spots are perfect for wrapping up your week or starting your weekend right."
+            "Brunch is more than a meal — it’s a weekend ritual. It’s the perfect time to slow down, reconnect with friends, and indulge in sweet pancakes, savory eggs benedict, or classic brunch cocktails. South Florida’s brunch scene is diverse, ranging from garden cafés to chef‑driven bistros, but not all brunch spots deliver the relaxed, welcoming atmosphere that makes brunch special.",
+            "To curate this list, we visited cafés and restaurants across the region, evaluating their morning classics, ingredient quality, and overall vibe. We looked for spots that offer both comfort and creativity, from the eggs benedicts at Little Hen to the gourmet skillet pancakes at Chug’s Diner. We also checked for patio seating, wait times, and menu variety — because brunch should feel effortless, not chaotic.",
+            "These brunch favorites are perfect for weekend gatherings, celebratory mornings, or simply treating yourself to a slow, delicious start to the day. And if you’re planning a brunch‑themed staycation, explore <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> for boutique hotels and charming local accommodations."
         ],
         "experiences": [
             {
@@ -3144,7 +3209,7 @@ function renderBestOfListDetailView(catId) {
                     <h4 class="best-of-item-name">${rest.name}</h4>
                     <span class="best-of-item-location">${rest.location}</span>
                 </div>
-                <p class="best-of-item-desc">${rest.longDescription}</p>
+                <div class="best-of-item-desc">${rest.longDescription.split('\n').map(p => p.trim()).filter(Boolean).join('<br>')}</div>
                 <div class="best-of-item-dish">
                     <strong>★ Must-Try:</strong> ${rest.mustTry}
                 </div>
@@ -3170,8 +3235,14 @@ function renderBestOfListDetailView(catId) {
                 <span class="best-of-tagline">Curated Selection</span>
                 <h1 class="best-of-title">${cat.name}</h1>
                 <div class="best-of-header-intro">
-                    <p class="best-of-intro-p">${cat.introParagraphs[0]}</p>
-                    <p class="best-of-intro-p">${cat.introParagraphs[1]}</p>
+                    ${cat.introParagraphs.map((p, idx) => {
+                        let html = '';
+                        if (idx === 1) {
+                            html += `<h3 class="best-of-intro-subheader" style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-top: 1.5rem; margin-bottom: 0.75rem;">Our Selection Process</h3>`;
+                        }
+                        html += `<p class="best-of-intro-p">${p}</p>`;
+                        return html;
+                    }).join("")}
                 </div>
             </div>
             <!-- Restaurants Grid -->
@@ -3500,22 +3571,32 @@ function renderDetailedPageMarkup(rest) {
             </div>
             <!-- Header Section -->
             <div class="detail-header-block">
-                <div class="detail-image-box">
-                    <img src="${rest.image}" alt="${rest.imageAlt || (rest.name + ' food recommendations')}" class="detail-main-img" id="detail-img-${rest.id}">
-                    ${(rest.images || [{ path: rest.image, alt: rest.imageAlt }]).length > 1 ? `
-                        <button class="carousel-arrow prev" onclick="cycleDetailImage(event, '${rest.id}', -1)" aria-label="Previous image">‹</button>
-                        <button class="carousel-arrow next" onclick="cycleDetailImage(event, '${rest.id}', 1)" aria-label="Next image">›</button>
-                    ` : ''}
-                    <span class="detail-location-badge">${rest.location}</span>
-                    <span class="detail-price-badge" title="Price Range: ${rest.priceRange}">${rest.priceRange}</span>
-                </div>
+                ${rest.images && rest.images.length > 1 ? `
+                    <div class="detail-images-stack" style="display: flex; flex-direction: column; gap: 1.25rem; width: 100%;">
+                        ${rest.images.map((img, idx) => `
+                            <div class="detail-image-box" style="height: 300px; position: relative;">
+                                <img src="${img.path}" alt="${img.alt || rest.name}" class="detail-main-img" style="object-fit: cover; width: 100%; height: 100%;">
+                                ${idx === 0 ? `
+                                    <span class="detail-location-badge">${rest.location}</span>
+                                    <span class="detail-price-badge" title="Price Range: ${rest.priceRange}">${rest.priceRange}</span>
+                                ` : ''}
+                            </div>
+                        `).join("")}
+                    </div>
+                ` : `
+                    <div class="detail-image-box">
+                        <img src="${rest.image}" alt="${rest.imageAlt || (rest.name + ' food recommendations')}" class="detail-main-img" id="detail-img-${rest.id}">
+                        <span class="detail-location-badge">${rest.location}</span>
+                        <span class="detail-price-badge" title="Price Range: ${rest.priceRange}">${rest.priceRange}</span>
+                    </div>
+                `}
                 <div class="detail-title-info">
                     <h1 class="detail-title">${rest.name}</h1>
                     <div class="detail-tags-list">
                         ${rest.tags.map(t => `<span class="detail-tag">${t}</span>`).join("")}
                     </div>
                     
-                    <p class="detail-long-desc">${rest.longDescription}</p>
+                    <div class="detail-long-desc">${rest.longDescription.split('\n').map(p => p.trim()).filter(Boolean).join('<br>')}</div>
                     
                     <!-- Dining Features Indicators -->
                     <div class="detail-features-row">
