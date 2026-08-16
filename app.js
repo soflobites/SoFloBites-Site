@@ -2398,6 +2398,7 @@ const STATE = {
 };
 // 4. Initialization
 document.addEventListener("DOMContentLoaded", () => {
+    setupBackToTop();
     initFilters();
     renderRestaurants();
     injectSchemaMarkup();
@@ -3164,6 +3165,40 @@ function filterByTagAndGoHome(tag) {
     // 5. Navigate to the explore grid section
     window.location.hash = "#restaurant-grid";
 }
+
+// Back to Top Button logic
+function setupBackToTop() {
+    const btn = document.getElementById("back-to-top");
+    if (!btn) return;
+    
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 400) {
+            btn.classList.add("visible");
+        } else {
+            btn.classList.remove("visible");
+        }
+    });
+    
+    btn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+}
+
+// Redirect and pre-select feedback type
+function goToFeedback(type) {
+    const selectEl = document.getElementById("suggest-type");
+    if (selectEl) {
+        selectEl.value = type;
+        selectEl.dispatchEvent(new Event('change'));
+    }
+    window.location.hash = "#suggest-section";
+    const sec = document.getElementById("suggest-section");
+    if (sec) {
+        sec.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+window.goToFeedback = goToFeedback;
+
 window.filterByTagAndGoHome = filterByTagAndGoHome;
 function renderBestOfView() {
     const container = document.getElementById("best-of-categories-list");
