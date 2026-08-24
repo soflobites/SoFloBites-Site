@@ -1913,7 +1913,8 @@ const RESTAURANT_DATA = [
             "Trendy",
             "Italian",
             "Brunch",
-            "Pasta"
+            "Pasta",
+            "Pizza"
         ],
         "mustTry": "Pesto Fettuccine",
         "description": "An exceptional fermentation-forward dining concept serving artisanal naturally leavened sourdough pizzas, house-made pastas, and natural wines.",
@@ -2394,8 +2395,13 @@ const STATE = {
     selectedTags: [], // multi-select tags
     inkindOnly: false, // inKind Rewards filter toggle
     savedScrollPosition: 0,
-    shouldRestoreScroll: false
+    shouldRestoreScroll: false,
+    savedBestOfScrollPosition: 0,
+    shouldRestoreBestOfScroll: false,
+    savedEditorialsScrollPosition: 0,
+    shouldRestoreEditorialsScroll: false
 };
+window.STATE = STATE;
 // 4. Initialization
 document.addEventListener("DOMContentLoaded", () => {
     setupBackToTop();
@@ -2923,55 +2929,965 @@ function updateMeta(title, description) {
     if (ogDesc) ogDesc.setAttribute('content', description);
 }
 // Curated Categories for "Best Of" Page
-const BEST_OF_CATEGORIES = [
+
+const BEST_OF_NEIGHBORHOODS = [
     {
-        "id": "best-date-night",
-        "name": "Best Date Night Restaurants In South Florida",
-        "tag": "date-night",
-        "description": "Intimate dining rooms, mood-setting lighting, and stellar menus. These local spots are perfect for romantic evenings, anniversaries, or memorable double dates.",
-        "icon": "🍷",
+        "id": "best-pembroke-pines",
+        "name": "Best Restaurants in Pembroke Pines",
+        "location": "Pembroke Pines",
+        "description": "Explore Pembroke Pines' top dining spots, featuring oak-grilled steaks, gourmet burgers, artisan flatbreads, and authentic Irish pub fare.",
+        "icon": "📍",
         "introParagraphs": [
-            "A great date night is about more than just choosing a restaurant — it’s about creating a moment. In a fast‑paced world, couples need spaces that feel intentional: warm lighting, comfortable seating, attentive service, and an atmosphere that encourages connection rather than distraction. South Florida has no shortage of dining options, but many “romantic” spots are either prohibitively expensive or too loud to enjoy a real conversation. We believe romance shouldn’t require shouting over music or paying luxury‑level prices for a simple dinner.",
-            "To curate this list, we focused on restaurants that deliver a balanced combination of ambiance, quality, and comfort. We personally visited each location, noting details like lighting, noise levels, pacing of service, and the availability of reservations — because nothing kills a date night faster than a 45‑minute wait. We also sampled their recommended sharing dishes, from the elegant sushi rolls at Ke‑uH to the cozy Italian comfort plates at Pizza Lovers, ensuring each spot offers food that enhances the experience rather than distracts from it.",
-            "Whether you’re planning a first date, celebrating an anniversary, or simply carving out time together, these restaurants offer the perfect backdrop for meaningful moments. And if you’re planning a romantic weekend getaway, you can explore our sister site <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> for boutique hotels and beachfront escapes."
+            "Pembroke Pines is home to a thriving and diverse dining scene, offering everything from upscale-casual steakhouses to neighborhood family-friendly taverns.",
+            "We curated this list by visiting local favorites at the Shops at Pembroke Gardens and along Pines Boulevard, evaluating them for quality, atmosphere, and service.",
+            "Whether you're looking for a special date night or a casual weekend family dinner, these top Pembroke Pines restaurants deliver fantastic food and experiences. And if you are planning to stay in the area, check out <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> to find curated local accommodations and suites and local lodging."
         ],
         "experiences": [
             {
-                "title": "Private Miami Boat Charter: Sightseeing, Sunset & Sandbar",
-                "location": "Miami",
-                "description": "Enjoy a romantic private yacht tour with sunset views and sandbar stops.",
-                "link": "https://www.viator.com/tours/Miami/Private-Tour-Miami-Boat-Rental/d662-328105P2?pid=P00314010&mcid=42383&medium=link"
+                "title": "2 Person Mini Powerboat Fort Lauderdale Self-Guided Boat Rental",
+                "location": "Fort Lauderdale",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Fort-Lauderdale/1-Hour-Mini-Powerboat-Rental/d660-104840P10?pid=P00314010&mcid=42383&medium=link"
             },
             {
-                "title": "Speedboat Sightseeing Adventure of Miami",
-                "location": "Miami",
-                "description": "A thrilling high-speed boat adventure around Star Island and South Beach.",
-                "link": "https://www.viator.com/tours/Miami/Speedboat-Sightseeing-Tour-in-Miami/d662-35834P1?pid=P00314010&mcid=42383&medium=link"
+                "title": "Everglades Airboat Tour from Fort Lauderdale with transportation",
+                "location": "Fort Lauderdale",
+                "description": "An exciting airboat ride across the Florida Everglades, spotting alligators and native birds in their natural habitat.",
+                "link": "https://www.viator.com/tours/Fort-Lauderdale/Florida-Everglades-Airboat-Tour-and-Show-from-Fort-Lauderdale-Group/d660-5865P8?pid=P00314010&mcid=42383&medium=link"
             },
             {
-                "title": "Miami Beach: Private South Beach Airplane Tour with drinks",
-                "location": "Miami Beach",
-                "description": "Soar over South Beach with champagne on an intimate scenic flight.",
-                "link": "https://www.viator.com/tours/Miami/40-Minutes-Private-Miami-Luxury-Airplane-Tour/d662-356283P4?pid=P00314010&mcid=42383&medium=link"
+                "title": "Fort Lauderdale: Millionaire's Row Cruise with Drinks",
+                "location": "Fort Lauderdale",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://gyg.me/7zWSB15V"
             },
             {
-                "title": "Sunset Sail in Key West with Beverages Included",
-                "location": "Key West",
-                "description": "Toast to the sunset with premium beverages on a gorgeous catamaran.",
-                "link": "https://www.viator.com/tours/Key-West/Sunset-Cruise/d661-118432P3?pid=P00314010&mcid=42383&medium=link"
+                "title": "Jungle Queen Riverboat 90-Minute Narrated Sightseeing Cruise in Fort Lauderdale",
+                "location": "Fort Lauderdale",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Fort-Lauderdale/90-Minute-Narrated-Sightseeing-Cruises/d660-3160P1?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "#1 VENICE OF AMERICA TOUR - Cold A/C 115' LARGEST IN LAUDERDALE!",
+                "location": "Fort Lauderdale",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Fort-Lauderdale/Venice-of-America-Fort-Lauderdale-Cruise/d660-57834P1?pid=P00314010&mcid=42383&medium=link"
+            }
+        ]
+    },
+    {
+        "id": "best-weston",
+        "name": "Best Restaurants in Weston",
+        "location": "Weston",
+        "description": "Savor Weston's best restaurants, featuring award-winning burgers, upscale Japanese-Peruvian Nikkei fusion, and cozy boutique brunch spaces.",
+        "icon": "📍",
+        "introParagraphs": [
+            "Weston is known for its beautiful neighborhoods and equally impressive, family-centric and upscale dining destinations.",
+            "We evaluated Weston's top eateries based on culinary craftsmanship, ingredient freshness, and upscale-casual hospitality.",
+            "From the award-winning burgers at La Birra Bar to the boutique floral brunch at Little Hen and raw Nikkei sushi at Ke-uH, Weston offers exceptional food. If you are planning a weekend staycation in this beautifully manicured suburb, explore <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> to discover the finest hotels, suites, and resorts."
+        ],
+        "experiences": [
+            {
+                "title": "Everglades Airboat Eco Tour: Small group & 2 Private Islands",
+                "location": "Fort Lauderdale",
+                "description": "An exciting airboat ride across the Florida Everglades, spotting alligators and native birds in their natural habitat.",
+                "link": "https://gyg.me/ucvjoZHm"
+            },
+            {
+                "title": "2 to 6 hours Private Yacht Cruise around Fort Lauderdale",
+                "location": "Fort Lauderdale",
+                "description": "A premium private yacht charter featuring a professional captain, custom route, and luxury amenities for your group.",
+                "link": "https://www.viator.com/tours/Fort-Lauderdale/Private-Yacht-Cruise-4-or-6-hours-around-Miami-Bay/d660-169162P11?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Fort Lauderdale Food & Drink Tour",
+                "location": "Fort Lauderdale",
+                "description": "A guided culinary walking tour sampling the neighborhood's best dishes and learning about its rich history.",
+                "link": "https://www.viator.com/tours/Fort-Lauderdale/Craft-Food-Tour-Fort-Lauderdale/d660-46862P6?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Everglades: Semi-Private or Private Airboat Tour",
+                "location": "Fort Lauderdale",
+                "description": "An exciting airboat ride across the Florida Everglades, spotting alligators and native birds in their natural habitat.",
+                "link": "https://gyg.me/CRWOtvZo"
+            },
+            {
+                "title": "2 Person Mini Powerboat Fort Lauderdale Self-Guided Boat Rental",
+                "location": "Fort Lauderdale",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Fort-Lauderdale/1-Hour-Mini-Powerboat-Rental/d660-104840P10?pid=P00314010&mcid=42383&medium=link"
+            }
+        ]
+    },
+    {
+        "id": "best-naples",
+        "name": "Best Restaurants in Naples",
+        "location": "Naples",
+        "description": "Dine in Naples' premier waterfront and upscale destinations, featuring fresh local catches and sophisticated bistro fare.",
+        "icon": "📍",
+        "introParagraphs": [
+            "Naples is a premier culinary hub on Florida’s paradise coast, showcasing refined waterfront dining, oceanfront grilles, and upscale bistros.",
+            "Our selection process highlights Naples eateries that excel in fresh seafood execution, quality of ingredients, and beautiful coastal ambiance.",
+            "Whether enjoying fresh local catches on a patio or a fine dining experience, these top Naples restaurants deliver memorable seaside meals. Complete your Gulf Coast getaway by visiting <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> to browse Naples' best luxury resorts and beachfront hotels."
+        ],
+        "experiences": [
+            {
+                "title": "Clear Kayak Guided Eco Tour in North Naples",
+                "location": "Naples",
+                "description": "Paddle through tranquil mangrove tunnels and shallow waters, spotting marine life and local birds with an expert guide.",
+                "link": "https://www.viator.com/tours/Naples/Clear-Kayak-Tours-in-Bonita-Springs/d22381-277731P1?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Dolphin and Manatee Adventure Tour of Naples with Florida History",
+                "location": "Naples",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Naples/Dolphin-and-Manatee-Adventure-Tour-of-Naples-with-Florida-History/d22381-39750P12?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Dolphin and Shelling Cruise for up to 12 people",
+                "location": "Naples",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Naples/Ten-Thousand-Islands-Adventure-Boat-Tour/d22381-64741P1?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Manatee Sightseeing and Wildlife Boat Tour",
+                "location": "Naples",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Naples/Manatee-Sightseeing-Eco-Tourism-Adventure/d22381-64829P1?pid=P00314010&mcid=42383&medium=link"
             },
             {
                 "title": "Sightseeing and Sunset Catamaran Sailing Excursion",
                 "location": "Naples",
-                "description": "A peaceful sailing cruise along the Naples coast to watch the sunset.",
+                "description": "Sail along the beautiful coastline at sunset, enjoying premium drinks, music, and breathtaking views of the horizon.",
                 "link": "https://www.viator.com/tours/Naples/Sunset-and-Sightseeing-Day-Sail/d22381-188339P2?pid=P00314010&mcid=42383&medium=link"
             }
         ]
     },
     {
+        "id": "best-vero-beach",
+        "name": "Best Restaurants in Vero Beach",
+        "location": "Vero Beach",
+        "description": "Discover Vero Beach's best local spots, featuring oceanfront grilles, breezy coastal taverns, and beachfront taco shacks.",
+        "icon": "📍",
+        "introParagraphs": [
+            "Vero Beach offers a charming, laid-back coastal dining scene characterized by breezy seaside views, historic taverns, and friendly, local hospitality.",
+            "We visited oceanfront grilles, beach resorts, and neighborhood taco shacks across Vero Beach to curate these top dining recommendations.",
+            "Enjoy fresh, scratch-made coastal recipes and stunning beachfront vistas at these highly recommended Vero Beach dining favorites. Make it a perfect weekend beach retreat by exploring <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> for the best local oceanfront resorts and hotels and accommodations."
+        ],
+        "experiences": [
+            {
+                "title": "Kickin' Kayaks Morning Wildlife Tour",
+                "location": "Vero Beach",
+                "description": "Paddle through tranquil mangrove tunnels and shallow waters, spotting marine life and local birds with an expert guide.",
+                "link": "https://www.viator.com/tours/Vero-Beach/Morning-Kayak-Tour/d50900-5639510P3?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Clear Kayak Peanut Island Guided Tour Palm Beach Singer Island",
+                "location": "Palm Beach",
+                "description": "Paddle through tranquil mangrove tunnels and shallow waters, spotting marine life and local birds with an expert guide.",
+                "link": "https://www.viator.com/tours/West-Palm-Beach/West-Palm-Beach-Peanut-Island-Clear-Kayak-Guided-Tour/d24204-5501364P4?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "West Palm Beach: Beginner Snorkel Tour with Turtles & Videos",
+                "location": "Palm Beach",
+                "description": "Dive into the crystal-clear waters of South Florida's reefs, swimming alongside sea turtles, rays, and vibrant tropical fish.",
+                "link": "https://gyg.me/OIXCElkF"
+            },
+            {
+                "title": "Sightseeing Hakuna Matata Catamaran Cruise in Palm Beach",
+                "location": "Palm Beach",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/West-Palm-Beach/Sightseeing-Catamaran-Cruise/d24204-218537P2?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Manatee Sightseeing and Wildlife Boat Tour",
+                "location": "Naples",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Naples/Manatee-Sightseeing-Eco-Tourism-Adventure/d22381-64829P1?pid=P00314010&mcid=42383&medium=link"
+            }
+        ]
+    },
+    {
+        "id": "best-brickell",
+        "name": "Best Restaurants in Brickell",
+        "location": "Brickell",
+        "description": "Dine in Miami Brickell's top dining hotspots, featuring upscale waterfront dining, trendy rooftop Mexican concepts, and stylish bistros.",
+        "icon": "📍",
+        "introParagraphs": [
+            "Miami's Brickell neighborhood is a high-energy financial hub with a world-class dining scene to match.",
+            "We evaluated Brickell's top spots for menu innovation, waterfront scenery, and upscale culinary execution.",
+            "From the waterfront sophistication of Cantina La Veinte to the rooftop vibes and tacos at Tacology, Brickell is a premier neighborhood for food lovers. If you're visiting this high-energy neighborhood, explore <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> for top-rated luxury high-rise apartments and stylish design hotels."
+        ],
+        "experiences": [
+            {
+                "title": "The Escape Game at Brickell City Centre in Miami",
+                "location": "Brickell",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Miami/The-Escape-Game-in-Miami-60-Minute-Adventures/d662-472529P1?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Miami Biscayne Bay rich and famous Sightseeing Boat Tour",
+                "location": "Miami",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Miami/Sightseeing-Cruise-of-Biscayne-Bay/d662-8836P1?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Little Havana Food and Walking Tour in Miami",
+                "location": "Little Havana",
+                "description": "A guided culinary walking tour sampling the neighborhood's best dishes and learning about its rich history.",
+                "link": "https://www.viator.com/tours/Miami/Little-Havana-Food-and-Walking-Tour-in-Miami/d662-5304HAVANA?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Wynwood Graffiti Golf Cart Small-Group Tour",
+                "location": "Wynwood",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Miami/Wynwood-Graffiti-Golf-Cart-Tour/d662-18774P7?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Jet ski Tour in Miami with Boat Ride",
+                "location": "Miami",
+                "description": "A high-speed jet ski adventure exploring the bays and coastlines, checking out sandbars and local sights.",
+                "link": "https://www.viator.com/tours/Miami/Speed-and-Sun-Ultimate-Jetski-in-Miami/d662-118441P7?pid=P00314010&mcid=42383&medium=link"
+            }
+        ]
+    },
+    {
+        "id": "best-coral-gables",
+        "name": "Best Restaurants in Coral Gables",
+        "location": "Coral Gables",
+        "description": "Savor Coral Gables' historic Miracle Mile gems, featuring legendary pubs, refined American grills, and cozy neighborhood hangouts.",
+        "icon": "📍",
+        "introParagraphs": [
+            "Coral Gables offers a historic, canopy-shaded dining district along Miracle Mile and Giralda Avenue, filled with timeless local favorites.",
+            "We evaluated Coral Gables favorites for their nostalgic charm, friendly neighborhood service, and consistent culinary quality.",
+            "Explore Giralda Avenue's historic pub landmarks like The Bar, or Miracle Mile favorites like Hillstone and JohnMartin's. For those looking to explore more of the City Beautiful, check out <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> for hotels and historic lodging options."
+        ],
+        "experiences": [
+            {
+                "title": "Miami: Little Havana Food and Culture Walking Tour",
+                "location": "Little Havana",
+                "description": "A guided culinary walking tour sampling the neighborhood's best dishes and learning about its rich history.",
+                "link": "https://www.viator.com/tours/Miami/Little-Havana-Food-and-Culture-Walking-Tour-Food-Cigars-Mojitos-and-more/d662-381607P2?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Miami Biscayne Bay rich and famous Sightseeing Boat Tour",
+                "location": "Miami",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Miami/Sightseeing-Cruise-of-Biscayne-Bay/d662-8836P1?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Private Luxury Yacht",
+                "location": "Miami",
+                "description": "A premium private yacht charter featuring a professional captain, custom route, and luxury amenities for your group.",
+                "link": "+ 2 free Jet Skis"
+            },
+            {
+                "title": "Miami City Tours - 5 Sites, 4 Stops, One Tour - 3.5 Hours of Fun",
+                "location": "Miami",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Miami/Miami-City-Tour/d662-5493174P5?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Speedboat Sightseeing Adventure of Miami",
+                "location": "Miami",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Miami/Speedboat-Sightseeing-Tour-in-Miami/d662-35834P1?pid=P00314010&mcid=42383&medium=link"
+            }
+        ]
+    }
+];
+
+const ARTICLES_DATA = [
+    {
+        "id": "how-we-curate",
+        "title": "How We Curate SoFloBites Restaurant Lists",
+        "excerpt": "A peek behind the curtain at our review process, evaluation standards, and how we keep our selections authentic, local, and honest.",
+        "content": "<p>At SoFlo Bites, we believe that restaurant recommendations should be built on honesty, personal experience, and respect for our local community. Too many online food guides are compiled by remote editors scraping old Yelp reviews or algorithms tracking social media popularity. We do things differently: we walk through the doors, check out the atmosphere, and order from the menu just like any regular guest.</p><h2>Our Core Evaluation Criteria</h2><p>Our review process centers on four key pillars that determine whether a restaurant earns a spot in our directory:</p><ul><li><strong>Flavor & Culinary Execution:</strong> We look for dishes prepared with care and high-quality ingredients. Whether it is a slow-simmered ragu, a wood-fired pizza crust, or a simple street taco, the flavors must be balanced and memorable.</li><li><strong>Everyday Value:</strong> Extraordinary flavor shouldn't require a second mortgage. We focus on spots that offer great food at reasonable price levels, ensuring our guide is accessible to everyone.</li><li><strong>Ambiance & Seating Comfort:</strong> We evaluate noise levels, spacing between tables, and overall comfort. A great date-night spot needs warm, intimate lighting; a family-friendly spot needs stroller room and a welcoming, flexible vibe.</li><li><strong>Consistency:</strong> A restaurant must deliver a great experience every time, not just on opening night. We check on spots repeatedly and gather local feedback to ensure consistent quality.</li></ul><h2>Keeping it Local and Independent</h2><p>We are local food enthusiasts who live, work, and eat right here in South Florida. We pay for our own meals and do not accept free food or sponsored reviews in exchange for listings. This independence allows us to write honest reviews that you can trust. We also review and update our directory constantly, adding newly discovered gems and adjusting existing lists to reflect the current dining scene. Thank you for supporting our guide and joining us in celebrating South Florida's rich and diverse culinary community!</p><h2>Local Insight & Community Feedback</h2><p>While our team personally visits and evaluates every restaurant, we know that the best dining guides are collaborative. That is why we actively listen to local residents who eat at these spots every day, regularly revisit restaurants to ensure their standards haven't slipped, and incorporate direct community recommendations into our reviews. By combining our professional evaluation standards with real, on-the-ground community insights, we keep our directory honest, current, and genuinely reflective of South Florida's best dining.</p><p>Planning a trip to sample these curated spots? Browse <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> to find the best hotels, resorts, and local stays in South Florida.</p>"
+    },
+    {
+        "id": "food-neighborhoods",
+        "title": "Best Neighborhoods for Food Lovers in South Florida",
+        "excerpt": "A culinary tour of South Florida’s most exciting dining neighborhoods, highlighting what makes each dining hub unique.",
+        "content": "<p>South Florida's culinary landscape is a rich mosaic, with different neighborhoods showcasing distinct culinary identities. Whether you are looking for upscale waterfront dining, historic pub crawls, or family-centric suburban plazas, our neighborhood food guide highlights the best areas for food lovers to explore.</p><h2>Brickell: Upscale Waterfront & Trendy Dining</h2><p>Miami's Brickell neighborhood is a sleek financial district with a world-class dining scene. Overlooking the water, you can enjoy sophisticated Mexican seafood at Cantina La Veinte, or head to Brickell City Centre for the trendy, open-air Mexican concept Tacology. It is the perfect neighborhood for stylish dinners and vibrant city vibes.</p><h2>Coral Gables: Canopy-Shaded Historic Eateries</h2><p>Coral Gables offers a timeless charm, with canopy-shaded streets like Miracle Mile and Giralda Avenue hosting legendary dining spots. It's a neighborhood defined by history and consistency, home to Giralda Avenue's historic pub landmark The Bar (serving Gables locals since 1946), Hillstone, and the newly renovated JohnMartin’s Restaurant & Bar.</p><h2>Pembroke Pines: Suburban Gastropub Hub</h2><p>Pembroke Pines has transformed from a quiet suburb into one of the region's most vibrant dining hubs. Centered around the Shops at Pembroke Gardens, you can find a diverse selection of excellent spots, including oak-grilled specialties at Brimstone Woodfire Grill, craft beers and tavern fare at The Pub, and fermentation-forward sourdough pizzas at LB Eatery & Wine.</p><h2>Vero Beach: Laid-Back Coastal Eats</h2><p>Vero Beach is the ultimate destination for relaxed, oceanfront dining. It offers a slower pace of life where the focus is on fresh local catches and seaside breezes. Recommended spots include the beachfront elegance of Citrus Grillhouse, the casual pooldeck bites at Cabana Bar, and the breezy tropical tavern deck at Mulligan's Beach House.</p><h2>Weston: Suburban Culinary Hotspot</h2><p>Weston has quickly emerged as a premier dining destination in Broward County, offering a sophisticated mix of international cuisines and trendy boutique spaces. Highlights include the globally inspired dining room and raw bar at Negroni, the boutique flower-draped garden vibe and organic eggs at Little Hen, and the mouth‑watering, award‑winning burgers at La Birra Bar. It is a perfect neighborhood for food lovers seeking premium quality in a relaxed, beautifully landscaped suburban setting.</p><p>If you're embarking on a food tour across these amazing neighborhoods, make it a perfect getaway by booking your accommodations with <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a>, featuring hand-picked beach resorts and luxury stays.</p>"
+    },
+    {
+        "id": "local-dishes",
+        "title": "10 Local Dishes You Must Try in South Florida",
+        "excerpt": "From award-winning gourmet burgers to star-shaped artisanal pizzas, these are the iconic local dishes you cannot miss.",
+        "content": "<p>South Florida's dining scene is defined by standout signature creations that capture the creativity and passion of our local chefs. If you are exploring the region, make sure these 10 iconic, must-try dishes are on your radar:</p><ol><li><strong>Star-Shaped Ricotta Pizzas (Mister 01):</strong> A playful and award-winning creation where each point of the thin, crisp crust is folded and filled with creamy ricotta cheese.</li><li><strong>Drunken Shrimp (Cooper’s Hawk):</strong> Premium shrimp wrapped in smoky bacon, cooked crisp, and served with a rich, tequila-infused lime butter sauce.</li><li><strong>Spinach Tagliolini (Citrus Grillhouse):</strong> Fine spinach-infused pasta tossed in roasted garlic butter, fresh spinach leaves, and finished with freshly grated Parmesan overlooking the ocean.</li><li><strong>Chicken & Pork Gyoza (Tanuki):</strong> Perfectly seared pan-Asian gyoza dumplings, packed with savory flavor and served with a custom dipping sauce.</li><li><strong>Eggs Benedict (Little Hen):</strong> Flawlessly poached organic eggs served on toasted muffins with rich hollandaise inside a gorgeous, flower-draped boutique dining room.</li><li><strong>The Bar Burger (The Bar):</strong> A Coral Gables legend, featuring a perfectly grilled beef patty topped with classic pub fixings in a historic, cozy pub setting.</li><li><strong>Gourmet Skillet Pancakes (Chug’s Diner):</strong> Thicker, fluffy diner-style skillet pancakes served with whipped butter and warm maple syrup.</li><li><strong>Award-Winning Burgers (La Birra Bar):</strong> Crafted with proprietary beef blends and house-baked cloud-like buns, designed to melt in your mouth.</li><li><strong>Charcoal-Grilled Carne Asada Tacos (El Gallo Taqueria):</strong> Authentic, highly rated street tacos served on warm corn tortillas with fresh cilantro, chopped onions, and lime.</li><li><strong>Moscow Savory Crepe (Saffrano Crepes & Coffee):</strong> Paper-thin, freshly cooked crepe filled with savory meats, cheese, and vegetables in Plantation.</li></ol><p>Ready to try these iconic local dishes? Turn your culinary crawl into a relaxing vacation by booking a local stay or seaside hotel or resort on <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a>.</p>"
+    },
+    {
+        "id": "pembroke-pines-guide",
+        "title": "A Local’s Guide to Eating in Pembroke Pines",
+        "excerpt": "How a family-friendly suburb became one of South Florida’s most vibrant and diverse dining destinations.",
+        "content": "<p>For years, Pembroke Pines was known primarily as a quiet, family-friendly residential suburb. But over the last decade, a quiet culinary revolution has taken place. Today, Pembroke Pines boasts one of the most diverse, high-quality, and accessible dining scenes in South Florida, drawing food lovers from all over Broward and Miami-Dade counties.</p><h2>The Shops at Pembroke Gardens: The Dining Epicenter</h2><p>The majority of Pembroke Pines' top culinary destinations are clustered around the beautiful open-air Shops at Pembroke Gardens. This lifestyle center offers a walkable, beautifully landscaped setting that makes dining out feel like an event. Here are the spots you cannot miss:</p><ul><li><strong>Brimstone Woodfire Grill:</strong> Known for its massive brick fire hearth, Brimstone delivers premium oak-grilled steaks, fresh seafood, and bold American comfort classics.</li><li><strong>The Pub:</strong> A British-inspired tavern featuring a self-pour draft wall, bangers & mash, and a lively outdoor patio perfect for happy hour gatherings.</li><li><strong>LB Eatery & Wine:</strong> A unique, fermentation-forward dining concept specializing in hand-stretched sourdough pizzas, silky house-made pastas, and a curated natural wine selection.</li><li><strong>Cooper's Hawk Winery & Restaurant:</strong> A sophisticated American concept designed around wine pairings, complete with a full wine-tasting room.</li><li><strong>Ra Sushi Bar:</strong> A high-energy sushi destination offering creative rolls, fresh sashimi, and custom cocktails in a modern setting.</li></ul><h2>Gourmet Gems Along Pines Boulevard</h2><p>Just outside the shopping complex, Pembroke Pines continues to deliver exceptional culinary options. Highlights include <strong>Mister 01</strong>, famous for its star-shaped artisanal Neapolitan pizzas, and <strong>Embarcadero 41</strong>, which offers a high-energy environment for authentic Peruvian ceviches, seafood, and custom pisco sours. Pembroke Pines' combination of easy parking, beautiful outdoor seating, and exceptional culinary variety makes it a must-visit dining destination for locals and visitors alike.</p><p>Visiting Pembroke Pines for a culinary adventure? Explore comfortable local lodging and suites nearby on <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a>.</p>"
+    }
+];
+const BEST_OF_CATEGORIES = [
+    {
+        "id": "best-italian",
+        "name": "Best Italian Restaurants In South Florida",
+        "tag": "Italian",
+        "description": "Indulge in hand-rolled pastas, artisanal wood-fired pizzas, and classic family recipes crafted by top chefs.",
+        "icon": "🍝",
+        "introParagraphs": [
+            "Italian dining in South Florida has evolved into a vibrant culinary landscape, offering everything from rustic, family-run trattorias to high-end contemporary pasta bars. The secret to great Italian food lies in respect for tradition, simplicity of ingredients, and the craftsmanship of making dough and slow-simmered sauces from scratch.",
+            "To curate this list, we evaluated local spots for their culinary execution, consistency of flavors, and the warmth of their hospitality — because a great Italian dinner is as much about feeling like family as it is about the food. We paid close attention to house-made specialties, from the star-shaped pizzas at Mister 01 to the artisanal hand-crafted pasta dishes at Il Pastaio di Eataly.",
+            "Whether you're looking for a romantic candlelit dinner or a lively family gathering, these Italian spots deliver unforgettable dining experiences. Explore our sister site <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> for accommodations to round out your culinary road trip."
+        ],
+        "experiences": [
+            {
+                "title": "South Beach Cultural Food and Walking Tour",
+                "location": "Miami Beach",
+                "description": "A guided culinary walking tour sampling the neighborhood's best dishes and learning about its rich history.",
+                "link": "https://www.viator.com/tours/Miami/South-Beach-Cultural-Food-and-Walking-Tour/d662-5304FOOD?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Little Havana Food and Walking Tour in Miami",
+                "location": "Little Havana",
+                "description": "A guided culinary walking tour sampling the neighborhood's best dishes and learning about its rich history.",
+                "link": "https://www.viator.com/tours/Miami/Little-Havana-Food-and-Walking-Tour-in-Miami/d662-5304HAVANA?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Fort Lauderdale Food & Drink Tour",
+                "location": "Fort Lauderdale",
+                "description": "A guided culinary walking tour sampling the neighborhood's best dishes and learning about its rich history.",
+                "link": "https://www.viator.com/tours/Fort-Lauderdale/Craft-Food-Tour-Fort-Lauderdale/d660-46862P6?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "#1 VENICE OF AMERICA TOUR - Cold A/C 115' LARGEST IN LAUDERDALE!",
+                "location": "Fort Lauderdale",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Fort-Lauderdale/Venice-of-America-Fort-Lauderdale-Cruise/d660-57834P1?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Classic Key West Schooner Sunset Sail with Full Open Bar",
+                "location": "Key West",
+                "description": "Sail along the beautiful coastline at sunset, enjoying premium drinks, music, and breathtaking views of the horizon.",
+                "link": "https://www.viator.com/tours/Key-West/Classic-Key-West-Schooner-Sunset-Sail-with-Full-Open-Bar/d661-5508814P4?pid=P00314010&mcid=42383&medium=link"
+            }
+        ]
+    },
+    {
+        "id": "best-pizza",
+        "name": "Best Pizza Spots In South Florida",
+        "tag": "Pizza",
+        "description": "Discover exceptional wood-fired Neapolitan pies, star-shaped signature crusts, and crisp sourdough slices.",
+        "icon": "🍕",
+        "introParagraphs": [
+            "Finding the perfect slice of pizza is a universal quest, and South Florida offers an impressive array of artisanal pizza styles. From thin, crispy Neapolitan crusts baked in wood-burning ovens to innovative fermentation-forward sourdough crusts, local pizzaiolos are elevating simple dough into gourmet art.",
+            "To curate this list, we evaluated local pizzerias for crust texture, quality of ingredients (like imported San Marzano tomatoes and fresh mozzarella), and consistency of bake. We featured inventive spots like Mister 01, famous for its ricotta-stuffed star-shaped crusts, and LB Eatery & Wine, celebrated for its unique sourdough crust pizzas.",
+            "These pizza spots are perfect for casual family dinners, date nights, or quick weekend lunches. If you are planning a local staycation, browse <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> for beachfront beachfront hotel escapes."
+        ],
+        "experiences": [
+            {
+                "title": "3 HR Peanut Island Sandbar & Swim Tour",
+                "location": "Palm Beach",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://gyg.me/gsPJDfVr"
+            },
+            {
+                "title": "2 Person Mini Powerboat Fort Lauderdale Self-Guided Boat Rental",
+                "location": "Fort Lauderdale",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Fort-Lauderdale/1-Hour-Mini-Powerboat-Rental/d660-104840P10?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "The Escape Game at Brickell City Centre in Miami",
+                "location": "Brickell",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Miami/The-Escape-Game-in-Miami-60-Minute-Adventures/d662-472529P1?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Wynwood Graffiti Golf Cart Small-Group Tour",
+                "location": "Wynwood",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Miami/Wynwood-Graffiti-Golf-Cart-Tour/d662-18774P7?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Raccoon Island Miami Boat Tour with Wildlife & Swimming",
+                "location": "Miami",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Miami/Miami-Raccoon-Island-Adventure/d662-10150P16?pid=P00314010&mcid=42383&medium=link"
+            }
+        ]
+    },
+    {
+        "id": "best-seafood",
+        "name": "Best Seafood Restaurants In South Florida",
+        "tag": "Seafood",
+        "description": "Enjoy the freshest catches of the day, premium raw bars, and scenic coastal dining overlooking South Florida's shores.",
+        "icon": "🦐",
+        "introParagraphs": [
+            "With miles of coastline and a rich maritime history, South Florida is a seafood lover’s paradise. The best seafood dining combines absolute freshness, expert preparation that highlights natural flavors, and a welcoming coastal atmosphere.",
+            "To curate this list, we visited beachfront grilles, marina-side taverns, and upscale dining rooms. We evaluated each restaurant on fish sourcing, consistency of preparation, and service. Standout selections include the oceanfront dining at Citrus Grillhouse and the breezy waterfront favorites like Mulligan’s Beach House and Tanuki River Landing.",
+            "These seafood spots are perfect for scenic lunches, sunset dinners, and weekend outings. Make it a complete seaside escape by browsing curated coastal resorts on <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a>."
+        ],
+        "experiences": [
+            {
+                "title": "Miami Biscayne Bay rich and famous Sightseeing Boat Tour",
+                "location": "Miami",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Miami/Sightseeing-Cruise-of-Biscayne-Bay/d662-8836P1?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Dolphin and Shelling Cruise for up to 12 people",
+                "location": "Naples",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Naples/Ten-Thousand-Islands-Adventure-Boat-Tour/d22381-64741P1?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Sightseeing and Sunset Catamaran Sailing Excursion",
+                "location": "Naples",
+                "description": "Sail along the beautiful coastline at sunset, enjoying premium drinks, music, and breathtaking views of the horizon.",
+                "link": "https://www.viator.com/tours/Naples/Sunset-and-Sightseeing-Day-Sail/d22381-188339P2?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Sightseeing Hakuna Matata Catamaran Cruise in Palm Beach",
+                "location": "Palm Beach",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/West-Palm-Beach/Sightseeing-Catamaran-Cruise/d24204-218537P2?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Beach Island Shelling Cruise to Keewaydin Island Tour",
+                "location": "Naples",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Naples/Beach-Island-Shelling-Cruise-to-Keewaydin-Island/d22381-172638P3?pid=P00314010&mcid=42383&medium=link"
+            }
+        ]
+    },
+    {
+        "id": "best-brunch",
+        "name": "Best Brunch Spots In South Florida",
+        "tag": "Brunch",
+        "description": "Indulge in sweet skillet pancakes, savory eggs benedict, and bottomless mimosas in gorgeous, relaxed dining spaces.",
+        "icon": "🥞",
+        "introParagraphs": [
+            "Brunch is more than a meal — it’s a weekend ritual. It’s the perfect time to slow down, reconnect with friends, and indulge in sweet pancakes, savory eggs benedict, or classic brunch cocktails. South Florida’s brunch scene is diverse, ranging from garden cafés to chef‑driven bistros, but not all brunch spots deliver the relaxed, welcoming atmosphere that makes brunch special.",
+            "To curate this list, we visited cafés and restaurants across the region, evaluating their morning classics, ingredient quality, and overall vibe. We looked for spots that offer both comfort and creativity, from the eggs benedicts at Little Hen to the gourmet skillet pancakes at Chug’s Diner. We also checked for patio seating, wait times, and menu variety — because brunch should feel effortless, not chaotic.",
+            "These brunch favorites are perfect for weekend gatherings, celebratory mornings, or simply treating yourself to a slow, delicious start to the day. And if you’re planning a brunch‑themed staycation, explore <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> for hotels and charming local accommodations."
+        ],
+        "experiences": [
+            {
+                "title": "Beach Yoga & Tea Experience on South Beach",
+                "location": "Miami Beach",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Miami/Yoga-Experience-in-stunning-South-Pointe-Park/d662-250325P4?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Clear Kayak Peanut Island Guided Tour Palm Beach Singer Island",
+                "location": "Palm Beach",
+                "description": "Paddle through tranquil mangrove tunnels and shallow waters, spotting marine life and local birds with an expert guide.",
+                "link": "https://www.viator.com/tours/West-Palm-Beach/West-Palm-Beach-Peanut-Island-Clear-Kayak-Guided-Tour/d24204-5501364P4?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Fort Lauderdale Beach Food Tour",
+                "location": "Fort Lauderdale",
+                "description": "A guided culinary walking tour sampling the neighborhood's best dishes and learning about its rich history.",
+                "link": "https://www.viator.com/tours/Fort-Lauderdale/Craft-Food-Tour-in-Ft-Lauderdale-Beach/d660-46862P7?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Key West: 2-hour Mangrove Kayak Tour",
+                "location": "Key West",
+                "description": "Paddle through tranquil mangrove tunnels and shallow waters, spotting marine life and local birds with an expert guide.",
+                "link": "https://gyg.me/9sp50XPv"
+            },
+            {
+                "title": "Kickin' Kayaks Morning Wildlife Tour",
+                "location": "Vero Beach",
+                "description": "Paddle through tranquil mangrove tunnels and shallow waters, spotting marine life and local birds with an expert guide.",
+                "link": "https://www.viator.com/tours/Vero-Beach/Morning-Kayak-Tour/d50900-5639510P3?pid=P00314010&mcid=42383&medium=link"
+            }
+        ]
+    },
+    {
+        "id": "best-mexican",
+        "name": "Best Mexican Restaurants In South Florida",
+        "tag": "Mexican",
+        "description": "Savor authentic charcoal-grilled street tacos, fresh hand-mashed guacamole, and hand-crafted margaritas.",
+        "icon": "🌮",
+        "introParagraphs": [
+            "The Mexican dining scene in South Florida ranges from vibrant, casual street taco stands to high-end rooftop dining lounges. The hallmark of great Mexican food lies in bold spices, house-made salsas, and fresh corn tortillas made to order.",
+            "To curate this list, we visited local taquerias and dining rooms across the region. We evaluated them for their flavor authenticity, ingredient quality, and dining atmosphere. Standout spots include the highly rated street tacos at El Gallo Taqueria in Weston and the trendy waterfront dining experience at Tacology in Brickell.",
+            "Whether you're seeking a casual lunch or a lively night out with friends, these Mexican restaurants deliver exceptional food and drinks. Planning a getaway? Check out <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> for curated hotel recommendations."
+        ],
+        "experiences": [
+            {
+                "title": "A Taste of South Beach Food Tour",
+                "location": "Miami Beach",
+                "description": "A guided culinary walking tour sampling the neighborhood's best dishes and learning about its rich history.",
+                "link": "https://www.viator.com/tours/Miami/South-Beach-Food-Tour/d662-18037P1?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Miami: Little Havana Food and Culture Walking Tour",
+                "location": "Little Havana",
+                "description": "A guided culinary walking tour sampling the neighborhood's best dishes and learning about its rich history.",
+                "link": "https://www.viator.com/tours/Miami/Little-Havana-Food-and-Culture-Walking-Tour-Food-Cigars-Mojitos-and-more/d662-381607P2?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Miami Biscayne Bay Jet Ski Tour",
+                "location": "Miami",
+                "description": "A high-speed jet ski adventure exploring the bays and coastlines, checking out sandbars and local sights.",
+                "link": "https://www.viator.com/tours/Miami/Biscayne-Bay-Jet-Ski-Tour/d662-7943P1?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Fort Lauderdale Food & Drink Tour",
+                "location": "Fort Lauderdale",
+                "description": "A guided culinary walking tour sampling the neighborhood's best dishes and learning about its rich history.",
+                "link": "https://www.viator.com/tours/Fort-Lauderdale/Craft-Food-Tour-Fort-Lauderdale/d660-46862P6?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "The Original Key West Island Jet Ski Tour from Barefoot Billy's",
+                "location": "Key West",
+                "description": "A high-speed jet ski adventure exploring the bays and coastlines, checking out sandbars and local sights.",
+                "link": "https://www.viator.com/tours/Key-West/The-Original-Key-West-Island-Jet-Ski-Tour-from-the-Casa-Marina/d661-287482P4?pid=P00314010&mcid=42383&medium=link"
+            }
+        ]
+    },
+    {
+        "id": "best-asian",
+        "name": "Best Asian Restaurants In South Florida",
+        "tag": "Asian",
+        "description": "Experience premium pan-Asian plates, fresh hand-rolled sushi, and hot gyoza in stunning, high-design settings.",
+        "icon": "🥢",
+        "introParagraphs": [
+            "South Florida's pan-Asian dining scene features an impressive range of regional specialties, including Japanese, Chinese, Thai, and Peruvian-Nikkei fusion. From high-energy waterfront lounges to cozy neighborhood strip-mall secrets, these spots emphasize fresh ingredients and bold, complex flavors.",
+            "To curate this list, we evaluated local restaurants based on menu creativity, cooking technique, and atmosphere. We highlighted exceptional spots like Tanuki River Landing, known for its scenic riverfront setting and pan-Asian plates, and Ohana in Doral, celebrated for its unique Japanese-Peruvian Nikkei rolls.",
+            "These Asian restaurants are ideal for trendy date nights, celebratory family dinners, or upscale weekend meals. Discover curated lodging nearby at <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a>."
+        ],
+        "experiences": [
+            {
+                "title": "A Taste of South Beach Food Tour",
+                "location": "Miami Beach",
+                "description": "A guided culinary walking tour sampling the neighborhood's best dishes and learning about its rich history.",
+                "link": "https://www.viator.com/tours/Miami/South-Beach-Food-Tour/d662-18037P1?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "South Beach Cultural Food and Walking Tour",
+                "location": "Miami Beach",
+                "description": "A guided culinary walking tour sampling the neighborhood's best dishes and learning about its rich history.",
+                "link": "https://www.viator.com/tours/Miami/South-Beach-Cultural-Food-and-Walking-Tour/d662-5304FOOD?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Miami Biscayne Bay Jet Ski Tour",
+                "location": "Miami",
+                "description": "A high-speed jet ski adventure exploring the bays and coastlines, checking out sandbars and local sights.",
+                "link": "https://www.viator.com/tours/Miami/Biscayne-Bay-Jet-Ski-Tour/d662-7943P1?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Fort Lauderdale Food & Drink Tour",
+                "location": "Fort Lauderdale",
+                "description": "A guided culinary walking tour sampling the neighborhood's best dishes and learning about its rich history.",
+                "link": "https://www.viator.com/tours/Fort-Lauderdale/Craft-Food-Tour-Fort-Lauderdale/d660-46862P6?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Private Miami Boat Charter: Sightseeing, Sunset & Sandbar",
+                "location": "Miami",
+                "description": "Sail along the beautiful coastline at sunset, enjoying premium drinks, music, and breathtaking views of the horizon.",
+                "link": "https://www.viator.com/tours/Miami/Private-Tour-Miami-Boat-Rental/d662-328105P2?pid=P00314010&mcid=42383&medium=link"
+            }
+        ]
+    },
+    {
+        "id": "best-pasta",
+        "name": "Best Pasta Restaurants In South Florida",
+        "tag": "Pasta",
+        "description": "Enjoy silky house-made tagliatelle, authentic cacio e pepe, and hand-rolled ravioli prepared fresh daily.",
+        "icon": "🍝",
+        "introParagraphs": [
+            "There is nothing quite like the comforting luxury of fresh, house-made pasta. South Florida has seen a renaissance of pasta-forward restaurants, where chefs handcraft dough using imported Italian flour and traditional slow-cooked sauces.",
+            "To curate this list, we evaluated local eateries on pasta texture, sauce balance, and execution. We highlighted top locations like Il Pastaio di Eataly, which offers a front-row seat to watch pasta-making, and Caffe Milano in Miami Beach for its classic, comforting Italian specialties.",
+            "These pasta spots are perfect for cozy dinners, family meals, and celebratory outings. Planning a culinary staycation? Check out <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> for beachfront hotels and retreats."
+        ],
+        "experiences": [
+            {
+                "title": "South Beach Cultural Food and Walking Tour",
+                "location": "Miami Beach",
+                "description": "A guided culinary walking tour sampling the neighborhood's best dishes and learning about its rich history.",
+                "link": "https://www.viator.com/tours/Miami/South-Beach-Cultural-Food-and-Walking-Tour/d662-5304FOOD?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Little Havana Food and Walking Tour in Miami",
+                "location": "Little Havana",
+                "description": "A guided culinary walking tour sampling the neighborhood's best dishes and learning about its rich history.",
+                "link": "https://www.viator.com/tours/Miami/Little-Havana-Food-and-Walking-Tour-in-Miami/d662-5304HAVANA?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Fort Lauderdale Food & Drink Tour",
+                "location": "Fort Lauderdale",
+                "description": "A guided culinary walking tour sampling the neighborhood's best dishes and learning about its rich history.",
+                "link": "https://www.viator.com/tours/Fort-Lauderdale/Craft-Food-Tour-Fort-Lauderdale/d660-46862P6?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "#1 VENICE OF AMERICA TOUR - Cold A/C 115' LARGEST IN LAUDERDALE!",
+                "location": "Fort Lauderdale",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Fort-Lauderdale/Venice-of-America-Fort-Lauderdale-Cruise/d660-57834P1?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Classic Key West Schooner Sunset Sail with Full Open Bar",
+                "location": "Key West",
+                "description": "Sail along the beautiful coastline at sunset, enjoying premium drinks, music, and breathtaking views of the horizon.",
+                "link": "https://www.viator.com/tours/Key-West/Classic-Key-West-Schooner-Sunset-Sail-with-Full-Open-Bar/d661-5508814P4?pid=P00314010&mcid=42383&medium=link"
+            }
+        ]
+    },
+    {
+        "id": "best-comfort-food",
+        "name": "Best Comfort Food Spots In South Florida",
+        "tag": "Comfort Food",
+        "description": "Warm your soul with gourmet burgers, bangers & mash, crispy wings, and hearty Cuban-American diner classics.",
+        "icon": "🍗",
+        "introParagraphs": [
+            "Comfort food is all about nostalgia, warmth, and satisfying flavors. In South Florida, comfort food takes many forms, from traditional British pub fare to homestyle Cuban diner plates and award-winning American smash burgers.",
+            "To curate this list, we visited local neighborhood joints, diners, and pubs, evaluating their food quality, heartiness, and friendly hospitality. We selected standout favorites like Chug’s Diner for its Bib Gourmand Cuban-American comfort plates, and The Pub in Pembroke Pines for classic fish & chips and shepherd’s pie.",
+            "These comfort food spots are perfect for casual dinners, weekend family lunches, or laid-back evenings out. Explore hotels and local stays across South Florida on <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a>."
+        ],
+        "experiences": [
+            {
+                "title": "Everglades Airboat Tour from Fort Lauderdale with transportation",
+                "location": "Fort Lauderdale",
+                "description": "An exciting airboat ride across the Florida Everglades, spotting alligators and native birds in their natural habitat.",
+                "link": "https://www.viator.com/tours/Fort-Lauderdale/Florida-Everglades-Airboat-Tour-and-Show-from-Fort-Lauderdale-Group/d660-5865P8?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Jungle Queen Riverboat 90-Minute Narrated Sightseeing Cruise in Fort Lauderdale",
+                "location": "Fort Lauderdale",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Fort-Lauderdale/90-Minute-Narrated-Sightseeing-Cruises/d660-3160P1?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Key West Hop-On Hop-Off Trolley Tour",
+                "location": "Key West",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Key-West/Key-West-Hop-On-Hop-Off-Trolley-Tour/d661-5046KEY_OTT?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Key West Dolphin Watch and Snorkel Tour - Eco Adventure",
+                "location": "Key West",
+                "description": "Dive into the crystal-clear waters of South Florida's reefs, swimming alongside sea turtles, rays, and vibrant tropical fish.",
+                "link": "https://www.viator.com/tours/Key-West/Key-West-Dolphin-Watch-and-Snorkel-Cruise/d661-5264DC?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Raccoon Island Miami Boat Tour with Wildlife & Swimming",
+                "location": "Miami",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Miami/Miami-Raccoon-Island-Adventure/d662-10150P16?pid=P00314010&mcid=42383&medium=link"
+            }
+        ]
+    },
+    {
+        "id": "best-healthy-eats",
+        "name": "Best Healthy Eats In South Florida",
+        "tag": "Healthy Eats",
+        "description": "Feed your body with organic juices, fresh grain bowls, and vibrant, nutrient-dense seasonal salads.",
+        "icon": "🥗",
+        "introParagraphs": [
+            "Healthy eating doesn't have to mean sacrificing flavor or creativity. South Florida offers fantastic health-focused spots that prioritize organic, raw, and fermentation-forward ingredients to deliver vibrant, delicious meals that leave you feeling energized.",
+            "To curate this list, we evaluated local juice bars, cafés, and clean-eating spots. We focused on ingredient quality, menu variety, and freshness. Standouts include the organic juices and fresh wraps at Joe & The Juice, and the seasonal, fermentation-forward plates at LB Eatery & Wine.",
+            "These spots are perfect for nourishing breakfasts, energizing lunches, or light dinners. If you are exploring the coast, check out wellness-oriented hotels on <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a>."
+        ],
+        "experiences": [
+            {
+                "title": "Beach Yoga & Tea Experience on South Beach",
+                "location": "Miami Beach",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Miami/Yoga-Experience-in-stunning-South-Pointe-Park/d662-250325P4?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Clear Kayak Guided Eco Tour in North Naples",
+                "location": "Naples",
+                "description": "Paddle through tranquil mangrove tunnels and shallow waters, spotting marine life and local birds with an expert guide.",
+                "link": "https://www.viator.com/tours/Naples/Clear-Kayak-Tours-in-Bonita-Springs/d22381-277731P1?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Dolphin and Manatee Adventure Tour of Naples with Florida History",
+                "location": "Naples",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Naples/Dolphin-and-Manatee-Adventure-Tour-of-Naples-with-Florida-History/d22381-39750P12?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Key West: 2-hour Mangrove Kayak Tour",
+                "location": "Key West",
+                "description": "Paddle through tranquil mangrove tunnels and shallow waters, spotting marine life and local birds with an expert guide.",
+                "link": "https://gyg.me/9sp50XPv"
+            },
+            {
+                "title": "Kickin' Kayaks Morning Wildlife Tour",
+                "location": "Vero Beach",
+                "description": "Paddle through tranquil mangrove tunnels and shallow waters, spotting marine life and local birds with an expert guide.",
+                "link": "https://www.viator.com/tours/Vero-Beach/Morning-Kayak-Tour/d50900-5639510P3?pid=P00314010&mcid=42383&medium=link"
+            }
+        ]
+    },
+    {
+        "id": "best-happy-hour",
+        "name": "Best Happy Hour Spots In South Florida",
+        "tag": "Happy Hour",
+        "description": "Unwind with signature craft cocktails, premium draft beers, and delicious shareable small plates.",
+        "icon": "🍹",
+        "introParagraphs": [
+            "A great happy hour is the perfect transition from a busy day to a relaxing evening. It requires the right combination of creative drinks, high-quality bar bites, friendly service, and a social, upbeat atmosphere.",
+            "To curate this list, we evaluated local bars, pubs, and grills. We focused on pricing, menu selection, and vibe. We highlighted favorite destinations like the self-pour draft wall at The Pub, the woodfire grill happy hour at Brimstone, and the historic community atmosphere at The Bar in Coral Gables.",
+            "These happy hour spots are perfect for catching up with colleagues, meeting friends, or starting a night out. Complete your evening out by booking a nearby hotel or resort stay through <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a>."
+        ],
+        "experiences": [
+            {
+                "title": "Classic Key West Schooner Sunset Sail with Full Open Bar",
+                "location": "Key West",
+                "description": "Sail along the beautiful coastline at sunset, enjoying premium drinks, music, and breathtaking views of the horizon.",
+                "link": "https://www.viator.com/tours/Key-West/Classic-Key-West-Schooner-Sunset-Sail-with-Full-Open-Bar/d661-5508814P4?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Fort Lauderdale Food & Drink Tour",
+                "location": "Fort Lauderdale",
+                "description": "A guided culinary walking tour sampling the neighborhood's best dishes and learning about its rich history.",
+                "link": "https://www.viator.com/tours/Fort-Lauderdale/Craft-Food-Tour-Fort-Lauderdale/d660-46862P6?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Key West Sunset Sail with Open Bar, Live Music and Hors D'oeuvres",
+                "location": "Key West",
+                "description": "Sail along the beautiful coastline at sunset, enjoying premium drinks, music, and breathtaking views of the horizon.",
+                "link": "https://www.viator.com/tours/Key-West/Key-West-Sunset-Champagne-and-Appetizers-Cruise/d661-3800CAPSUNSAIL?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Key West Sunset Cruise: Dinner, Live Music & Drinks Included",
+                "location": "Key West",
+                "description": "Sail along the beautiful coastline at sunset, enjoying premium drinks, music, and breathtaking views of the horizon.",
+                "link": "https://www.viator.com/tours/Key-West/Key-West-Sunset-Dinner-Cruise/d661-2642P6?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Fort Lauderdale: Millionaire's Row Cruise with Drinks",
+                "location": "Fort Lauderdale",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://gyg.me/7zWSB15V"
+            }
+        ]
+    },
+    {
+        "id": "best-trendy",
+        "name": "Best Trendy Restaurants In South Florida",
+        "tag": "Trendy",
+        "description": "Experience South Florida's high-design hotspots, offering immersive atmospheres and chef-driven menus.",
+        "icon": "✨",
+        "introParagraphs": [
+            "Trendy dining is about immersion — combining striking architecture, upbeat music, stylish crowds, and highly creative menus. These hotspots offer a multi-sensory dining experience that makes a simple night out feel like an event.",
+            "To curate this list, we focused on venues that deliver exceptional flavor alongside their style. We highlighted top destinations like the plant-draped pergola terrace at Negroni, the high-design Nikkei sushi rolls at Ke-uH, and the energetic gastropub experience at Tap 42 in Aventura.",
+            "These trendy spots are perfect for date nights, group gatherings, and weekend celebrations. Planning a stylish weekend? Browse curated design hotels on <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a>."
+        ],
+        "experiences": [
+            {
+                "title": "Miami Beach: Private South Beach Airplane Tour with drinks",
+                "location": "Miami Beach",
+                "description": "Soar high above the coast on an unforgettable scenic flight, taking in aerial views of beaches and mansions.",
+                "link": "https://www.viator.com/tours/Miami/40-Minutes-Private-Miami-Luxury-Airplane-Tour/d662-356283P4?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Private Miami Boat Charter: Sightseeing, Sunset & Sandbar",
+                "location": "Miami",
+                "description": "Sail along the beautiful coastline at sunset, enjoying premium drinks, music, and breathtaking views of the horizon.",
+                "link": "https://www.viator.com/tours/Miami/Private-Tour-Miami-Boat-Rental/d662-328105P2?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "2 to 6 hours Private Yacht Cruise around Fort Lauderdale",
+                "location": "Fort Lauderdale",
+                "description": "A premium private yacht charter featuring a professional captain, custom route, and luxury amenities for your group.",
+                "link": "https://www.viator.com/tours/Fort-Lauderdale/Private-Yacht-Cruise-4-or-6-hours-around-Miami-Bay/d660-169162P11?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "South Beach Miami Aerial Tour : Beaches, Mansions and Skyline",
+                "location": "Miami Beach",
+                "description": "Soar high above the coast on an unforgettable scenic flight, taking in aerial views of beaches and mansions.",
+                "link": "https://www.viator.com/tours/Miami/Private-South-Beach-Air-Tour-30-min/d662-305808P1?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Miami: 2 Hour Private Yacht Cruise",
+                "location": "Miami",
+                "description": "A premium private yacht charter featuring a professional captain, custom route, and luxury amenities for your group.",
+                "link": "https://www.viator.com/tours/Miami/2-Hours-Tour-on-a-30-to-34-Ft-Boat-for-8-people/d662-169162P10?pid=P00314010&mcid=42383&medium=link"
+            }
+        ]
+    },
+    {
+        "id": "best-casual",
+        "name": "Best Casual Dining In South Florida",
+        "tag": "Casual",
+        "description": "Relax and enjoy approachable American pub fare, fresh street tacos, and classic comfort food.",
+        "icon": "🍔",
+        "introParagraphs": [
+            "Casual dining is the backbone of the local restaurant scene — offering welcoming environments, simple and delicious menus, and approachable service that makes you feel right at home without the need to dress up.",
+            "To curate this list, we focused on spots that deliver big flavor in comfortable, everyday settings. We highlighted local neighborhood icons like Giralda Avenue's The Bar in Coral Gables, the beachside taco shacks of El Sid Taqueria, and the popular gastropub vibes at Tap 42 in Aventura.",
+            "These casual spots are perfect for game nights, relaxed lunches, or spontaneous dinners. If you're planning a casual coastal road trip, explore charming accommodations on <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a>."
+        ],
+        "experiences": [
+            {
+                "title": "3 HR Peanut Island Sandbar & Swim Tour",
+                "location": "Palm Beach",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://gyg.me/gsPJDfVr"
+            },
+            {
+                "title": "2 Person Mini Powerboat Fort Lauderdale Self-Guided Boat Rental",
+                "location": "Fort Lauderdale",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Fort-Lauderdale/1-Hour-Mini-Powerboat-Rental/d660-104840P10?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "The Escape Game at Brickell City Centre in Miami",
+                "location": "Brickell",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Miami/The-Escape-Game-in-Miami-60-Minute-Adventures/d662-472529P1?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Wynwood Graffiti Golf Cart Small-Group Tour",
+                "location": "Wynwood",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Miami/Wynwood-Graffiti-Golf-Cart-Tour/d662-18774P7?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Raccoon Island Miami Boat Tour with Wildlife & Swimming",
+                "location": "Miami",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Miami/Miami-Raccoon-Island-Adventure/d662-10150P16?pid=P00314010&mcid=42383&medium=link"
+            }
+        ]
+    },
+    {
+        "id": "best-family",
+        "name": "Best Family-Friendly Restaurants In South Florida",
+        "tag": "Family-friendly",
+        "description": "Welcoming environments with generous portions, relaxed atmospheres, and crowds-pleasing menus. These eateries are perfect for large family dinners or weekend lunches.",
+        "icon": "🍕",
+        "introParagraphs": [
+            "Dining out with family should feel joyful, not stressful — but finding a restaurant that satisfies toddlers, teens, and grandparents at the same time can be surprisingly difficult. Many “kid‑friendly” spots sacrifice food quality, while upscale restaurants often feel too formal or cramped for families. We believe family dining should offer both comfort and great food without compromise.",
+            "To curate this list, we focused on restaurants that offer spacious seating, warm hospitality, and menus with broad appeal. We personally evaluated noise levels, stroller space, table comfort, and service speed — because families need environments that are forgiving, flexible, and welcoming. We also checked for delivery and takeout options for those nights when staying home is the better choice. From the great portions at Pizza Lovers to the gourmet burger varieties at La Birra Bar, these restaurants make dining out with a group feel like a treat rather than a chore.",
+            "Whether you’re planning a weekend lunch, a birthday dinner, or a casual weeknight outing, these spots deliver quality food and a family‑friendly atmosphere. And if you’re planning a family getaway, explore <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> for hotels with spacious rooms and kid‑friendly amenities."
+        ],
+        "experiences": [
+            {
+                "title": "Everglades Small-Group Tour from Miami with Transportation",
+                "location": "Miami",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Miami/Everglades-Tour-from-Miami-with-Transportation/d662-21428P2?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Homestead: Everglades Alligator Farm Entry and Airboat Ride",
+                "location": "Homestead",
+                "description": "An exciting airboat ride across the Florida Everglades, spotting alligators and native birds in their natural habitat.",
+                "link": "https://gyg.me/Hauj3X3o"
+            },
+            {
+                "title": "The Escape Game at Brickell City Centre in Miami",
+                "location": "Brickell",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Miami/The-Escape-Game-in-Miami-60-Minute-Adventures/d662-472529P1?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Key West Hop-On Hop-Off Trolley Tour",
+                "location": "Key West",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Key-West/Key-West-Hop-On-Hop-Off-Trolley-Tour/d661-5046KEY_OTT?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Dolphin and Manatee Adventure Tour of Naples with Florida History",
+                "location": "Naples",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Naples/Dolphin-and-Manatee-Adventure-Tour-of-Naples-with-Florida-History/d22381-39750P12?pid=P00314010&mcid=42383&medium=link"
+            }
+        ]
+    },
+    {
+        "id": "best-hidden-gems",
+        "name": "Best Hidden Gems In South Florida",
+        "tag": "Hidden Gem",
+        "description": "Unassuming strip-mall spots, cozy family-owned bistros, and places that focus entirely on scratch-made local flavors. These local secrets deserve to be on everyone's radar.",
+        "icon": "💎",
+        "introParagraphs": [
+            "South Florida’s true culinary magic often hides in strip malls, industrial parks, and quiet neighborhood corners. These hidden gems don’t rely on flashy marketing or trendy décor — they rely on passion, authenticity, and unforgettable flavors. Discovering these places is one of the greatest joys of being a local food enthusiast, and it’s exactly why we created this list.",
+            "We explored off‑the‑beaten‑path neighborhoods, listened to local recommendations, and visited family‑run kitchens that pour heart and soul into every dish. Each restaurant was evaluated for its scratch‑made recipes, unique flavors, and welcoming atmosphere. Spots like Tacu Taku Peruvian Kitchen and Rosalia’s Kitchen stood out for their dedication to quality and the warmth of their hospitality.",
+            "Hidden gems are perfect for adventurous diners, comfort‑food lovers, and anyone seeking authentic local flavor. And if you love discovering under‑the‑radar hotels and hotel or resort stays, check out <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> for curated lodging options across South Florida."
+        ],
+        "experiences": [
+            {
+                "title": "Wynwood Graffiti Golf Cart Small-Group Tour",
+                "location": "Wynwood",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Miami/Wynwood-Graffiti-Golf-Cart-Tour/d662-18774P7?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Raccoon Island Miami Boat Tour with Wildlife & Swimming",
+                "location": "Miami",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Miami/Miami-Raccoon-Island-Adventure/d662-10150P16?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Key West: 2-hour Mangrove Kayak Tour",
+                "location": "Key West",
+                "description": "Paddle through tranquil mangrove tunnels and shallow waters, spotting marine life and local birds with an expert guide.",
+                "link": "https://gyg.me/9sp50XPv"
+            },
+            {
+                "title": "Kickin' Kayaks Morning Wildlife Tour",
+                "location": "Vero Beach",
+                "description": "Paddle through tranquil mangrove tunnels and shallow waters, spotting marine life and local birds with an expert guide.",
+                "link": "https://www.viator.com/tours/Vero-Beach/Morning-Kayak-Tour/d50900-5639510P3?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "4 Hour Private Ecotour and Snorkeling Boat Tour",
+                "location": "Islamorada",
+                "description": "Dive into the crystal-clear waters of South Florida's reefs, swimming alongside sea turtles, rays, and vibrant tropical fish.",
+                "link": "https://www.viator.com/tours/Islamorada/Private-4-hour-Ecotour-and-Snorkeling-Boat-Tour/d23474-118084P3?pid=P00314010&mcid=42383&medium=link"
+            }
+        ]
+    },
+    {
+        "id": "best-date-night",
+        "name": "Best Date Night Restaurants In South Florida",
+        "tag": "Date Night",
+        "description": "Intimate dining rooms, soft lighting, and attentive service. Create meaningful connections with our top-curated romantic dinner spots.",
+        "icon": "💖",
+        "introParagraphs": [
+            "A great date night is about more than just choosing a restaurant — it’s about creating a moment. In a fast‑paced world, couples need spaces that feel intentional: warm lighting, comfortable seating, attentive service, and an atmosphere that encourages connection rather than distraction. South Florida has no shortage of dining options, but many “romantic” spots are either prohibitively expensive or too loud to enjoy a real conversation. We believe romance shouldn’t require shouting over music or paying luxury‑level prices for a simple dinner.",
+            "To curate this list, we focused on restaurants that deliver a balanced combination of ambiance, quality, and comfort. We personally visited each location, noting details like lighting, noise levels, pacing of service, and the availability of reservations — because nothing kills a date night faster than a 45‑minute wait. We also sampled their recommended sharing dishes, from the elegant sushi rolls at Ke‑uH to the cozy Italian comfort plates at Pizza Lovers, ensuring each spot offers food that enhances the experience rather than distracts from it.",
+            "Whether you’re planning a first date, celebrating an anniversary, or simply carving out time together, these restaurants offer the perfect backdrop for meaningful moments. And if you’re planning a romantic weekend getaway, you can explore our sister site <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> for luxury hotels and beachfront escapes."
+        ],
+        "experiences": [
+            {
+                "title": "Miami Beach: Private South Beach Airplane Tour with drinks",
+                "location": "Miami Beach",
+                "description": "Soar high above the coast on an unforgettable scenic flight, taking in aerial views of beaches and mansions.",
+                "link": "https://www.viator.com/tours/Miami/40-Minutes-Private-Miami-Luxury-Airplane-Tour/d662-356283P4?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "#1 VENICE OF AMERICA TOUR - Cold A/C 115' LARGEST IN LAUDERDALE!",
+                "location": "Fort Lauderdale",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Fort-Lauderdale/Venice-of-America-Fort-Lauderdale-Cruise/d660-57834P1?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Classic Key West Schooner Sunset Sail with Full Open Bar",
+                "location": "Key West",
+                "description": "Sail along the beautiful coastline at sunset, enjoying premium drinks, music, and breathtaking views of the horizon.",
+                "link": "https://www.viator.com/tours/Key-West/Classic-Key-West-Schooner-Sunset-Sail-with-Full-Open-Bar/d661-5508814P4?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Sightseeing and Sunset Catamaran Sailing Excursion",
+                "location": "Naples",
+                "description": "Sail along the beautiful coastline at sunset, enjoying premium drinks, music, and breathtaking views of the horizon.",
+                "link": "https://www.viator.com/tours/Naples/Sunset-and-Sightseeing-Day-Sail/d22381-188339P2?pid=P00314010&mcid=42383&medium=link"
+            },
+            {
+                "title": "Private Miami Boat Charter: Sightseeing, Sunset & Sandbar",
+                "location": "Miami",
+                "description": "Sail along the beautiful coastline at sunset, enjoying premium drinks, music, and breathtaking views of the horizon.",
+                "link": "https://www.viator.com/tours/Miami/Private-Tour-Miami-Boat-Rental/d662-328105P2?pid=P00314010&mcid=42383&medium=link"
+            }
+        ]
+    },
+    {
         "id": "best-waterfront",
-        "name": "Best Waterfront Dining In South Florida",
-        "tag": "waterfront",
+        "name": "Best Waterfront Restaurants In South Florida",
+        "tag": "Waterfront",
         "description": "Take in gorgeous ocean, canal, or intracoastal water views. These recommendations combine excellent dining with scenic South Florida outdoor breeze.",
         "icon": "🌅",
         "introParagraphs": [
@@ -2983,164 +3899,32 @@ const BEST_OF_CATEGORIES = [
             {
                 "title": "Miami Biscayne Bay rich and famous Sightseeing Boat Tour",
                 "location": "Miami",
-                "description": "Cruises past the luxury mansions of the rich and famous on Star Island.",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
                 "link": "https://www.viator.com/tours/Miami/Sightseeing-Cruise-of-Biscayne-Bay/d662-8836P1?pid=P00314010&mcid=42383&medium=link"
-            },
-            {
-                "title": "Miami Biscayne Bay Jet Ski Tour",
-                "location": "Miami",
-                "description": "An adrenaline-filled guided jet ski ride across the sparkling bay waters.",
-                "link": "https://www.viator.com/tours/Miami/Biscayne-Bay-Jet-Ski-Tour/d662-7943P1?pid=P00314010&mcid=42383&medium=link"
-            },
-            {
-                "title": "Fort Lauderdale Food & Drink Tour",
-                "location": "Fort Lauderdale",
-                "description": "Sample local bites and craft cocktails along Fort Lauderdale's riverfront.",
-                "link": "https://www.viator.com/tours/Fort-Lauderdale/Craft-Food-Tour-Fort-Lauderdale/d660-46862P6?pid=P00314010&mcid=42383&medium=link"
             },
             {
                 "title": "Dolphin and Shelling Cruise for up to 12 people",
                 "location": "Naples",
-                "description": "Spot wild dolphins and search for rare shells around Naples' barrier islands.",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
                 "link": "https://www.viator.com/tours/Naples/Ten-Thousand-Islands-Adventure-Boat-Tour/d22381-64741P1?pid=P00314010&mcid=42383&medium=link"
             },
             {
-                "title": "Marco Island Wildlife Sightseeing and Shelling Tour",
-                "location": "Marco Island",
-                "description": "Explore Cape Romano's dome houses and spot native birds and dolphins.",
-                "link": "https://www.viator.com/tours/Naples/Cape-Romano-Shelling-and-Sightseeing-Tour/d22381-30481P3?pid=P00314010&mcid=42383&medium=link"
-            }
-        ]
-    },
-    {
-        "id": "best-family",
-        "name": "Best Family-Friendly Spots In South Florida",
-        "tag": "family-friendly",
-        "description": "Welcoming environments with generous portions, relaxed atmospheres, and crowds-pleasing menus. These eateries are perfect for large family dinners or weekend lunches.",
-        "icon": "🍕",
-        "introParagraphs": [
-            "Dining out with family should feel joyful, not stressful — but finding a restaurant that satisfies toddlers, teens, and grandparents at the same time can be surprisingly difficult. Many “kid‑friendly” spots sacrifice food quality, while upscale restaurants often feel too formal or cramped for families. We believe family dining should offer both comfort and great food without compromise.",
-            "To curate this list, we focused on restaurants that offer spacious seating, warm hospitality, and menus with broad appeal. We personally evaluated noise levels, stroller space, table comfort, and service speed — because families need environments that are forgiving, flexible, and welcoming. We also checked for delivery and takeout options for those nights when staying home is the better choice. From the great portions at Pizza Lovers to the gourmet burger varieties at La Birra Bar, these restaurants make dining out with a group feel like a treat rather than a chore.",
-            "Whether you’re planning a weekend lunch, a birthday dinner, or a casual weeknight outing, these spots deliver quality food and a family‑friendly atmosphere. And if you’re planning a family getaway, explore <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> for hotels with spacious rooms and kid‑friendly amenities."
-        ],
-        "experiences": [
-            {
-                "title": "Miami: Everglades Airboat, Wildlife Exhibit & Roundtrip Bus",
-                "location": "Miami",
-                "description": "Experience an Everglades airboat ride and wildlife show with roundtrip transport.",
-                "link": "https://gyg.me/VMvGHCGd"
-            },
-            {
-                "title": "Raccoon Island Adventure: Wildlife, Island Walk & Floats",
-                "location": "Miami",
-                "description": "A fun wildlife boat excursion with island walks and floating mats.",
-                "link": "https://gyg.me/Lpiatsop"
-            },
-            {
-                "title": "Miami: Duck Tour of Miami and South Beach",
-                "location": "Miami",
-                "description": "A family-favorite land and water amphibious tour of South Beach and the bay.",
-                "link": "https://gyg.me/spLZ1xIi"
-            },
-            {
-                "title": "Key West Dolphin Watch and Snorkel Tour - Eco Adventure",
-                "location": "Key West",
-                "description": "Spot dolphins playing in the wild and snorkel over shallow coral reefs.",
-                "link": "https://www.viator.com/tours/Key-West/Key-West-Dolphin-Watch-and-Snorkel-Cruise/d661-5264DC?pid=P00314010&mcid=42383&medium=link"
-            },
-            {
-                "title": "Manatees and Mangrove Tunnels Small Group Kayak Tour",
+                "title": "Sightseeing and Sunset Catamaran Sailing Excursion",
                 "location": "Naples",
-                "description": "Kayak through serene mangrove tunnels and search for wild manatees.",
-                "link": "https://www.viator.com/tours/Naples/Mangrove-Tunnels-and-Manatees-Tour/d22381-54503P1?pid=P00314010&mcid=42383&medium=link"
-            }
-        ]
-    },
-    {
-        "id": "best-hidden-gems",
-        "name": "Best Hidden Gems In South Florida",
-        "tag": "hidden gem",
-        "description": "Unassuming strip-mall spots, cozy family-owned bistros, and places that focus entirely on scratch-made local flavors. These local secrets deserve to be on everyone's radar.",
-        "icon": "💎",
-        "introParagraphs": [
-            "South Florida’s true culinary magic often hides in strip malls, industrial parks, and quiet neighborhood corners. These hidden gems don’t rely on flashy marketing or trendy décor — they rely on passion, authenticity, and unforgettable flavors. Discovering these places is one of the greatest joys of being a local food enthusiast, and it’s exactly why we created this list.",
-            "We explored off‑the‑beaten‑path neighborhoods, listened to local recommendations, and visited family‑run kitchens that pour heart and soul into every dish. Each restaurant was evaluated for its scratch‑made recipes, unique flavors, and welcoming atmosphere. Spots like Tacu Taku Peruvian Kitchen and Rosalia’s Kitchen stood out for their dedication to quality and the warmth of their hospitality.",
-            "Hidden gems are perfect for adventurous diners, comfort‑food lovers, and anyone seeking authentic local flavor. And if you love discovering under‑the‑radar hotels and boutique stays, check out <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> for curated lodging options across South Florida."
-        ],
-        "experiences": [
-            {
-                "title": "Wynwood Graffiti Golf Cart Small-Group Tour",
-                "location": "Miami",
-                "description": "Explore the world's largest open-air street art museum in a comfortable golf cart.",
-                "link": "https://www.viator.com/tours/Miami/Wynwood-Graffiti-Golf-Cart-Tour/d662-18774P7?pid=P00314010&mcid=42383&medium=link"
+                "description": "Sail along the beautiful coastline at sunset, enjoying premium drinks, music, and breathtaking views of the horizon.",
+                "link": "https://www.viator.com/tours/Naples/Sunset-and-Sightseeing-Day-Sail/d22381-188339P2?pid=P00314010&mcid=42383&medium=link"
             },
             {
-                "title": "Little Havana Food and Walking Tour in Miami",
-                "location": "Miami",
-                "description": "Discover authentic Cuban cuisine, history, and culture in Miami's historic heart.",
-                "link": "https://www.viator.com/tours/Miami/Little-Havana-Food-and-Walking-Tour-in-Miami/d662-5304HAVANA?pid=P00314010&mcid=42383&medium=link"
+                "title": "Sightseeing Hakuna Matata Catamaran Cruise in Palm Beach",
+                "location": "Palm Beach",
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/West-Palm-Beach/Sightseeing-Catamaran-Cruise/d24204-218537P2?pid=P00314010&mcid=42383&medium=link"
             },
             {
-                "title": "Rookery Bay Kayak Adventure – Mangroves, Wildlife & Photos",
+                "title": "Beach Island Shelling Cruise to Keewaydin Island Tour",
                 "location": "Naples",
-                "description": "Paddle through Rookery Bay's pristine mangroves and spot native coastal wildlife.",
-                "link": "https://www.viator.com/tours/Naples/Rookery-Bay-Reserve-Kayak-Eco-Tour/d22381-30481P2?pid=P00314010&mcid=42383&medium=link"
-            },
-            {
-                "title": "Kickin’ Kayaks Morning Wildlife Tour",
-                "location": "Vero Beach",
-                "description": "Search for manatees and dolphins on a peaceful morning kayak tour of Vero Beach.",
-                "link": "https://www.viator.com/tours/Vero-Beach/Morning-Kayak-Tour/d50900-5639510P3?pid=P00314010&mcid=42383&medium=link"
-            },
-            {
-                "title": "4 Hour Private Ecotour and Snorkeling Boat Tour",
-                "location": "Islamorada",
-                "description": "A private eco-tour and snorkeling boat charter exploring Islamorada's reefs.",
-                "link": "https://www.viator.com/tours/Islamorada/Private-4-hour-Ecotour-and-Snorkeling-Boat-Tour/d23474-118084P3?pid=P00314010&mcid=42383&medium=link"
-            }
-        ]
-    },
-    {
-        "id": "best-brunch",
-        "name": "Best Brunch Spots In South Florida",
-        "tag": "brunch",
-        "description": "Indulgent breakfast classics, bottomless mimosas, and relaxing mid-day vibes. These local spots serve up the ultimate weekend brunch experiences.",
-        "icon": "🥞",
-        "introParagraphs": [
-            "Brunch is more than a meal — it’s a weekend ritual. It’s the perfect time to slow down, reconnect with friends, and indulge in sweet pancakes, savory eggs benedict, or classic brunch cocktails. South Florida’s brunch scene is diverse, ranging from garden cafés to chef‑driven bistros, but not all brunch spots deliver the relaxed, welcoming atmosphere that makes brunch special.",
-            "To curate this list, we visited cafés and restaurants across the region, evaluating their morning classics, ingredient quality, and overall vibe. We looked for spots that offer both comfort and creativity, from the eggs benedicts at Little Hen to the gourmet skillet pancakes at Chug’s Diner. We also checked for patio seating, wait times, and menu variety — because brunch should feel effortless, not chaotic.",
-            "These brunch favorites are perfect for weekend gatherings, celebratory mornings, or simply treating yourself to a slow, delicious start to the day. And if you’re planning a brunch‑themed staycation, explore <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a> for boutique hotels and charming local accommodations."
-        ],
-        "experiences": [
-            {
-                "title": "Miami: Biscayne Bay Millionaire's Homes Sightseeing Cruise",
-                "location": "Miami",
-                "description": "A beautiful sightseeing cruise past Miami's Millionaire's Row mansions.",
-                "link": "https://gyg.me/kSzsr7cA"
-            },
-            {
-                "title": "Beach Yoga & Tea Experience on South Beach",
-                "location": "Miami Beach",
-                "description": "Relaxing yoga class at South Pointe Park followed by organic tea.",
-                "link": "https://www.viator.com/tours/Miami/Yoga-Experience-in-stunning-South-Pointe-Park/d662-250325P4?pid=P00314010&mcid=42383&medium=link"
-            },
-            {
-                "title": "Clear Kayak Peanut Island Guided Tour Palm Beach Singer Island",
-                "location": "West Palm Beach",
-                "description": "Paddle a transparent kayak around historic Peanut Island and search for marine life.",
-                "link": "https://www.viator.com/tours/West-Palm-Beach/West-Palm-Beach-Peanut-Island-Clear-Kayak-Guided-Tour/d24204-5501364P4?pid=P00314010&mcid=42383&medium=link"
-            },
-            {
-                "title": "Naples Sightseeing Boat Tour",
-                "location": "Naples",
-                "description": "Cruise down Naples Bay and spot luxury homes, wildlife, and dolphins.",
-                "link": "https://www.viator.com/tours/Naples/Naples-Sightseeing-Tour/d22381-32251P1?pid=P00314010&mcid=42383&medium=link"
-            },
-            {
-                "title": "Fort Lauderdale Beach Food Tour",
-                "location": "Fort Lauderdale",
-                "description": "Sample delectable food and tropical drinks along Fort Lauderdale Beach.",
-                "link": "https://www.viator.com/tours/Fort-Lauderdale/Craft-Food-Tour-in-Ft-Lauderdale-Beach/d660-46862P7?pid=P00314010&mcid=42383&medium=link"
+                "description": "Discover the best sightseeing, wildlife, and natural beauty that South Florida has to offer on this guided tour.",
+                "link": "https://www.viator.com/tours/Naples/Beach-Island-Shelling-Cruise-to-Keewaydin-Island/d22381-172638P3?pid=P00314010&mcid=42383&medium=link"
             }
         ]
     }
@@ -3203,9 +3987,11 @@ window.filterByTagAndGoHome = filterByTagAndGoHome;
 function renderBestOfView() {
     const container = document.getElementById("best-of-categories-list");
     if (!container) return;
-    container.innerHTML = BEST_OF_CATEGORIES.map(cat => {
+    
+    // Group 1: Food & Vibe Lists
+    const foodVibeHtml = BEST_OF_CATEGORIES.map(cat => {
         return `
-            <div class="best-of-category-card" onclick="window.location.hash = '#best-of/${cat.id}'" style="cursor: pointer;">
+            <div class="best-of-category-card" onclick="window.STATE.savedBestOfScrollPosition = window.scrollY; window.location.hash = '#best-of/${cat.id}'" style="cursor: pointer;">
                 <div class="best-of-card-header">
                     <div class="best-of-header-left">
                         <span class="best-of-cat-icon">${cat.icon}</span>
@@ -3222,19 +4008,55 @@ function renderBestOfView() {
             </div>
         `;
     }).join("");
+
+    // Group 2: Neighborhood Lists
+    const neighborhoodHtml = BEST_OF_NEIGHBORHOODS.map(cat => {
+        return `
+            <div class="best-of-category-card" onclick="window.STATE.savedBestOfScrollPosition = window.scrollY; window.location.hash = '#best-of/${cat.id}'" style="cursor: pointer;">
+                <div class="best-of-card-header">
+                    <div class="best-of-header-left">
+                        <span class="best-of-cat-icon">${cat.icon}</span>
+                        <div>
+                            <h2 class="best-of-cat-name">${cat.name}</h2>
+                            <p class="best-of-cat-desc">${cat.description}</p>
+                        </div>
+                    </div>
+                    <div class="best-of-link-indicator">
+                        <span>View List</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join("");
+
+    container.innerHTML = `
+        <h2 class="best-of-section-title" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin-top: 2rem; margin-bottom: 1.25rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">🍽️ Curated Lists by Food & Vibe</h2>
+        <div class="best-of-restaurants-list" style="padding: 0; display: flex; flex-direction: column; gap: 1rem; margin-bottom: 3rem;">
+            ${foodVibeHtml}
+        </div>
+
+        <h2 class="best-of-section-title" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin-top: 2rem; margin-bottom: 1.25rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">📍 Curated Lists by Neighborhood</h2>
+        <div class="best-of-restaurants-list" style="padding: 0; display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1rem;">
+            ${neighborhoodHtml}
+        </div>
+    `;
 }
 function renderBestOfListDetailView(catId) {
     const view = document.getElementById("best-of-list-detail-view");
     if (!view) return;
-    const cat = BEST_OF_CATEGORIES.find(c => c.id === catId);
+    const cat = BEST_OF_CATEGORIES.find(c => c.id === catId) || BEST_OF_NEIGHBORHOODS.find(c => c.id === catId);
     if (!cat) {
         view.innerHTML = `<div class="error-state">List not found</div>`;
         return;
     }
     // Find matching restaurants from RESTAURANT_DATA
-    const matching = RESTAURANT_DATA.filter(rest => 
-        rest.tags.some(rt => normalizeTag(rt) === normalizeTag(cat.tag))
-    );
+    const matching = RESTAURANT_DATA.filter(rest => {
+        if (cat.location) {
+            return rest.location.toLowerCase() === cat.location.toLowerCase();
+        }
+        return rest.tags.some(rt => normalizeTag(rt) === normalizeTag(cat.tag));
+    });
     // Format restaurant items list using the detailed longDescription
     const restListHtml = matching.map(rest => `
         <div class="best-of-restaurant-item">
@@ -3260,7 +4082,7 @@ function renderBestOfListDetailView(catId) {
         <div class="best-of-wrapper">
             <!-- Back Navigation to Lists Directory -->
             <div class="best-of-back-nav">
-                <a href="#best-of" class="back-link">
+                <a href="#best-of" class="back-link" onclick="window.STATE.shouldRestoreBestOfScroll = true;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
                     Back to Best Of Lists
                 </a>
@@ -3338,6 +4160,10 @@ function handleRoute() {
     const bestOfView = document.getElementById("best-of-view");
     const bestOfListDetailView = document.getElementById("best-of-list-detail-view");
     const bottomAdBanner = document.getElementById("bottom-ad-banner");
+    const articleDetailView = document.getElementById("article-detail-view");
+    const editorialsView = document.getElementById("editorials-view");
+
+
     
     // Save scroll position if we are currently on the home view and moving away from it
     if (homeView && homeView.style.display !== "none" && hash !== "" && hash !== "#" && hash !== "#restaurant-grid" && hash !== "#suggest-section") {
@@ -3356,11 +4182,13 @@ function handleRoute() {
         if (matching) matching.classList.add("active");
     };
     if (hash === "#about") {
+        if (editorialsView) editorialsView.style.display = "none";
         if (homeView) homeView.style.display = "none";
         if (detailView) detailView.style.display = "none";
         if (privacyTermsView) privacyTermsView.style.display = "none";
         if (bestOfView) bestOfView.style.display = "none";
         if (bestOfListDetailView) bestOfListDetailView.style.display = "none";
+        if (articleDetailView) articleDetailView.style.display = "none";
         if (aboutView) {
             aboutView.style.display = "block";
             window.scrollTo(0, 0);
@@ -3376,6 +4204,7 @@ function handleRoute() {
     // For all other routes, make sure the bottom ad banner is visible
     if (bottomAdBanner) bottomAdBanner.style.display = "block";
     if (hash === "#privacy-terms") {
+        if (editorialsView) editorialsView.style.display = "none";
         if (homeView) homeView.style.display = "none";
         if (detailView) detailView.style.display = "none";
         if (aboutView) {
@@ -3383,6 +4212,7 @@ function handleRoute() {
             if (bestOfView) bestOfView.style.display = "none";
             if (bestOfListDetailView) bestOfListDetailView.style.display = "none";
         }
+        if (articleDetailView) articleDetailView.style.display = "none";
         if (privacyTermsView) {
             privacyTermsView.style.display = "block";
             window.scrollTo(0, 0);
@@ -3393,16 +4223,50 @@ function handleRoute() {
         );
         return;
     }
-    if (hash === "#best-of") {
+
+    
+    if (hash === "#editorials") {
+        if (homeView) homeView.style.display = "none";
+        if (detailView) detailView.style.display = "none";
+        if (aboutView) aboutView.style.display = "none";
+        if (privacyTermsView) privacyTermsView.style.display = "none";
+        if (bestOfView) bestOfView.style.display = "none";
+        if (bestOfListDetailView) bestOfListDetailView.style.display = "none";
+        if (articleDetailView) articleDetailView.style.display = "none";
+        if (editorialsView) {
+            renderEditorialsView();
+            editorialsView.style.display = "block";
+            if (STATE.shouldRestoreEditorialsScroll) {
+                window.scrollTo(0, STATE.savedEditorialsScrollPosition || 0);
+                STATE.shouldRestoreEditorialsScroll = false;
+            } else {
+                window.scrollTo(0, 0);
+            }
+        }
+        highlightNav("#editorials");
+        updateMeta(
+            "Local Food Editorials & Guides | SoFlo Bites", 
+            "Explore in-depth features, culinary guides, and neighborhood perspectives from the SoFlo Bites editorial team."
+        );
+        return;
+    }
+if (hash === "#best-of") {
+        if (editorialsView) editorialsView.style.display = "none";
         if (homeView) homeView.style.display = "none";
         if (detailView) detailView.style.display = "none";
         if (aboutView) aboutView.style.display = "none";
         if (privacyTermsView) privacyTermsView.style.display = "none";
         if (bestOfListDetailView) bestOfListDetailView.style.display = "none";
+        if (articleDetailView) articleDetailView.style.display = "none";
         if (bestOfView) {
             renderBestOfView();
             bestOfView.style.display = "block";
-            window.scrollTo(0, 0);
+            if (STATE.shouldRestoreBestOfScroll) {
+                window.scrollTo(0, STATE.savedBestOfScrollPosition || 0);
+                STATE.shouldRestoreBestOfScroll = false;
+            } else {
+                window.scrollTo(0, 0);
+            }
         }
         highlightNav("#best-of");
         updateMeta(
@@ -3412,8 +4276,9 @@ function handleRoute() {
         return;
     }
     if (hash.startsWith("#best-of/")) {
+        if (editorialsView) editorialsView.style.display = "none";
         const catId = hash.replace("#best-of/", "");
-        const cat = BEST_OF_CATEGORIES.find(c => c.id === catId);
+        const cat = BEST_OF_CATEGORIES.find(c => c.id === catId) || BEST_OF_NEIGHBORHOODS.find(c => c.id === catId);
         
         if (cat) {
             if (homeView) homeView.style.display = "none";
@@ -3421,6 +4286,7 @@ function handleRoute() {
             if (aboutView) aboutView.style.display = "none";
             if (privacyTermsView) privacyTermsView.style.display = "none";
             if (bestOfView) bestOfView.style.display = "none";
+            if (articleDetailView) articleDetailView.style.display = "none";
             if (bestOfListDetailView) {
                 renderBestOfListDetailView(catId);
                 bestOfListDetailView.style.display = "block";
@@ -3434,7 +4300,33 @@ function handleRoute() {
             return;
         }
     }
-    if (hash.startsWith("#restaurant/")) {
+        if (hash.startsWith("#article/")) {
+        if (editorialsView) editorialsView.style.display = "none";
+        const articleId = hash.replace("#article/", "");
+        const article = ARTICLES_DATA.find(a => a.id === articleId);
+        
+        if (article) {
+            if (homeView) homeView.style.display = "none";
+            if (detailView) detailView.style.display = "none";
+            if (aboutView) aboutView.style.display = "none";
+            if (privacyTermsView) privacyTermsView.style.display = "none";
+            if (bestOfView) bestOfView.style.display = "none";
+            if (bestOfListDetailView) bestOfListDetailView.style.display = "none";
+            if (articleDetailView) {
+                renderArticleDetailView(articleId);
+                articleDetailView.style.display = "block";
+                window.scrollTo(0, 0);
+            }
+            highlightNav("#best-of");
+            updateMeta(
+                `${article.title} | SoFlo Bites`, 
+                `Read our local editorial article: ${article.title}.`
+            );
+            return;
+        }
+    }
+if (hash.startsWith("#restaurant/")) {
+        if (editorialsView) editorialsView.style.display = "none";
         const id = hash.replace("#restaurant/", "");
         const rest = RESTAURANT_DATA.find(r => r.id === id);
         
@@ -3444,6 +4336,7 @@ function handleRoute() {
             if (privacyTermsView) privacyTermsView.style.display = "none";
             if (bestOfView) bestOfView.style.display = "none";
             if (bestOfListDetailView) bestOfListDetailView.style.display = "none";
+            if (articleDetailView) articleDetailView.style.display = "none";
             if (detailView) {
                 detailView.innerHTML = renderDetailedPageMarkup(rest);
                 detailView.style.display = "block";
@@ -3459,6 +4352,8 @@ function handleRoute() {
     }
     
     // Default route: show homepage listing
+        if (editorialsView) editorialsView.style.display = "none";
+    if (articleDetailView) articleDetailView.style.display = "none";
     if (detailView) detailView.style.display = "none";
     if (aboutView) aboutView.style.display = "none";
     if (privacyTermsView) privacyTermsView.style.display = "none";
@@ -3841,3 +4736,50 @@ window.cycleDetailImage = function(event, id, direction) {
     img.alt = nextImgObj.alt;
     img.setAttribute("data-current-index", currentIndex);
 };
+
+function renderArticleDetailView(articleId) {
+    const view = document.getElementById("article-detail-view");
+    if (!view) return;
+    const art = ARTICLES_DATA.find(a => a.id === articleId);
+    if (!art) {
+        view.innerHTML = `<div class="error-state">Article not found</div>`;
+        return;
+    }
+    view.innerHTML = `
+        <div class="article-detail-back-nav">
+            <a href="#editorials" class="back-link" onclick="window.STATE.shouldRestoreEditorialsScroll = true;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Back to Editorials
+            </a>
+        </div>
+        <h1 class="article-detail-title">${art.title}</h1>
+        <div class="article-detail-meta">Published by SoFlo Bites Editorial Team • Local Travel & Dining Guides</div>
+        <div class="article-detail-body">
+            ${art.content}
+        </div>
+    `;
+}
+
+function renderEditorialsView() {
+    const container = document.getElementById("editorials-list-container");
+    if (!container) return;
+    container.innerHTML = ARTICLES_DATA.map(art => {
+        return `
+            <div class="best-of-category-card" onclick="window.STATE.savedEditorialsScrollPosition = window.scrollY; window.location.hash = '#article/${art.id}'" style="cursor: pointer; border-left: 4px solid var(--accent-primary);">
+                <div class="best-of-card-header">
+                    <div class="best-of-header-left">
+                        <span class="best-of-cat-icon">📖</span>
+                        <div>
+                            <h2 class="best-of-cat-name">${art.title}</h2>
+                            <p class="best-of-cat-desc">${art.excerpt}</p>
+                        </div>
+                    </div>
+                    <div class="best-of-link-indicator">
+                        <span>Read Article</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join("");
+}
