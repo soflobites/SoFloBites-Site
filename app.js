@@ -2411,6 +2411,10 @@ document.addEventListener("DOMContentLoaded", () => {
     setupSuggestForm();
     setupModalEvents();
     
+    // Render Best Of and Editorials directories immediately so search engines can crawl them on load
+    renderBestOfView();
+    renderEditorialsView();
+    
     // Hash routing listeners
     window.addEventListener("hashchange", handleRoute);
     handleRoute();
