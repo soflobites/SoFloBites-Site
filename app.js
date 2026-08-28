@@ -2415,8 +2415,10 @@ document.addEventListener("DOMContentLoaded", () => {
     renderBestOfView();
     renderEditorialsView();
     
-    // Hash routing listeners
-    window.addEventListener("hashchange", handleRoute);
+    // History routing listener
+    window.addEventListener("popstate", () => {
+        handleRoute();
+    });
     handleRoute();
 });
 // 5. Handle and Render Dynamic Filters
@@ -2762,10 +2764,10 @@ function renderRestaurants() {
                     ${inkindIndicatorHtml}
                 </div>
                 <div class="card-actions-wrapper">
-                    <button class="btn-secondary card-btn-details" onclick="openDetailsModal('${rest.id}')" style="width: 100%; margin-bottom: 0.5rem;">
+                    <a href="/restaurants/${rest.id}" class="btn-secondary card-btn-details" style="width: 100%; margin-bottom: 0.5rem; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; box-sizing: border-box;">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                         Details & Info
-                    </button>
+                    </a>
                     <div class="card-actions">
                         ${(() => {
                             const hasOrder = !!rest.orderUrl;
@@ -2873,10 +2875,10 @@ function injectSchemaMarkup() {
 }
 // 10. Detail Modals logic
 function openDetailsModal(id) {
-    window.location.hash = `#restaurant/${id}`;
+    navigateTo(`/restaurants/${id}`);
 }
 function closeDetailsModal() {
-    window.location.hash = "";
+    navigateTo("/");
 }
 function setupModalEvents() {
     // Modal events not needed for full page view
@@ -3951,7 +3953,7 @@ function filterByTagAndGoHome(tag) {
     renderRestaurants();
     updateActiveFilterBadges();
     // 5. Navigate to the explore grid section
-    window.location.hash = "#restaurant-grid";
+    navigateTo("/#restaurant-grid");
 }
 
 // Back to Top Button logic
@@ -3979,11 +3981,7 @@ function goToFeedback(type) {
         selectEl.value = type;
         selectEl.dispatchEvent(new Event('change'));
     }
-    window.location.hash = "#suggest-section";
-    const sec = document.getElementById("suggest-section");
-    if (sec) {
-        sec.scrollIntoView({ behavior: 'smooth' });
-    }
+    navigateTo("/#suggest-section");
 }
 window.goToFeedback = goToFeedback;
 
@@ -3995,7 +3993,7 @@ function renderBestOfView() {
     // Group 1: Food & Vibe Lists
     const foodVibeHtml = BEST_OF_CATEGORIES.map(cat => {
         return `
-            <div class="best-of-category-card" onclick="window.STATE.savedBestOfScrollPosition = window.scrollY; window.location.hash = '#best-of/${cat.id}'" style="cursor: pointer;">
+            <a href="/best-of/${cat.id}" class="best-of-category-card" onclick="window.STATE.savedBestOfScrollPosition = window.scrollY;" style="display: block; text-decoration: none; color: inherit;">
                 <div class="best-of-card-header">
                     <div class="best-of-header-left">
                         <span class="best-of-cat-icon">${cat.icon}</span>
@@ -4009,14 +4007,14 @@ function renderBestOfView() {
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                     </div>
                 </div>
-            </div>
+            </a>
         `;
     }).join("");
 
     // Group 2: Neighborhood Lists
     const neighborhoodHtml = BEST_OF_NEIGHBORHOODS.map(cat => {
         return `
-            <div class="best-of-category-card" onclick="window.STATE.savedBestOfScrollPosition = window.scrollY; window.location.hash = '#best-of/${cat.id}'" style="cursor: pointer;">
+            <a href="/best-of/${cat.id}" class="best-of-category-card" onclick="window.STATE.savedBestOfScrollPosition = window.scrollY;" style="display: block; text-decoration: none; color: inherit;">
                 <div class="best-of-card-header">
                     <div class="best-of-header-left">
                         <span class="best-of-cat-icon">${cat.icon}</span>
@@ -4030,7 +4028,7 @@ function renderBestOfView() {
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                     </div>
                 </div>
-            </div>
+            </a>
         `;
     }).join("");
 
@@ -4075,7 +4073,7 @@ function renderBestOfListDetailView(catId) {
                     <strong>★ Must-Try:</strong> ${rest.mustTry}
                 </div>
                 <div class="best-of-item-actions">
-                    <a href="#restaurant/${rest.id}" class="best-of-view-details-btn">
+                    <a href="/restaurants/${rest.id}" class="best-of-view-details-btn">
                         View Full Details Page
                     </a>
                 </div>
@@ -4086,7 +4084,7 @@ function renderBestOfListDetailView(catId) {
         <div class="best-of-wrapper">
             <!-- Back Navigation to Lists Directory -->
             <div class="best-of-back-nav">
-                <a href="#best-of" class="back-link" onclick="window.STATE.shouldRestoreBestOfScroll = true;">
+                <a href="/best-of" class="back-link" onclick="window.STATE.shouldRestoreBestOfScroll = true;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
                     Back to Best Of Lists
                 </a>
@@ -4156,6 +4154,7 @@ function renderBestOfListDetailView(catId) {
     `;
 }
 function handleRoute() {
+    const path = (window.location.pathname || "/").replace(/\/$/, ""); // Normalize path by stripping trailing slash
     const hash = window.location.hash;
     const homeView = document.getElementById("home-view");
     const detailView = document.getElementById("restaurant-detail-view");
@@ -4167,25 +4166,26 @@ function handleRoute() {
     const articleDetailView = document.getElementById("article-detail-view");
     const editorialsView = document.getElementById("editorials-view");
 
-
-    
     // Save scroll position if we are currently on the home view and moving away from it
-    if (homeView && homeView.style.display !== "none" && hash !== "" && hash !== "#" && hash !== "#restaurant-grid" && hash !== "#suggest-section") {
+    if (homeView && homeView.style.display !== "none" && path !== "" && path !== "/" && path !== "/index.html") {
         STATE.savedScrollPosition = window.scrollY;
     }
     
     // Reset active nav link highlighting
     const navLinks = document.querySelectorAll(".nav-link");
     navLinks.forEach(link => link.classList.remove("active"));
-    // Helper to highlight a navigation link by href substring
-    const highlightNav = (hrefVal) => {
+    // Helper to highlight a navigation link by href path
+    const highlightNav = (pathVal) => {
         const matching = Array.from(navLinks).find(link => {
             const a = link.querySelector("a");
-            return a && a.getAttribute("href") === hrefVal;
+            if (!a) return false;
+            const href = a.getAttribute("href");
+            return href === pathVal || href.replace(/\/$/, "") === pathVal.replace(/\/$/, "");
         });
         if (matching) matching.classList.add("active");
     };
-    if (hash === "#about") {
+    
+    if (path === "/about") {
         if (editorialsView) editorialsView.style.display = "none";
         if (homeView) homeView.style.display = "none";
         if (detailView) detailView.style.display = "none";
@@ -4197,7 +4197,7 @@ function handleRoute() {
             aboutView.style.display = "block";
             window.scrollTo(0, 0);
         }
-        highlightNav("#about");
+        highlightNav("/about");
         if (bottomAdBanner) bottomAdBanner.style.display = "none";
         updateMeta(
             "About Us | SoFlo Bites", 
@@ -4207,7 +4207,8 @@ function handleRoute() {
     }
     // For all other routes, make sure the bottom ad banner is visible
     if (bottomAdBanner) bottomAdBanner.style.display = "block";
-    if (hash === "#privacy-terms") {
+    
+    if (path === "/privacy-terms") {
         if (editorialsView) editorialsView.style.display = "none";
         if (homeView) homeView.style.display = "none";
         if (detailView) detailView.style.display = "none";
@@ -4227,9 +4228,8 @@ function handleRoute() {
         );
         return;
     }
-
     
-    if (hash === "#editorials") {
+    if (path === "/editorials") {
         if (homeView) homeView.style.display = "none";
         if (detailView) detailView.style.display = "none";
         if (aboutView) aboutView.style.display = "none";
@@ -4247,14 +4247,15 @@ function handleRoute() {
                 window.scrollTo(0, 0);
             }
         }
-        highlightNav("#editorials");
+        highlightNav("/editorials");
         updateMeta(
             "Local Food Editorials & Guides | SoFlo Bites", 
             "Explore in-depth features, culinary guides, and neighborhood perspectives from the SoFlo Bites editorial team."
         );
         return;
     }
-if (hash === "#best-of") {
+    
+    if (path === "/best-of") {
         if (editorialsView) editorialsView.style.display = "none";
         if (homeView) homeView.style.display = "none";
         if (detailView) detailView.style.display = "none";
@@ -4272,16 +4273,17 @@ if (hash === "#best-of") {
                 window.scrollTo(0, 0);
             }
         }
-        highlightNav("#best-of");
+        highlightNav("/best-of");
         updateMeta(
             "Best Local Lists & Selections | SoFlo Bites", 
             "Browse our curated Best Of lists for South Florida restaurants. Discover the best date night spots, waterfront dining, family-friendly eateries, and local secrets."
         );
         return;
     }
-    if (hash.startsWith("#best-of/")) {
+    
+    if (path.startsWith("/best-of/")) {
         if (editorialsView) editorialsView.style.display = "none";
-        const catId = hash.replace("#best-of/", "");
+        const catId = path.substring("/best-of/".length);
         const cat = BEST_OF_CATEGORIES.find(c => c.id === catId) || BEST_OF_NEIGHBORHOODS.find(c => c.id === catId);
         
         if (cat) {
@@ -4296,7 +4298,7 @@ if (hash === "#best-of") {
                 bestOfListDetailView.style.display = "block";
                 window.scrollTo(0, 0);
             }
-            highlightNav("#best-of");
+            highlightNav("/best-of");
             updateMeta(
                 `${cat.name} | SoFlo Bites`, 
                 `${cat.description} Explore our hand-picked restaurant recommendations for this category.`
@@ -4304,9 +4306,10 @@ if (hash === "#best-of") {
             return;
         }
     }
-        if (hash.startsWith("#article/")) {
+    
+    if (path.startsWith("/article/")) {
         if (editorialsView) editorialsView.style.display = "none";
-        const articleId = hash.replace("#article/", "");
+        const articleId = path.substring("/article/".length);
         const article = ARTICLES_DATA.find(a => a.id === articleId);
         
         if (article) {
@@ -4321,7 +4324,7 @@ if (hash === "#best-of") {
                 articleDetailView.style.display = "block";
                 window.scrollTo(0, 0);
             }
-            highlightNav("#best-of");
+            highlightNav("/editorials");
             updateMeta(
                 `${article.title} | SoFlo Bites`, 
                 `Read our local editorial article: ${article.title}.`
@@ -4329,9 +4332,10 @@ if (hash === "#best-of") {
             return;
         }
     }
-if (hash.startsWith("#restaurant/")) {
+    
+    if (path.startsWith("/restaurants/")) {
         if (editorialsView) editorialsView.style.display = "none";
-        const id = hash.replace("#restaurant/", "");
+        const id = path.substring("/restaurants/".length);
         const rest = RESTAURANT_DATA.find(r => r.id === id);
         
         if (rest) {
@@ -4346,7 +4350,7 @@ if (hash.startsWith("#restaurant/")) {
                 detailView.style.display = "block";
                 window.scrollTo(0, 0);
             }
-            highlightNav("#restaurant-grid");
+            highlightNav("/");
             updateMeta(
                 `${rest.name} — ${rest.location} | SoFlo Bites`,
                 `Explore must-try dishes, phone numbers, hours, and directions for ${rest.name} in ${rest.location}. ${rest.description}`
@@ -4356,7 +4360,7 @@ if (hash.startsWith("#restaurant/")) {
     }
     
     // Default route: show homepage listing
-        if (editorialsView) editorialsView.style.display = "none";
+    if (editorialsView) editorialsView.style.display = "none";
     if (articleDetailView) articleDetailView.style.display = "none";
     if (detailView) detailView.style.display = "none";
     if (aboutView) aboutView.style.display = "none";
@@ -4366,12 +4370,14 @@ if (hash.startsWith("#restaurant/")) {
     if (homeView) homeView.style.display = "block";
     
     // Highlight home vs explore directory vs suggest form
-    if (hash === "" || hash === "#") {
-        highlightNav("#");
-    } else if (hash === "#restaurant-grid") {
-        highlightNav("#restaurant-grid");
-    } else if (hash === "#suggest-section") {
-        highlightNav("#suggest-section");
+    if (path === "/" || path === "" || path === "/index.html") {
+        if (hash === "#restaurant-grid") {
+            highlightNav("/#restaurant-grid");
+        } else if (hash === "#suggest-section") {
+            highlightNav("/#suggest-section");
+        } else {
+            highlightNav("/");
+        }
     }
     
     updateMeta(
@@ -4393,7 +4399,7 @@ if (hash.startsWith("#restaurant/")) {
             if (suggestEl) {
                 suggestEl.scrollIntoView({ behavior: "smooth" });
             }
-        } else if (hash === "" || hash === "#") {
+        } else {
             window.scrollTo(0, 0);
         }
     }
@@ -4498,7 +4504,7 @@ function renderDetailedPageMarkup(rest) {
         <div class="detail-page-wrapper">
             <!-- Back Navigation -->
             <div class="detail-back-nav">
-                <a href="#" class="back-link" onclick="goBackToDirectory(event)">
+                <a href="/#restaurant-grid" class="back-link" onclick="goBackToDirectory(event)">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
                     Back to Explore Directory
                 </a>
@@ -4703,7 +4709,7 @@ window.closeOptionsModal = closeOptionsModal;
 function goBackToDirectory(event) {
     if (event) event.preventDefault();
     STATE.shouldRestoreScroll = true;
-    window.location.hash = "#restaurant-grid";
+    navigateTo("/#restaurant-grid");
 }
 window.goBackToDirectory = goBackToDirectory;
 // Carousel Cycle Functions for Multiple Restaurant Images
@@ -4751,7 +4757,7 @@ function renderArticleDetailView(articleId) {
     }
     view.innerHTML = `
         <div class="article-detail-back-nav">
-            <a href="#editorials" class="back-link" onclick="window.STATE.shouldRestoreEditorialsScroll = true;">
+            <a href="/editorials" class="back-link" onclick="window.STATE.shouldRestoreEditorialsScroll = true;">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
                 Back to Editorials
             </a>
@@ -4769,7 +4775,7 @@ function renderEditorialsView() {
     if (!container) return;
     container.innerHTML = ARTICLES_DATA.map(art => {
         return `
-            <div class="best-of-category-card" onclick="window.STATE.savedEditorialsScrollPosition = window.scrollY; window.location.hash = '#article/${art.id}'" style="cursor: pointer; border-left: 4px solid var(--accent-primary);">
+            <a href="/article/${art.id}" class="best-of-category-card" onclick="window.STATE.savedEditorialsScrollPosition = window.scrollY;" style="display: block; text-decoration: none; color: inherit; border-left: 4px solid var(--accent-primary);">
                 <div class="best-of-card-header">
                     <div class="best-of-header-left">
                         <span class="best-of-cat-icon">📖</span>
@@ -4783,7 +4789,68 @@ function renderEditorialsView() {
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                     </div>
                 </div>
-            </div>
+            </a>
         `;
     }).join("");
 }
+
+// =========================================================================
+// History API Path-Based Navigation Helpers
+// =========================================================================
+function navigateTo(path) {
+    history.pushState(null, "", path);
+    handleRoute();
+}
+window.navigateTo = navigateTo;
+
+// Global link interceptor for real paths
+document.addEventListener("click", (e) => {
+    const link = e.target.closest("a");
+    if (!link) return;
+    
+    // Ignore external links or targets that are blank
+    if (link.target === "_blank" || link.hostname !== window.location.hostname) {
+        return;
+    }
+    
+    const href = link.getAttribute("href");
+    if (!href) return;
+    
+    // Handle standard relative hash links smoothly on the current page to prevent <base href> issues
+    if (href.startsWith("#") && !href.startsWith("#restaurant") && !href.startsWith("#best-of") && !href.startsWith("#editorials") && !href.startsWith("#about") && !href.startsWith("#privacy-terms") && !href.startsWith("#article")) {
+        const targetId = href.substring(1);
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+            e.preventDefault();
+            targetEl.scrollIntoView({ behavior: "smooth" });
+            history.pushState(null, "", window.location.pathname + href);
+        }
+        return;
+    }
+    
+    // Handle history routing for relative paths or converted hashes
+    let targetPath = href;
+    if (href.startsWith("#")) {
+        targetPath = href.substring(1);
+        if (targetPath.startsWith("restaurant/")) {
+            targetPath = targetPath.replace("restaurant/", "restaurants/");
+        }
+        if (!targetPath.startsWith("/")) {
+            targetPath = "/" + targetPath;
+        }
+    }
+    
+    if (targetPath.startsWith("/") || targetPath.startsWith("http://") || targetPath.startsWith("https://")) {
+        try {
+            const url = new URL(link.href);
+            if (url.origin === window.location.origin) {
+                e.preventDefault();
+                navigateTo(url.pathname + url.search + url.hash);
+            }
+        } catch (err) {
+            // Fallback for relative paths in URL parser
+            e.preventDefault();
+            navigateTo(targetPath);
+        }
+    }
+});

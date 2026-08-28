@@ -41,10 +41,11 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍽️</text></svg>">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="styles.css">
+    <base href="/">
+    <link rel="stylesheet" href="/styles.css">
 
     <!-- Javascript Core (Deferred for performance) -->
-    <script src="app.js" defer></script>
+    <script src="/app.js" defer></script>
 </head>
 <body>
 
@@ -56,17 +57,17 @@
     <!-- Header & Navigation -->
     <header>
         <div class="nav-container">
-            <a href="#" class="logo" id="header-logo-link">
+            <a href="/" class="logo" id="header-logo-link">
                 <span class="logo-icon">🍽️</span>
                 <span class="logo-text">SoFlo<span>Bites</span></span>
             </a>
             <nav aria-label="Main navigation">
                 <ul class="nav-links">
-                    <li class="nav-link active"><a href="#" id="nav-home">Home</a></li>
-                    <li class="nav-link"><a href="#restaurant-grid" id="nav-explore">Explore Directory</a></li>
-                    <li class="nav-link"><a href="#best-of" id="nav-best-of">Best Of</a></li>
-                    <li class="nav-link"><a href="#editorials" id="nav-editorials">Editorials</a></li>
-                    <li class="nav-link"><a href="#about" id="nav-about">About</a></li>
+                    <li class="nav-link active"><a href="/" id="nav-home">Home</a></li>
+                    <li class="nav-link"><a href="/#restaurant-grid" id="nav-explore">Explore Directory</a></li>
+                    <li class="nav-link"><a href="/best-of" id="nav-best-of">Best Of</a></li>
+                    <li class="nav-link"><a href="/editorials" id="nav-editorials">Editorials</a></li>
+                    <li class="nav-link"><a href="/about" id="nav-about">About</a></li>
                     <li class="nav-link"><a href="https://www.soflostays.co/#" target="_blank" rel="noopener noreferrer" style="color: #0d9488; font-weight: 700;">🌴 Hotel Guide</a></li>
                 </ul>
             </nav>
@@ -87,10 +88,10 @@
                     Sharing the best local food that everyone can enjoy—from cozy neighborhood favorites to hidden coastal gems. Extraordinary flavor shouldn't have to be extravagant.
                 </p>
                 <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="#restaurant-grid" class="btn-primary" style="padding: 0.9rem 1.8rem; font-size: 1rem;" id="hero-find-btn">
+                    <a href="/#restaurant-grid" class="btn-primary" style="padding: 0.9rem 1.8rem; font-size: 1rem;" id="hero-find-btn">
                         Find Restaurants Now
                     </a>
-                    <a href="#suggest-section" class="btn-secondary" style="padding: 0.9rem 1.8rem; font-size: 1rem; color: #ffffff; border-color: rgba(255, 255, 255, 0.4);" onclick="goToFeedback('recommendation'); return false;" id="hero-submit-btn">Suggest a Restaurant</a>
+                    <a href="/#suggest-section" class="btn-secondary" style="padding: 0.9rem 1.8rem; font-size: 1rem; color: #ffffff; border-color: rgba(255, 255, 255, 0.4);" onclick="goToFeedback('recommendation'); return false;" id="hero-submit-btn">Suggest a Restaurant</a>
                 </div>
             </div>
         </section>
@@ -420,7 +421,7 @@
             <div class="about-wrapper">
                 <!-- Back Navigation -->
                 <div class="about-back-nav">
-                    <a href="#" class="back-link" onclick="goBackToDirectory(event)">
+                    <a href="/#restaurant-grid" class="back-link" onclick="goBackToDirectory(event)">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
                         Back to Explore Directory
                     </a>
@@ -468,7 +469,7 @@
                                     <strong>Feature Verification:</strong> We confirm practical details—like whether a spot takes reservations, offers delivery/takeout options, or features waterfront seating—so you can plan your visit seamlessly.
                                 </li>
                             </ul>
-                            <p style="margin-top: 2rem; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; border-top: 1px solid var(--border-color); padding-top: 1.5rem;">For suggestions or inquiries, please use our <a href="#suggest-section" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">Share Feedback</a> form.</p>
+                            <p style="margin-top: 2rem; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; border-top: 1px solid var(--border-color); padding-top: 1.5rem;">For suggestions or inquiries, please use our <a href="/#suggest-section" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">Share Feedback</a> form.</p>
                         </section>
                     </div>
 
@@ -516,7 +517,7 @@
             <div class="privacy-terms-wrapper">
                 <!-- Back Navigation -->
                 <div class="privacy-terms-back-nav">
-                    <a href="#" class="back-link" onclick="goBackToDirectory(event)">
+                    <a href="/#restaurant-grid" class="back-link" onclick="goBackToDirectory(event)">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
                         Back to Explore Directory
                     </a>
@@ -584,7 +585,7 @@
             <div class="best-of-wrapper">
                 <!-- Back Navigation -->
                 <div class="best-of-back-nav">
-                    <a href="#" class="back-link" onclick="goBackToDirectory(event)">
+                    <a href="/#restaurant-grid" class="back-link" onclick="goBackToDirectory(event)">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
                         Back to Explore Directory
                     </a>
@@ -613,7 +614,7 @@
             <div class="best-of-wrapper">
                 <!-- Back Navigation -->
                 <div class="best-of-back-nav">
-                    <a href="#" class="back-link" onclick="goBackToDirectory(event)">
+                    <a href="/#restaurant-grid" class="back-link" onclick="goBackToDirectory(event)">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 19"></polyline></svg>
                         Back to Explore Directory
                     </a>
@@ -709,7 +710,7 @@
             <div class="footer-grid">
                 <!-- Branding column -->
                 <div class="footer-brand">
-                    <a href="#" class="footer-logo" style="text-decoration: none;">
+                    <a href="/" class="footer-logo" style="text-decoration: none;">
                         <span class="logo-icon">🍽️</span>
                         <span class="logo-text">SoFlo<span>Bites</span></span>
                     </a>
@@ -719,9 +720,9 @@
                 <div class="footer-links">
                     <h4 class="footer-title">Directory</h4>
                     <ul>
-                        <li><a href="#" onclick="window.location.hash = '#restaurant-grid'; return false;">Explore Food</a></li>
-                        <li><a href="#best-of">Best Eats Lists</a></li>
-                        <li><a href="#about">About Our Guide</a></li>
+                        <li><a href="/#restaurant-grid">Explore Food</a></li>
+                        <li><a href="/best-of">Best Eats Lists</a></li>
+                        <li><a href="/about">About Our Guide</a></li>
                     </ul>
                 </div>
                 <!-- Sister Guides column -->
@@ -735,9 +736,9 @@
                 <div class="footer-links">
                     <h4 class="footer-title">Legal</h4>
                     <ul>
-                        <li><a href="#privacy-terms">Privacy &amp; Cookies</a></li>
-                        <li><a href="#privacy-terms">AdSense Policies</a></li>
-                        <li><a href="#privacy-terms">Affiliate Terms</a></li>
+                        <li><a href="/privacy-terms">Privacy &amp; Cookies</a></li>
+                        <li><a href="/privacy-terms">AdSense Policies</a></li>
+                        <li><a href="/privacy-terms">Affiliate Terms</a></li>
                     </ul>
                 </div>
             </div>
