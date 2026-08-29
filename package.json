@@ -4,7 +4,8 @@
   "description": "South Florida Restaurant Recommendations Guide",
   "main": "index.html",
   "scripts": {
-    "dev": "npx -y http-server -p 3000"
+    "dev": "npx -y http-server -p 3000",
+    "sitemap": "node generate_sitemap.js"
   },
   "keywords": [
     "south-florida",
