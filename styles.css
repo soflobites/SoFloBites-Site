@@ -479,6 +479,27 @@ header {
     color: var(--accent-primary);
 }
 
+.clear-filters-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background-color: transparent;
+    color: var(--accent-primary);
+    border: 1px dashed var(--accent-primary);
+    padding: 0.35rem 0.75rem;
+    border-radius: 30px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.clear-filters-btn:hover {
+    background-color: var(--accent-primary);
+    color: #ffffff;
+    border-style: solid;
+}
+
 .results-stats {
     font-size: 0.95rem;
     color: var(--text-secondary);
@@ -2834,4 +2855,96 @@ footer {
     .article-detail-title {
         font-size: 2rem;
     }
+}
+
+/* ==========================================================================
+   Restaurant Title Links, Best Of / Editorials Search & Show More Pattern
+   ========================================================================== */
+
+.card-title-link,
+.card-title a,
+.best-of-item-name a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.card-title-link:hover,
+.card-title a:hover,
+.best-of-item-name a:hover {
+    color: var(--accent-primary, #d95d39);
+}
+
+.best-of-search-container {
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    width: 100%;
+}
+
+.best-of-collapsed-hidden,
+.editorial-collapsed-hidden {
+    display: none !important;
+}
+
+.show-more-container {
+    text-align: center;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.show-more-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 2rem;
+    background-color: var(--bg-card, #ffffff);
+    color: var(--text-primary, #1e293b);
+    border: 1.5px solid var(--border-color, #e2e8f0);
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.show-more-btn:hover {
+    background-color: var(--accent-primary, #d95d39);
+    color: #ffffff;
+    border-color: var(--accent-primary, #d95d39);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(217, 93, 57, 0.2);
+}
+
+.show-more-btn:active {
+    transform: translateY(0);
+}
+
+.no-directory-results {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-muted, #64748b);
+    font-size: 1.05rem;
+    background-color: var(--bg-card, #ffffff);
+    border-radius: var(--border-radius-md, 12px);
+    border: 1px dashed var(--border-color, #cbd5e1);
+    margin: 1.5rem 0;
+}
+
+
+/* Editorial Restaurant Links */
+.editorial-restaurant-link {
+    color: var(--accent-primary, #d95d39);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(217, 93, 57, 0.45);
+    transition: all 0.2s ease;
+    padding-bottom: 1px;
+}
+
+.editorial-restaurant-link:hover {
+    color: var(--price-color, #c84b27);
+    border-bottom-style: solid;
+    border-bottom-color: var(--price-color, #c84b27);
 }

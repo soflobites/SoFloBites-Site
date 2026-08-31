@@ -40,12 +40,20 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍽️</text></svg>">
 
+    <!-- Dynamic Base for HTTP/HTTPS server environments (preserves local file:/// compatibility) -->
+    <script>
+        if (window.location.protocol.startsWith('http')) {
+            var baseEl = document.createElement('base');
+            baseEl.href = '/';
+            document.head.appendChild(baseEl);
+        }
+    </script>
+
     <!-- Stylesheet -->
-    <base href="/">
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="styles.css">
 
     <!-- Javascript Core (Deferred for performance) -->
-    <script src="/app.js" defer></script>
+    <script src="app.js" defer></script>
 </head>
 <body>
 
@@ -300,6 +308,10 @@
                 <div class="active-filters-container">
                     <span class="active-filters-label" id="active-filters-label" style="display: none;">Active Filters:</span>
                     <div id="active-filters-badges" style="display: inline-flex; flex-wrap: wrap; gap: 0.5rem;"></div>
+                    <button type="button" id="clear-all-filters-btn" class="clear-filters-btn" style="display: none;" onclick="resetAllFilters()" aria-label="Clear all active filters">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        Clear All
+                    </button>
                     
                     <div class="results-stats" style="margin-left: auto;">
                         Found <span id="stats-number">0</span> matches
@@ -598,6 +610,17 @@
                     <p class="best-of-subtitle">Hand-picked culinary selections highlighting our top-performing spots in South Florida. Select a category below to open the list.</p>
                 </div>
 
+                <!-- Search Bar for Best Of -->
+                <div class="best-of-search-container">
+                    <div class="search-wrapper">
+                        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="best-of-search-input" class="search-input" placeholder="Search Best Of lists (e.g. pizza, waterfront, Weston)..." aria-label="Search Best Of lists">
+                    </div>
+                </div>
+
                 <!-- Best Of Categories List Accordion -->
                 <div class="best-of-list" id="best-of-categories-list">
                     <!-- Populated dynamically via app.js -->
@@ -625,6 +648,17 @@
                     <span class="best-of-tagline">Local Perspectives</span>
                     <h1 class="best-of-title">SoFlo Editorials & Guides</h1>
                     <p class="best-of-subtitle">In-depth features, neighborhood guides, and behind-the-scenes perspectives on South Florida's culinary landscape.</p>
+                </div>
+
+                <!-- Search Bar for Editorials -->
+                <div class="best-of-search-container">
+                    <div class="search-wrapper">
+                        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="editorials-search-input" class="search-input" placeholder="Search editorials & guides (e.g. curate, Pembroke Pines)..." aria-label="Search editorials">
+                    </div>
                 </div>
 
                 <!-- Editorials List -->

@@ -1,3 +1,7 @@
+// Configure manual scroll restoration for SPA history management
+if (typeof history !== 'undefined' && 'scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
 // SoFlo Bites - Core JavaScript Logic and Restaurant Database
 // 1. Configuration constants for Affiliate and AdSense integrations
 // Update these IDs with your active accounts to enable monetization
@@ -2399,7 +2403,15 @@ const STATE = {
     savedBestOfScrollPosition: 0,
     shouldRestoreBestOfScroll: false,
     savedEditorialsScrollPosition: 0,
-    shouldRestoreEditorialsScroll: false
+    shouldRestoreEditorialsScroll: false,
+    bestOfQuery: "",
+    bestOfShowAll: false,
+    editorialsQuery: "",
+    editorialsShowAll: false,
+    currentPath: "/",
+    scrollPositions: {},
+    restaurantReferrer: null,
+    shouldRestoreScrollForPath: null
 };
 window.STATE = STATE;
 // 4. Initialization
@@ -2556,6 +2568,8 @@ function resetAllFilters() {
     renderRestaurants();
     updateActiveFilterBadges();
 }
+window.resetAllFilters = resetAllFilters;
+
 // 6. Active Filter Badges Layout
 function updateActiveFilterBadges() {
     const container = document.getElementById("active-filters-badges");
@@ -2635,10 +2649,13 @@ function updateActiveFilterBadges() {
         });
     }
     const label = document.getElementById("active-filters-label");
+    const clearBtn = document.getElementById("clear-all-filters-btn");
     if (activeCount > 0) {
-        label.style.display = "block";
+        if (label) label.style.display = "inline-block";
+        if (clearBtn) clearBtn.style.display = "inline-flex";
     } else {
-        label.style.display = "none";
+        if (label) label.style.display = "none";
+        if (clearBtn) clearBtn.style.display = "none";
     }
 }
 function createBadge(parent, text, removeCallback) {
@@ -2744,7 +2761,7 @@ function renderRestaurants() {
                 <span class="card-price-badge" title="Price Category: ${rest.priceRange}">${rest.priceRange}</span>
             </div>
             <div class="card-body">
-                <h3 class="card-title">${rest.name}</h3>
+                <h3 class="card-title"><a href="/restaurants/${rest.id}" class="card-title-link">${rest.name}</a></h3>
                 <div class="card-tags">${tagsHtml}</div>
                 <p class="card-description">${rest.description}</p>
                 
@@ -2766,7 +2783,7 @@ function renderRestaurants() {
                 <div class="card-actions-wrapper">
                     <a href="/restaurants/${rest.id}" class="btn-secondary card-btn-details" style="width: 100%; margin-bottom: 0.5rem; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; box-sizing: border-box;">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                        Details & Info
+                        Explore Restaurant
                     </a>
                     <div class="card-actions">
                         ${(() => {
@@ -3214,19 +3231,19 @@ const ARTICLES_DATA = [
         "id": "food-neighborhoods",
         "title": "Best Neighborhoods for Food Lovers in South Florida",
         "excerpt": "A culinary tour of South Florida’s most exciting dining neighborhoods, highlighting what makes each dining hub unique.",
-        "content": "<p>South Florida's culinary landscape is a rich mosaic, with different neighborhoods showcasing distinct culinary identities. Whether you are looking for upscale waterfront dining, historic pub crawls, or family-centric suburban plazas, our neighborhood food guide highlights the best areas for food lovers to explore.</p><h2>Brickell: Upscale Waterfront & Trendy Dining</h2><p>Miami's Brickell neighborhood is a sleek financial district with a world-class dining scene. Overlooking the water, you can enjoy sophisticated Mexican seafood at Cantina La Veinte, or head to Brickell City Centre for the trendy, open-air Mexican concept Tacology. It is the perfect neighborhood for stylish dinners and vibrant city vibes.</p><h2>Coral Gables: Canopy-Shaded Historic Eateries</h2><p>Coral Gables offers a timeless charm, with canopy-shaded streets like Miracle Mile and Giralda Avenue hosting legendary dining spots. It's a neighborhood defined by history and consistency, home to Giralda Avenue's historic pub landmark The Bar (serving Gables locals since 1946), Hillstone, and the newly renovated JohnMartin’s Restaurant & Bar.</p><h2>Pembroke Pines: Suburban Gastropub Hub</h2><p>Pembroke Pines has transformed from a quiet suburb into one of the region's most vibrant dining hubs. Centered around the Shops at Pembroke Gardens, you can find a diverse selection of excellent spots, including oak-grilled specialties at Brimstone Woodfire Grill, craft beers and tavern fare at The Pub, and fermentation-forward sourdough pizzas at LB Eatery & Wine.</p><h2>Vero Beach: Laid-Back Coastal Eats</h2><p>Vero Beach is the ultimate destination for relaxed, oceanfront dining. It offers a slower pace of life where the focus is on fresh local catches and seaside breezes. Recommended spots include the beachfront elegance of Citrus Grillhouse, the casual pooldeck bites at Cabana Bar, and the breezy tropical tavern deck at Mulligan's Beach House.</p><h2>Weston: Suburban Culinary Hotspot</h2><p>Weston has quickly emerged as a premier dining destination in Broward County, offering a sophisticated mix of international cuisines and trendy boutique spaces. Highlights include the globally inspired dining room and raw bar at Negroni, the boutique flower-draped garden vibe and organic eggs at Little Hen, and the mouth‑watering, award‑winning burgers at La Birra Bar. It is a perfect neighborhood for food lovers seeking premium quality in a relaxed, beautifully landscaped suburban setting.</p><p>If you're embarking on a food tour across these amazing neighborhoods, make it a perfect getaway by booking your accommodations with <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a>, featuring hand-picked beach resorts and luxury stays.</p>"
+        "content": "<p>South Florida's culinary landscape is a rich mosaic, with different neighborhoods showcasing distinct culinary identities. Whether you are looking for upscale waterfront dining, historic pub crawls, or family-centric suburban plazas, our neighborhood food guide highlights the best areas for food lovers to explore.</p><h2>Brickell: Upscale Waterfront & Trendy Dining</h2><p>Miami's Brickell neighborhood is a sleek financial district with a world-class dining scene. Overlooking the water, you can enjoy sophisticated Mexican seafood at <a href=\"/restaurants/cantina-la-veinte\" class=\"editorial-restaurant-link\">Cantina La Veinte</a>, or head to Brickell City Centre for the trendy, open-air Mexican concept <a href=\"/restaurants/tacology-brickell\" class=\"editorial-restaurant-link\">Tacology</a>. It is the perfect neighborhood for stylish dinners and vibrant city vibes.</p><h2>Coral Gables: Canopy-Shaded Historic Eateries</h2><p>Coral Gables offers a timeless charm, with canopy-shaded streets like Miracle Mile and Giralda Avenue hosting legendary dining spots. It's a neighborhood defined by history and consistency, home to Giralda Avenue's historic pub landmark <a href=\"/restaurants/the-bar-coral-gables\" class=\"editorial-restaurant-link\">The Bar</a> (serving Gables locals since 1946), <a href=\"/restaurants/hillstone-coral-gables\" class=\"editorial-restaurant-link\">Hillstone</a>, and the newly renovated <a href=\"/restaurants/johnmartins-irish-pub\" class=\"editorial-restaurant-link\">JohnMartin’s Restaurant & Bar</a>.</p><h2>Pembroke Pines: Suburban Gastropub Hub</h2><p>Pembroke Pines has transformed from a quiet suburb into one of the region's most vibrant dining hubs. Centered around the Shops at Pembroke Gardens, you can find a diverse selection of excellent spots, including oak-grilled specialties at <a href=\"/restaurants/brimstone-pines\" class=\"editorial-restaurant-link\">Brimstone Woodfire Grill</a>, craft beers and tavern fare at <a href=\"/restaurants/the-pub-pembroke\" class=\"editorial-restaurant-link\">The Pub</a>, and fermentation-forward sourdough pizzas at <a href=\"/restaurants/lb-eatery\" class=\"editorial-restaurant-link\">LB Eatery & Wine</a>.</p><h2>Vero Beach: Laid-Back Coastal Eats</h2><p>Vero Beach is the ultimate destination for relaxed, oceanfront dining. It offers a slower pace of life where the focus is on fresh local catches and seaside breezes. Recommended spots include the beachfront elegance of <a href=\"/restaurants/citrus-grillhouse\" class=\"editorial-restaurant-link\">Citrus Grillhouse</a>, the casual pooldeck bites at <a href=\"/restaurants/cabana-bar\" class=\"editorial-restaurant-link\">Cabana Bar</a>, and the breezy tropical tavern deck at <a href=\"/restaurants/mulligans-beach-house\" class=\"editorial-restaurant-link\">Mulligan's Beach House</a>.</p><h2>Weston: Suburban Culinary Hotspot</h2><p>Weston has quickly emerged as a premier dining destination in Broward County, offering a sophisticated mix of international cuisines and trendy boutique spaces. Highlights include the globally inspired dining room and raw bar at <a href=\"/restaurants/negroni-weston\" class=\"editorial-restaurant-link\">Negroni</a>, the boutique flower-draped garden vibe and organic eggs at <a href=\"/restaurants/little-hen-weston\" class=\"editorial-restaurant-link\">Little Hen</a>, and the mouth‑watering, award‑winning burgers at <a href=\"/restaurants/la-birra-bar\" class=\"editorial-restaurant-link\">La Birra Bar</a>. It is a perfect neighborhood for food lovers seeking premium quality in a relaxed, beautifully landscaped suburban setting.</p><p>If you're embarking on a food tour across these amazing neighborhoods, make it a perfect getaway by booking your accommodations with <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a>, featuring hand-picked beach resorts and luxury stays.</p>"
     },
     {
         "id": "local-dishes",
         "title": "10 Local Dishes You Must Try in South Florida",
         "excerpt": "From award-winning gourmet burgers to star-shaped artisanal pizzas, these are the iconic local dishes you cannot miss.",
-        "content": "<p>South Florida's dining scene is defined by standout signature creations that capture the creativity and passion of our local chefs. If you are exploring the region, make sure these 10 iconic, must-try dishes are on your radar:</p><ol><li><strong>Star-Shaped Ricotta Pizzas (Mister 01):</strong> A playful and award-winning creation where each point of the thin, crisp crust is folded and filled with creamy ricotta cheese.</li><li><strong>Drunken Shrimp (Cooper’s Hawk):</strong> Premium shrimp wrapped in smoky bacon, cooked crisp, and served with a rich, tequila-infused lime butter sauce.</li><li><strong>Spinach Tagliolini (Citrus Grillhouse):</strong> Fine spinach-infused pasta tossed in roasted garlic butter, fresh spinach leaves, and finished with freshly grated Parmesan overlooking the ocean.</li><li><strong>Chicken & Pork Gyoza (Tanuki):</strong> Perfectly seared pan-Asian gyoza dumplings, packed with savory flavor and served with a custom dipping sauce.</li><li><strong>Eggs Benedict (Little Hen):</strong> Flawlessly poached organic eggs served on toasted muffins with rich hollandaise inside a gorgeous, flower-draped boutique dining room.</li><li><strong>The Bar Burger (The Bar):</strong> A Coral Gables legend, featuring a perfectly grilled beef patty topped with classic pub fixings in a historic, cozy pub setting.</li><li><strong>Gourmet Skillet Pancakes (Chug’s Diner):</strong> Thicker, fluffy diner-style skillet pancakes served with whipped butter and warm maple syrup.</li><li><strong>Award-Winning Burgers (La Birra Bar):</strong> Crafted with proprietary beef blends and house-baked cloud-like buns, designed to melt in your mouth.</li><li><strong>Charcoal-Grilled Carne Asada Tacos (El Gallo Taqueria):</strong> Authentic, highly rated street tacos served on warm corn tortillas with fresh cilantro, chopped onions, and lime.</li><li><strong>Moscow Savory Crepe (Saffrano Crepes & Coffee):</strong> Paper-thin, freshly cooked crepe filled with savory meats, cheese, and vegetables in Plantation.</li></ol><p>Ready to try these iconic local dishes? Turn your culinary crawl into a relaxing vacation by booking a local stay or seaside hotel or resort on <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a>.</p>"
+        "content": "<p>South Florida's dining scene is defined by standout signature creations that capture the creativity and passion of our local chefs. If you are exploring the region, make sure these 10 iconic, must-try dishes are on your radar:</p><ol><li><strong>Star-Shaped Ricotta Pizzas (<a href=\"/restaurants/mister-o1\" class=\"editorial-restaurant-link\">Mister 01</a>):</strong> A playful and award-winning creation where each point of the thin, crisp crust is folded and filled with creamy ricotta cheese.</li><li><strong>Drunken Shrimp (<a href=\"/restaurants/coopers-hawk-pines\" class=\"editorial-restaurant-link\">Cooper’s Hawk</a>):</strong> Premium shrimp wrapped in smoky bacon, cooked crisp, and served with a rich, tequila-infused lime butter sauce.</li><li><strong>Spinach Tagliolini (<a href=\"/restaurants/citrus-grillhouse\" class=\"editorial-restaurant-link\">Citrus Grillhouse</a>):</strong> Fine spinach-infused pasta tossed in roasted garlic butter, fresh spinach leaves, and finished with freshly grated Parmesan overlooking the ocean.</li><li><strong>Chicken & Pork Gyoza (<a href=\"/restaurants/tanuki-river-landing\" class=\"editorial-restaurant-link\">Tanuki</a>):</strong> Perfectly seared pan-Asian gyoza dumplings, packed with savory flavor and served with a custom dipping sauce.</li><li><strong>Eggs Benedict (<a href=\"/restaurants/little-hen-weston\" class=\"editorial-restaurant-link\">Little Hen</a>):</strong> Flawlessly poached organic eggs served on toasted muffins with rich hollandaise inside a gorgeous, flower-draped boutique dining room.</li><li><strong>The Bar Burger (<a href=\"/restaurants/the-bar-coral-gables\" class=\"editorial-restaurant-link\">The Bar</a>):</strong> A Coral Gables legend, featuring a perfectly grilled beef patty topped with classic pub fixings in a historic, cozy pub setting.</li><li><strong>Gourmet Skillet Pancakes (<a href=\"/restaurants/chugs-diner\" class=\"editorial-restaurant-link\">Chug’s Diner</a>):</strong> Thicker, fluffy diner-style skillet pancakes served with whipped butter and warm maple syrup.</li><li><strong>Award-Winning Burgers (<a href=\"/restaurants/la-birra-bar\" class=\"editorial-restaurant-link\">La Birra Bar</a>):</strong> Crafted with proprietary beef blends and house-baked cloud-like buns, designed to melt in your mouth.</li><li><strong>Charcoal-Grilled Carne Asada Tacos (<a href=\"/restaurants/el-sid-taqueria\" class=\"editorial-restaurant-link\">El Sid Taqueria</a>):</strong> Authentic, highly rated street tacos served on warm corn tortillas with fresh cilantro, chopped onions, and lime.</li><li><strong>Moscow Savory Crepe (<a href=\"/restaurants/saffrano-crepes\" class=\"editorial-restaurant-link\">Saffrano Crepes & Coffee</a>):</strong> Paper-thin, freshly cooked crepe filled with savory meats, cheese, and vegetables in Plantation.</li></ol><p>Ready to try these iconic local dishes? Turn your culinary crawl into a relaxing vacation by booking a local stay or seaside hotel or resort on <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a>.</p>"
     },
     {
         "id": "pembroke-pines-guide",
         "title": "A Local’s Guide to Eating in Pembroke Pines",
         "excerpt": "How a family-friendly suburb became one of South Florida’s most vibrant and diverse dining destinations.",
-        "content": "<p>For years, Pembroke Pines was known primarily as a quiet, family-friendly residential suburb. But over the last decade, a quiet culinary revolution has taken place. Today, Pembroke Pines boasts one of the most diverse, high-quality, and accessible dining scenes in South Florida, drawing food lovers from all over Broward and Miami-Dade counties.</p><h2>The Shops at Pembroke Gardens: The Dining Epicenter</h2><p>The majority of Pembroke Pines' top culinary destinations are clustered around the beautiful open-air Shops at Pembroke Gardens. This lifestyle center offers a walkable, beautifully landscaped setting that makes dining out feel like an event. Here are the spots you cannot miss:</p><ul><li><strong>Brimstone Woodfire Grill:</strong> Known for its massive brick fire hearth, Brimstone delivers premium oak-grilled steaks, fresh seafood, and bold American comfort classics.</li><li><strong>The Pub:</strong> A British-inspired tavern featuring a self-pour draft wall, bangers & mash, and a lively outdoor patio perfect for happy hour gatherings.</li><li><strong>LB Eatery & Wine:</strong> A unique, fermentation-forward dining concept specializing in hand-stretched sourdough pizzas, silky house-made pastas, and a curated natural wine selection.</li><li><strong>Cooper's Hawk Winery & Restaurant:</strong> A sophisticated American concept designed around wine pairings, complete with a full wine-tasting room.</li><li><strong>Ra Sushi Bar:</strong> A high-energy sushi destination offering creative rolls, fresh sashimi, and custom cocktails in a modern setting.</li></ul><h2>Gourmet Gems Along Pines Boulevard</h2><p>Just outside the shopping complex, Pembroke Pines continues to deliver exceptional culinary options. Highlights include <strong>Mister 01</strong>, famous for its star-shaped artisanal Neapolitan pizzas, and <strong>Embarcadero 41</strong>, which offers a high-energy environment for authentic Peruvian ceviches, seafood, and custom pisco sours. Pembroke Pines' combination of easy parking, beautiful outdoor seating, and exceptional culinary variety makes it a must-visit dining destination for locals and visitors alike.</p><p>Visiting Pembroke Pines for a culinary adventure? Explore comfortable local lodging and suites nearby on <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a>.</p>"
+        "content": "<p>For years, Pembroke Pines was known primarily as a quiet, family-friendly residential suburb. But over the last decade, a quiet culinary revolution has taken place. Today, Pembroke Pines boasts one of the most diverse, high-quality, and accessible dining scenes in South Florida, drawing food lovers from all over Broward and Miami-Dade counties.</p><h2>The Shops at Pembroke Gardens: The Dining Epicenter</h2><p>The majority of Pembroke Pines' top culinary destinations are clustered around the beautiful open-air Shops at Pembroke Gardens. This lifestyle center offers a walkable, beautifully landscaped setting that makes dining out feel like an event. Here are the spots you cannot miss:</p><ul><li><strong><a href=\"/restaurants/brimstone-pines\" class=\"editorial-restaurant-link\">Brimstone Woodfire Grill</a>:</strong> Known for its massive brick fire hearth, Brimstone delivers premium oak-grilled steaks, fresh seafood, and bold American comfort classics.</li><li><strong><a href=\"/restaurants/the-pub-pembroke\" class=\"editorial-restaurant-link\">The Pub</a>:</strong> A British-inspired tavern featuring a self-pour draft wall, bangers & mash, and a lively outdoor patio perfect for happy hour gatherings.</li><li><strong><a href=\"/restaurants/lb-eatery\" class=\"editorial-restaurant-link\">LB Eatery & Wine</a>:</strong> A unique, fermentation-forward dining concept specializing in hand-stretched sourdough pizzas, silky house-made pastas, and a curated natural wine selection.</li><li><strong><a href=\"/restaurants/coopers-hawk-pines\" class=\"editorial-restaurant-link\">Cooper's Hawk Winery & Restaurant</a>:</strong> A sophisticated American concept designed around wine pairings, complete with a full wine-tasting room.</li><li><strong><a href=\"/restaurants/ra-sushi-bar\" class=\"editorial-restaurant-link\">Ra Sushi Bar</a>:</strong> A high-energy sushi destination offering creative rolls, fresh sashimi, and custom cocktails in a modern setting.</li></ul><h2>Gourmet Gems Along Pines Boulevard</h2><p>Just outside the shopping complex, Pembroke Pines continues to deliver exceptional culinary options. Highlights include <strong><a href=\"/restaurants/mister-o1\" class=\"editorial-restaurant-link\">Mister 01</a></strong>, famous for its star-shaped artisanal Neapolitan pizzas, and <strong><a href=\"/restaurants/embarcadero-41\" class=\"editorial-restaurant-link\">Embarcadero 41</a></strong>, which offers a high-energy environment for authentic Peruvian ceviches, seafood, and custom pisco sours. Pembroke Pines' combination of easy parking, beautiful outdoor seating, and exceptional culinary variety makes it a must-visit dining destination for locals and visitors alike.</p><p>Visiting Pembroke Pines for a culinary adventure? Explore comfortable local lodging and suites nearby on <a href=\"https://www.soflostays.co\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0d9488; font-weight: 600; text-decoration: none; border-bottom: 1px dashed rgba(13, 148, 136, 0.4); padding-bottom: 1px;\">SoFlo Stays</a>.</p>"
     }
 ];
 const BEST_OF_CATEGORIES = [
@@ -3986,14 +4003,95 @@ function goToFeedback(type) {
 window.goToFeedback = goToFeedback;
 
 window.filterByTagAndGoHome = filterByTagAndGoHome;
+function initBestOfSearch() {
+    const input = document.getElementById("best-of-search-input");
+    if (!input || input._hasSearchListener) return;
+    input._hasSearchListener = true;
+    input.addEventListener("input", (e) => {
+        STATE.bestOfQuery = e.target.value.toLowerCase().trim();
+        filterBestOfCards();
+    });
+}
+
+function filterBestOfCards() {
+    const query = STATE.bestOfQuery;
+    const cards = document.querySelectorAll(".best-of-directory-card");
+    const showMoreContainer = document.getElementById("best-of-show-more-container");
+    const noResults = document.getElementById("best-of-no-results");
+    const foodVibeSection = document.getElementById("best-of-food-vibe-section");
+    const neighborhoodSection = document.getElementById("best-of-neighborhood-section");
+    
+    let visibleCount = 0;
+    let foodVibeVisible = 0;
+    let neighborhoodVisible = 0;
+    
+    cards.forEach(card => {
+        const searchText = card.getAttribute("data-search-text") || "";
+        const isFoodVibe = card.getAttribute("data-category-type") === "food-vibe";
+        const isNeighborhood = card.getAttribute("data-category-type") === "neighborhood";
+        const index = parseInt(card.getAttribute("data-card-index") || "0", 10);
+        
+        if (query) {
+            if (searchText.includes(query)) {
+                card.style.display = "block";
+                card.classList.remove("best-of-collapsed-hidden");
+                visibleCount++;
+                if (isFoodVibe) foodVibeVisible++;
+                if (isNeighborhood) neighborhoodVisible++;
+            } else {
+                card.style.display = "none";
+            }
+        } else {
+            card.style.display = "block";
+            const isHidden = !STATE.bestOfShowAll && ((isFoodVibe && index >= 6) || (isNeighborhood && index >= 4));
+            if (isHidden) {
+                card.classList.add("best-of-collapsed-hidden");
+            } else {
+                card.classList.remove("best-of-collapsed-hidden");
+                visibleCount++;
+                if (isFoodVibe) foodVibeVisible++;
+                if (isNeighborhood) neighborhoodVisible++;
+            }
+        }
+    });
+    
+    if (foodVibeSection) {
+        foodVibeSection.style.display = (query && foodVibeVisible === 0) ? "none" : "block";
+    }
+    if (neighborhoodSection) {
+        neighborhoodSection.style.display = (query && neighborhoodVisible === 0) ? "none" : "block";
+    }
+    if (showMoreContainer) {
+        showMoreContainer.style.display = query ? "none" : "block";
+    }
+    if (noResults) {
+        noResults.style.display = visibleCount === 0 ? "block" : "none";
+    }
+}
+
+function toggleBestOfShowMore() {
+    STATE.bestOfShowAll = !STATE.bestOfShowAll;
+    const label = document.getElementById("best-of-show-more-label");
+    if (label) {
+        const hiddenCount = (BEST_OF_CATEGORIES.length - 6) + (BEST_OF_NEIGHBORHOODS.length - 4);
+        label.textContent = STATE.bestOfShowAll ? "Show Fewer Lists ↑" : `Show All Lists (${hiddenCount} more) ↓`;
+    }
+    filterBestOfCards();
+}
+window.toggleBestOfShowMore = toggleBestOfShowMore;
+
 function renderBestOfView() {
     const container = document.getElementById("best-of-categories-list");
     if (!container) return;
     
-    // Group 1: Food & Vibe Lists
-    const foodVibeHtml = BEST_OF_CATEGORIES.map(cat => {
+    const hiddenCount = (BEST_OF_CATEGORIES.length - 6) + (BEST_OF_NEIGHBORHOODS.length - 4);
+    
+    // Group 1: Food & Vibe Lists (all 16 items rendered into DOM)
+    const foodVibeHtml = BEST_OF_CATEGORIES.map((cat, idx) => {
+        const isHidden = !STATE.bestOfShowAll && idx >= 6;
+        const searchText = `${cat.name} ${cat.description} ${cat.tag || ''} ${cat.location || ''}`.toLowerCase();
         return `
-            <a href="/best-of/${cat.id}" class="best-of-category-card" onclick="window.STATE.savedBestOfScrollPosition = window.scrollY;" style="display: block; text-decoration: none; color: inherit;">
+            <a href="/best-of/${cat.id}" class="best-of-category-card best-of-directory-card ${isHidden ? 'best-of-collapsed-hidden' : ''}" data-category-type="food-vibe" data-card-index="${idx}" data-search-text="${searchText.replace(/"/g, '&quot;')}" onclick="window.STATE.savedBestOfScrollPosition = window.scrollY;" style="display: block; text-decoration: none; color: inherit;">
                 <div class="best-of-card-header">
                     <div class="best-of-header-left">
                         <span class="best-of-cat-icon">${cat.icon}</span>
@@ -4011,10 +4109,12 @@ function renderBestOfView() {
         `;
     }).join("");
 
-    // Group 2: Neighborhood Lists
-    const neighborhoodHtml = BEST_OF_NEIGHBORHOODS.map(cat => {
+    // Group 2: Neighborhood Lists (all 6 items rendered into DOM)
+    const neighborhoodHtml = BEST_OF_NEIGHBORHOODS.map((cat, idx) => {
+        const isHidden = !STATE.bestOfShowAll && idx >= 4;
+        const searchText = `${cat.name} ${cat.description} ${cat.tag || ''} ${cat.location || ''}`.toLowerCase();
         return `
-            <a href="/best-of/${cat.id}" class="best-of-category-card" onclick="window.STATE.savedBestOfScrollPosition = window.scrollY;" style="display: block; text-decoration: none; color: inherit;">
+            <a href="/best-of/${cat.id}" class="best-of-category-card best-of-directory-card ${isHidden ? 'best-of-collapsed-hidden' : ''}" data-category-type="neighborhood" data-card-index="${idx}" data-search-text="${searchText.replace(/"/g, '&quot;')}" onclick="window.STATE.savedBestOfScrollPosition = window.scrollY;" style="display: block; text-decoration: none; color: inherit;">
                 <div class="best-of-card-header">
                     <div class="best-of-header-left">
                         <span class="best-of-cat-icon">${cat.icon}</span>
@@ -4033,16 +4133,35 @@ function renderBestOfView() {
     }).join("");
 
     container.innerHTML = `
-        <h2 class="best-of-section-title" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin-top: 2rem; margin-bottom: 1.25rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">🍽️ Curated Lists by Food & Vibe</h2>
-        <div class="best-of-restaurants-list" style="padding: 0; display: flex; flex-direction: column; gap: 1rem; margin-bottom: 3rem;">
-            ${foodVibeHtml}
+        <div id="best-of-no-results" class="no-directory-results" style="display: none;">
+            No curated lists found matching your search. Try searching for terms like "pizza", "waterfront", or "Weston".
         </div>
 
-        <h2 class="best-of-section-title" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin-top: 2rem; margin-bottom: 1.25rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">📍 Curated Lists by Neighborhood</h2>
-        <div class="best-of-restaurants-list" style="padding: 0; display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1rem;">
-            ${neighborhoodHtml}
+        <div id="best-of-food-vibe-section">
+            <h2 class="best-of-section-title" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin-top: 1rem; margin-bottom: 1.25rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">🍽️ Curated Lists by Food & Vibe</h2>
+            <div class="best-of-restaurants-list" style="padding: 0; display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem;">
+                ${foodVibeHtml}
+            </div>
+        </div>
+
+        <div id="best-of-neighborhood-section">
+            <h2 class="best-of-section-title" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin-top: 1rem; margin-bottom: 1.25rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">📍 Curated Lists by Neighborhood</h2>
+            <div class="best-of-restaurants-list" style="padding: 0; display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1rem;">
+                ${neighborhoodHtml}
+            </div>
+        </div>
+
+        <div class="show-more-container" id="best-of-show-more-container" style="${STATE.bestOfQuery ? 'display: none;' : ''}">
+            <button type="button" class="show-more-btn" onclick="toggleBestOfShowMore()">
+                <span id="best-of-show-more-label">${STATE.bestOfShowAll ? 'Show Fewer Lists ↑' : `Show All Lists (${hiddenCount} more) ↓`}</span>
+            </button>
         </div>
     `;
+    
+    initBestOfSearch();
+    if (STATE.bestOfQuery) {
+        filterBestOfCards();
+    }
 }
 function renderBestOfListDetailView(catId) {
     const view = document.getElementById("best-of-list-detail-view");
@@ -4065,7 +4184,7 @@ function renderBestOfListDetailView(catId) {
             <img src="${rest.image}" alt="${rest.imageAlt || rest.name}" class="best-of-item-img" loading="lazy">
             <div class="best-of-item-info">
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
-                    <h4 class="best-of-item-name">${rest.name}</h4>
+                    <h4 class="best-of-item-name"><a href="/restaurants/${rest.id}" class="card-title-link">${rest.name}</a></h4>
                     <span class="best-of-item-location">${rest.location}</span>
                 </div>
                 <div class="best-of-item-desc">${rest.longDescription.split('\n').map(p => p.trim()).filter(Boolean).join('<br>')}</div>
@@ -4153,9 +4272,151 @@ function renderBestOfListDetailView(catId) {
         </div>
     `;
 }
+
+// Helper to get cross-browser scroll position
+function getScrollY() {
+    if (typeof window === 'undefined') return 0;
+    return window.scrollY || window.pageYOffset || (document.documentElement && document.documentElement.scrollTop) || (document.body && document.body.scrollTop) || 0;
+}
+
+// Helper to normalize path consistently
+function normalizePath(rawPath) {
+    if (!rawPath || rawPath === "" || rawPath === "/index.html" || rawPath === "index.html") {
+        return "/";
+    }
+    let p = rawPath.replace(/\/$/, "");
+    if (!p.startsWith("/")) p = "/" + p;
+    return p || "/";
+}
+
+// Helper to get descriptive back navigation label
+function getPageBackLabel(path) {
+    const norm = normalizePath(path);
+    if (norm === "/" || norm === "/#restaurant-grid") {
+        return "Back to Explore Directory";
+    }
+    if (norm.startsWith("/best-of/")) {
+        const catId = norm.replace("/best-of/", "");
+        const cat = BEST_OF_CATEGORIES.find(c => c.id === catId) || BEST_OF_NEIGHBORHOODS.find(c => c.id === catId);
+        if (cat) return `Back to ${cat.name}`;
+        return "Back to Best Of List";
+    }
+    if (norm.startsWith("/article/")) {
+        const articleId = norm.replace("/article/", "");
+        const article = ARTICLES_DATA.find(a => a.id === articleId);
+        if (article) return `Back to ${article.title}`;
+        return "Back to Article";
+    }
+    if (norm === "/best-of") {
+        return "Back to Best Of Lists";
+    }
+    if (norm === "/editorials") {
+        return "Back to Editorials";
+    }
+    if (norm === "/about") {
+        return "Back to About";
+    }
+    if (norm === "/privacy-terms") {
+        return "Back to Privacy & Terms";
+    }
+    return "Back to Explore Directory";
+}
+
+function getRestaurantBackTarget() {
+    if (STATE.restaurantReferrer && STATE.restaurantReferrer.path && !STATE.restaurantReferrer.path.startsWith('/restaurants/')) {
+        return STATE.restaurantReferrer;
+    }
+    return {
+        path: "/",
+        label: "Back to Explore Directory",
+        scrollY: STATE.savedScrollPosition || 0
+    };
+}
+
+function goBackFromRestaurant(event) {
+    if (event) event.preventDefault();
+    const backTarget = getRestaurantBackTarget();
+    STATE.shouldRestoreScroll = true;
+    STATE.shouldRestoreScrollForPath = backTarget.path;
+    navigateTo(backTarget.path);
+}
+window.goBackFromRestaurant = goBackFromRestaurant;
+
+// Robust scroll restoration helper that handles DOM reflow across frames
+function restoreScrollPosition(targetY) {
+    if (typeof targetY !== 'number' || isNaN(targetY) || targetY <= 0) {
+        if (targetY === 0 && typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
+            window.scrollTo(0, 0);
+        }
+        return;
+    }
+    
+    let attempts = 0;
+    const maxAttempts = 15;
+    
+    const applyScroll = () => {
+        attempts++;
+        if (typeof window !== 'undefined') {
+            if (typeof window.scrollTo === 'function') {
+                window.scrollTo(0, targetY);
+            }
+            if (document.documentElement) document.documentElement.scrollTop = targetY;
+            if (document.body) document.body.scrollTop = targetY;
+        }
+        
+        const currentY = getScrollY();
+        
+        // If we haven't reached target yet and attempts remain, retry with progressive delay
+        if (attempts < maxAttempts && Math.abs(currentY - targetY) > 5) {
+            setTimeout(applyScroll, 40);
+        }
+    };
+    
+    applyScroll();
+    if (typeof requestAnimationFrame !== 'undefined') {
+        requestAnimationFrame(applyScroll);
+    }
+    setTimeout(applyScroll, 20);
+    setTimeout(applyScroll, 60);
+    setTimeout(applyScroll, 120);
+    setTimeout(applyScroll, 250);
+    setTimeout(applyScroll, 500);
+}
+
 function handleRoute() {
-    const path = (window.location.pathname || "/").replace(/\/$/, ""); // Normalize path by stripping trailing slash
+    let rawPath = (window.location.pathname || "/").replace(/\/$/, "");
     const hash = window.location.hash;
+
+    // Support local file:/// protocol or static .html file paths
+    if (window.location.protocol === 'file:' || rawPath.endsWith('.html') || (window.location.origin === "null")) {
+        if (hash && (hash.startsWith('#/') || hash.startsWith('#best-of') || hash.startsWith('#editorials') || hash.startsWith('#about') || hash.startsWith('#privacy-terms') || hash.startsWith('#restaurants') || hash.startsWith('#article'))) {
+            rawPath = hash.replace(/^#\/?/, '/');
+            if (!rawPath.startsWith('/')) rawPath = '/' + rawPath;
+        } else {
+            rawPath = "/";
+        }
+    }
+
+    const path = normalizePath(rawPath);
+    const previousPath = STATE.currentPath || "/";
+    const returningFromRestaurant = previousPath.startsWith('/restaurants/');
+
+    if (previousPath !== path) {
+        const currentScrollY = getScrollY();
+        STATE.scrollPositions[previousPath] = currentScrollY;
+        if (previousPath === "/") {
+            STATE.savedScrollPosition = currentScrollY;
+        }
+        if (!previousPath.startsWith('/restaurants/') && path.startsWith('/restaurants/')) {
+            STATE.restaurantReferrer = {
+                path: previousPath,
+                label: getPageBackLabel(previousPath),
+                scrollY: currentScrollY
+            };
+        }
+    }
+    STATE.currentPath = path;
+
     const homeView = document.getElementById("home-view");
     const detailView = document.getElementById("restaurant-detail-view");
     const aboutView = document.getElementById("about-view");
@@ -4166,15 +4427,16 @@ function handleRoute() {
     const articleDetailView = document.getElementById("article-detail-view");
     const editorialsView = document.getElementById("editorials-view");
 
-    // Save scroll position if we are currently on the home view and moving away from it
-    if (homeView && homeView.style.display !== "none" && path !== "" && path !== "/" && path !== "/index.html") {
-        STATE.savedScrollPosition = window.scrollY;
+    // Save scroll position if currently on home view and moving away
+    if (homeView && homeView.style.display !== "none" && path !== "/") {
+        const currentScrollY = getScrollY();
+        STATE.savedScrollPosition = currentScrollY;
+        STATE.scrollPositions["/"] = currentScrollY;
     }
     
     // Reset active nav link highlighting
     const navLinks = document.querySelectorAll(".nav-link");
     navLinks.forEach(link => link.classList.remove("active"));
-    // Helper to highlight a navigation link by href path
     const highlightNav = (pathVal) => {
         const matching = Array.from(navLinks).find(link => {
             const a = link.querySelector("a");
@@ -4195,7 +4457,8 @@ function handleRoute() {
         if (articleDetailView) articleDetailView.style.display = "none";
         if (aboutView) {
             aboutView.style.display = "block";
-            window.scrollTo(0, 0);
+            const targetY = STATE.scrollPositions["/about"] || 0;
+            restoreScrollPosition(targetY);
         }
         highlightNav("/about");
         if (bottomAdBanner) bottomAdBanner.style.display = "none";
@@ -4205,7 +4468,7 @@ function handleRoute() {
         );
         return;
     }
-    // For all other routes, make sure the bottom ad banner is visible
+    
     if (bottomAdBanner) bottomAdBanner.style.display = "block";
     
     if (path === "/privacy-terms") {
@@ -4220,7 +4483,8 @@ function handleRoute() {
         if (articleDetailView) articleDetailView.style.display = "none";
         if (privacyTermsView) {
             privacyTermsView.style.display = "block";
-            window.scrollTo(0, 0);
+            const targetY = STATE.scrollPositions["/privacy-terms"] || 0;
+            restoreScrollPosition(targetY);
         }
         updateMeta(
             "Privacy Policy & Terms | SoFlo Bites", 
@@ -4240,11 +4504,13 @@ function handleRoute() {
         if (editorialsView) {
             renderEditorialsView();
             editorialsView.style.display = "block";
-            if (STATE.shouldRestoreEditorialsScroll) {
-                window.scrollTo(0, STATE.savedEditorialsScrollPosition || 0);
+            const targetY = STATE.scrollPositions["/editorials"] || STATE.savedEditorialsScrollPosition || 0;
+            if (STATE.shouldRestoreEditorialsScroll || STATE.shouldRestoreScrollForPath === '/editorials' || returningFromRestaurant) {
+                restoreScrollPosition(targetY);
                 STATE.shouldRestoreEditorialsScroll = false;
+                STATE.shouldRestoreScrollForPath = null;
             } else {
-                window.scrollTo(0, 0);
+                restoreScrollPosition(0);
             }
         }
         highlightNav("/editorials");
@@ -4266,11 +4532,13 @@ function handleRoute() {
         if (bestOfView) {
             renderBestOfView();
             bestOfView.style.display = "block";
-            if (STATE.shouldRestoreBestOfScroll) {
-                window.scrollTo(0, STATE.savedBestOfScrollPosition || 0);
+            const targetY = STATE.scrollPositions["/best-of"] || STATE.savedBestOfScrollPosition || 0;
+            if (STATE.shouldRestoreBestOfScroll || STATE.shouldRestoreScrollForPath === '/best-of' || returningFromRestaurant) {
+                restoreScrollPosition(targetY);
                 STATE.shouldRestoreBestOfScroll = false;
+                STATE.shouldRestoreScrollForPath = null;
             } else {
-                window.scrollTo(0, 0);
+                restoreScrollPosition(0);
             }
         }
         highlightNav("/best-of");
@@ -4296,7 +4564,14 @@ function handleRoute() {
             if (bestOfListDetailView) {
                 renderBestOfListDetailView(catId);
                 bestOfListDetailView.style.display = "block";
-                window.scrollTo(0, 0);
+                const savedY = STATE.scrollPositions[path] || (STATE.restaurantReferrer && STATE.restaurantReferrer.path === path ? STATE.restaurantReferrer.scrollY : 0) || 0;
+                if (STATE.shouldRestoreScrollForPath === path || STATE.shouldRestoreScroll || returningFromRestaurant) {
+                    restoreScrollPosition(savedY);
+                    STATE.shouldRestoreScrollForPath = null;
+                    STATE.shouldRestoreScroll = false;
+                } else {
+                    restoreScrollPosition(0);
+                }
             }
             highlightNav("/best-of");
             updateMeta(
@@ -4322,7 +4597,14 @@ function handleRoute() {
             if (articleDetailView) {
                 renderArticleDetailView(articleId);
                 articleDetailView.style.display = "block";
-                window.scrollTo(0, 0);
+                const savedY = STATE.scrollPositions[path] || (STATE.restaurantReferrer && STATE.restaurantReferrer.path === path ? STATE.restaurantReferrer.scrollY : 0) || 0;
+                if (STATE.shouldRestoreScrollForPath === path || STATE.shouldRestoreScroll || returningFromRestaurant) {
+                    restoreScrollPosition(savedY);
+                    STATE.shouldRestoreScrollForPath = null;
+                    STATE.shouldRestoreScroll = false;
+                } else {
+                    restoreScrollPosition(0);
+                }
             }
             highlightNav("/editorials");
             updateMeta(
@@ -4348,7 +4630,7 @@ function handleRoute() {
             if (detailView) {
                 detailView.innerHTML = renderDetailedPageMarkup(rest);
                 detailView.style.display = "block";
-                window.scrollTo(0, 0);
+                restoreScrollPosition(0);
             }
             highlightNav("/");
             updateMeta(
@@ -4369,8 +4651,7 @@ function handleRoute() {
     if (bestOfListDetailView) bestOfListDetailView.style.display = "none";
     if (homeView) homeView.style.display = "block";
     
-    // Highlight home vs explore directory vs suggest form
-    if (path === "/" || path === "" || path === "/index.html") {
+    if (path === "/") {
         if (hash === "#restaurant-grid") {
             highlightNav("/#restaurant-grid");
         } else if (hash === "#suggest-section") {
@@ -4384,10 +4665,18 @@ function handleRoute() {
         "SoFlo Bites | Best Local Restaurants in South Florida", 
         "Explore the best local restaurants in South Florida. Browse curated picks by cuisine, vibe, and location, and discover must-try dishes, hidden gems, and neighborhood favorites."
     );
+    
     // Restore scroll position or scroll to appropriate section
-    if (STATE.shouldRestoreScroll) {
-        window.scrollTo(0, STATE.savedScrollPosition);
+    const shouldRestore = STATE.shouldRestoreScroll || 
+                          returningFromRestaurant ||
+                          STATE.shouldRestoreScrollForPath === '/' || 
+                          STATE.shouldRestoreScrollForPath === '/#restaurant-grid';
+
+    if (shouldRestore) {
+        const targetY = STATE.scrollPositions["/"] || STATE.savedScrollPosition || (STATE.restaurantReferrer ? STATE.restaurantReferrer.scrollY : 0) || 0;
         STATE.shouldRestoreScroll = false;
+        STATE.shouldRestoreScrollForPath = null;
+        restoreScrollPosition(targetY);
     } else {
         if (hash === "#restaurant-grid") {
             const gridEl = document.getElementById("restaurant-grid");
@@ -4400,11 +4689,12 @@ function handleRoute() {
                 suggestEl.scrollIntoView({ behavior: "smooth" });
             }
         } else {
-            window.scrollTo(0, 0);
+            window.scrollTo({ top: 0, behavior: "smooth" });
         }
     }
 }
 function renderDetailedPageMarkup(rest) {
+    const backTarget = getRestaurantBackTarget();
     // Format dishes HTML
     const dishesHtml = rest.greatDishes.map((dish, i) => `
         <div class="detail-dish-card">
@@ -4504,9 +4794,9 @@ function renderDetailedPageMarkup(rest) {
         <div class="detail-page-wrapper">
             <!-- Back Navigation -->
             <div class="detail-back-nav">
-                <a href="/#restaurant-grid" class="back-link" onclick="goBackToDirectory(event)">
+                <a href="${backTarget.path}" class="back-link" onclick="goBackFromRestaurant(event)">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-                    Back to Explore Directory
+                    ${backTarget.label}
                 </a>
             </div>
             <!-- Header Section -->
@@ -4709,6 +4999,7 @@ window.closeOptionsModal = closeOptionsModal;
 function goBackToDirectory(event) {
     if (event) event.preventDefault();
     STATE.shouldRestoreScroll = true;
+    STATE.shouldRestoreScrollForPath = "/";
     navigateTo("/#restaurant-grid");
 }
 window.goBackToDirectory = goBackToDirectory;
@@ -4770,12 +5061,77 @@ function renderArticleDetailView(articleId) {
     `;
 }
 
+function initEditorialsSearch() {
+    const input = document.getElementById("editorials-search-input");
+    if (!input || input._hasSearchListener) return;
+    input._hasSearchListener = true;
+    input.addEventListener("input", (e) => {
+        STATE.editorialsQuery = e.target.value.toLowerCase().trim();
+        filterEditorialsCards();
+    });
+}
+
+function filterEditorialsCards() {
+    const query = STATE.editorialsQuery;
+    const cards = document.querySelectorAll(".editorial-directory-card");
+    const showMoreContainer = document.getElementById("editorials-show-more-container");
+    const noResults = document.getElementById("editorials-no-results");
+    
+    let visibleCount = 0;
+    
+    cards.forEach(card => {
+        const searchText = card.getAttribute("data-search-text") || "";
+        const index = parseInt(card.getAttribute("data-card-index") || "0", 10);
+        
+        if (query) {
+            if (searchText.includes(query)) {
+                card.style.display = "block";
+                card.classList.remove("editorial-collapsed-hidden");
+                visibleCount++;
+            } else {
+                card.style.display = "none";
+            }
+        } else {
+            card.style.display = "block";
+            const isHidden = !STATE.editorialsShowAll && index >= 3;
+            if (isHidden) {
+                card.classList.add("editorial-collapsed-hidden");
+            } else {
+                card.classList.remove("editorial-collapsed-hidden");
+                visibleCount++;
+            }
+        }
+    });
+    
+    if (showMoreContainer) {
+        showMoreContainer.style.display = query ? "none" : (ARTICLES_DATA.length > 3 ? "block" : "none");
+    }
+    if (noResults) {
+        noResults.style.display = visibleCount === 0 ? "block" : "none";
+    }
+}
+
+function toggleEditorialsShowMore() {
+    STATE.editorialsShowAll = !STATE.editorialsShowAll;
+    const label = document.getElementById("editorials-show-more-label");
+    if (label) {
+        const hiddenCount = ARTICLES_DATA.length - 3;
+        label.textContent = STATE.editorialsShowAll ? "Show Fewer Articles ↑" : `Show All Articles (${hiddenCount} more) ↓`;
+    }
+    filterEditorialsCards();
+}
+window.toggleEditorialsShowMore = toggleEditorialsShowMore;
+
 function renderEditorialsView() {
     const container = document.getElementById("editorials-list-container");
     if (!container) return;
-    container.innerHTML = ARTICLES_DATA.map(art => {
+    
+    const hiddenCount = ARTICLES_DATA.length - 3;
+    const articlesHtml = ARTICLES_DATA.map((art, idx) => {
+        const isHidden = !STATE.editorialsShowAll && idx >= 3;
+        const searchText = `${art.title} ${art.excerpt}`.toLowerCase();
         return `
-            <a href="/article/${art.id}" class="best-of-category-card" onclick="window.STATE.savedEditorialsScrollPosition = window.scrollY;" style="display: block; text-decoration: none; color: inherit; border-left: 4px solid var(--accent-primary);">
+            <a href="/article/${art.id}" class="best-of-category-card editorial-directory-card ${isHidden ? 'editorial-collapsed-hidden' : ''}" data-card-index="${idx}" data-search-text="${searchText.replace(/"/g, '&quot;')}" onclick="window.STATE.savedEditorialsScrollPosition = window.scrollY;" style="display: block; text-decoration: none; color: inherit; border-left: 4px solid var(--accent-primary);">
                 <div class="best-of-card-header">
                     <div class="best-of-header-left">
                         <span class="best-of-cat-icon">📖</span>
@@ -4792,13 +5148,49 @@ function renderEditorialsView() {
             </a>
         `;
     }).join("");
+    
+    container.innerHTML = `
+        <div id="editorials-no-results" class="no-directory-results" style="display: none;">
+            No editorial articles found matching your search.
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+            ${articlesHtml}
+        </div>
+        ${ARTICLES_DATA.length > 3 ? `
+            <div class="show-more-container" id="editorials-show-more-container" style="${STATE.editorialsQuery ? 'display: none;' : ''}">
+                <button type="button" class="show-more-btn" onclick="toggleEditorialsShowMore()">
+                    <span id="editorials-show-more-label">${STATE.editorialsShowAll ? 'Show Fewer Articles ↑' : `Show All Articles (${hiddenCount} more) ↓`}</span>
+                </button>
+            </div>
+        ` : ''}
+    `;
+    
+    initEditorialsSearch();
+    if (STATE.editorialsQuery) {
+        filterEditorialsCards();
+    }
 }
-
 // =========================================================================
 // History API Path-Based Navigation Helpers
 // =========================================================================
 function navigateTo(path) {
-    history.pushState(null, "", path);
+    const normCurrent = normalizePath(STATE.currentPath || window.location.pathname);
+    STATE.scrollPositions[normCurrent] = window.scrollY;
+    if (normCurrent === "/") {
+        STATE.savedScrollPosition = window.scrollY;
+    }
+    if (!normCurrent.startsWith('/restaurants/') && path.startsWith('/restaurants/')) {
+        STATE.restaurantReferrer = {
+            path: normCurrent,
+            label: getPageBackLabel(normCurrent),
+            scrollY: window.scrollY
+        };
+    }
+    if (window.location.protocol === 'file:' || window.location.origin === 'null') {
+        window.location.hash = path;
+    } else {
+        history.pushState(null, "", path);
+    }
     handleRoute();
 }
 window.navigateTo = navigateTo;
@@ -4808,49 +5200,104 @@ document.addEventListener("click", (e) => {
     const link = e.target.closest("a");
     if (!link) return;
     
-    // Ignore external links or targets that are blank
-    if (link.target === "_blank" || link.hostname !== window.location.hostname) {
-        return;
-    }
+    if (link.target === "_blank") return;
     
     const href = link.getAttribute("href");
     if (!href) return;
     
-    // Handle standard relative hash links smoothly on the current page to prevent <base href> issues
-    if (href.startsWith("#") && !href.startsWith("#restaurant") && !href.startsWith("#best-of") && !href.startsWith("#editorials") && !href.startsWith("#about") && !href.startsWith("#privacy-terms") && !href.startsWith("#article")) {
+    if (href.startsWith("http://") || href.startsWith("https://")) {
+        try {
+            const url = new URL(href);
+            if (url.origin !== window.location.origin) return;
+        } catch (err) {
+            return;
+        }
+    }
+
+    const currentNormPath = (window.location.pathname || "/").replace(/\/$/, "") || "/";
+    const isHomePage = currentNormPath === "/" || currentNormPath === "/index.html" || currentNormPath === "";
+    
+    // Handle home-page anchor clicks when already on the home page
+    if (isHomePage && (href === "/#restaurant-grid" || href === "#restaurant-grid" || href === "/#suggest-section" || href === "#suggest-section")) {
+        e.preventDefault();
+        const targetId = href.includes("suggest") ? "suggest-section" : "restaurant-grid";
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+            targetEl.scrollIntoView({ behavior: "smooth" });
+            if (window.location.protocol !== 'file:') {
+                history.pushState(null, "", "/" + "#" + targetId);
+            } else {
+                window.location.hash = "#" + targetId;
+            }
+        }
+        return;
+    }
+    
+    // Handle clicking Home link or Logo when already on the home page
+    if (isHomePage && (href === "/" || href === "#" || href === "/index.html")) {
+        e.preventDefault();
+        STATE.shouldRestoreScroll = false;
+        STATE.shouldRestoreScrollForPath = null;
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        if (window.location.protocol !== 'file:') {
+            history.pushState(null, "", "/");
+        } else {
+            window.location.hash = "";
+        }
+        return;
+    }
+    
+    // Handle standard relative hash links smoothly on the current page
+    if (href.startsWith("#") && !href.startsWith("#/") && !href.startsWith("#restaurant") && !href.startsWith("#best-of") && !href.startsWith("#editorials") && !href.startsWith("#about") && !href.startsWith("#privacy-terms") && !href.startsWith("#article")) {
         const targetId = href.substring(1);
         const targetEl = document.getElementById(targetId);
         if (targetEl) {
             e.preventDefault();
             targetEl.scrollIntoView({ behavior: "smooth" });
-            history.pushState(null, "", window.location.pathname + href);
+            if (window.location.protocol !== 'file:') {
+                history.pushState(null, "", window.location.pathname + href);
+            }
         }
         return;
     }
     
     // Handle history routing for relative paths or converted hashes
     let targetPath = href;
-    if (href.startsWith("#")) {
-        targetPath = href.substring(1);
-        if (targetPath.startsWith("restaurant/")) {
-            targetPath = targetPath.replace("restaurant/", "restaurants/");
-        }
-        if (!targetPath.startsWith("/")) {
-            targetPath = "/" + targetPath;
-        }
+    if (targetPath.startsWith("#/")) {
+        targetPath = targetPath.substring(1);
+    }
+    if (targetPath.startsWith("#")) {
+        targetPath = "/" + targetPath.substring(1);
     }
     
-    if (targetPath.startsWith("/") || targetPath.startsWith("http://") || targetPath.startsWith("https://")) {
-        try {
-            const url = new URL(link.href);
-            if (url.origin === window.location.origin) {
-                e.preventDefault();
-                navigateTo(url.pathname + url.search + url.hash);
+    if (targetPath.startsWith("/")) {
+        e.preventDefault();
+        // If navigating to a restaurant, immediately capture the current scroll
+        if (targetPath.startsWith("/restaurants/")) {
+            const currentNorm = normalizePath(window.location.pathname);
+            const currentY = window.scrollY;
+            STATE.scrollPositions[currentNorm] = currentY;
+            if (currentNorm === "/") {
+                STATE.savedScrollPosition = currentY;
             }
-        } catch (err) {
-            // Fallback for relative paths in URL parser
-            e.preventDefault();
-            navigateTo(targetPath);
+            STATE.restaurantReferrer = {
+                path: currentNorm,
+                label: getPageBackLabel(currentNorm),
+                scrollY: currentY
+            };
         }
+        navigateTo(targetPath);
     }
 });
+
+// Passive scroll position tracker for accurate restoration
+window.addEventListener("scroll", () => {
+    const current = STATE.currentPath || normalizePath(window.location.pathname);
+    if (!current.startsWith("/restaurants/")) {
+        const currentY = getScrollY();
+        STATE.scrollPositions[current] = currentY;
+        if (current === "/" || current === "/#restaurant-grid") {
+            STATE.savedScrollPosition = currentY;
+        }
+    }
+}, { passive: true });
