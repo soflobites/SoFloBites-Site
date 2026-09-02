@@ -104,200 +104,258 @@
             </div>
         </section>
 
+        <!-- Mobile Filter Trigger Bar (Visible only on <= 768px) -->
+        <div class="mobile-filter-trigger-bar">
+            <button type="button" class="mobile-filter-btn" id="mobile-filter-btn" onclick="openMobileFilters()" aria-label="Open filter options">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" y1="21" x2="4" y2="14"></line>
+                    <line x1="4" y1="10" x2="4" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12" y2="3"></line>
+                    <line x1="20" y1="21" x2="20" y2="16"></line>
+                    <line x1="20" y1="12" x2="20" y2="3"></line>
+                    <line x1="1" y1="14" x2="7" y2="14"></line>
+                    <line x1="9" y1="8" x2="15" y2="8"></line>
+                    <line x1="17" y1="16" x2="23" y2="16"></line>
+                </svg>
+                <span>Filters</span>
+                <span id="mobile-filter-count-badge" class="mobile-filter-count-badge" style="display: none;">0</span>
+            </button>
+        </div>
+
+        <!-- Sidebar Backdrop for Mobile -->
+        <div id="sidebar-backdrop" class="sidebar-backdrop" onclick="closeMobileFilters()" aria-hidden="true"></div>
+
         <!-- Main Listing and Filters -->
         <div class="main-layout">
 
             <!-- Sidebar Filters Column -->
-            <aside class="sidebar" aria-label="Filters">
+            <aside class="sidebar" id="filter-sidebar" aria-label="Filters">
                 
-                <!-- Search input block -->
-                <section class="filter-section search-section">
-                    <h2 class="filter-section-title">Search <span>Eats</span></h2>
-                    <div class="search-wrapper">
-                        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                        <input type="text" id="search-input" class="search-input" placeholder="Search dish, type, location..." aria-label="Search restaurant name, description, or menu items">
+                <!-- Mobile Drawer Header (Pinned Top) -->
+                <div class="mobile-drawer-header">
+                    <div class="mobile-drawer-drag-handle"></div>
+                    <div class="mobile-drawer-title-row">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-primary);"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+                            <h2 class="mobile-drawer-title">Filters</h2>
+                        </div>
+                        <button type="button" class="mobile-drawer-close-btn" onclick="closeMobileFilters()" aria-label="Close filters">✕</button>
                     </div>
-                </section>
+                </div>
 
-                <!-- Location Selector block -->
-                <section class="filter-section">
-                    <h2 class="filter-section-title">Location <span>Area</span></h2>
-                    <div class="filter-list" role="group" aria-label="Filter by location">
-                        <button class="filter-item-btn active" data-location="all">
-                            <span class="filter-name">All Locations</span>
-                        </button>
-                        <button class="filter-item-btn" data-location="Aventura">
-                            <span class="filter-name">Aventura</span>
-                        </button>
-                        <button class="filter-item-btn" data-location="Plantation">
-                            <span class="filter-name">Plantation</span>
-                        </button>
-                        <button class="filter-item-btn" data-location="Coconut Creek">
-                            <span class="filter-name">Coconut Creek</span>
-                        </button>
-                        <button class="filter-item-btn" data-location="Pembroke Pines">
-                            <span class="filter-name">Pembroke Pines</span>
-                        </button>
-                        <button class="filter-item-btn" data-location="Southwest Ranches">
-                            <span class="filter-name">Southwest Ranches</span>
-                        </button>
-                        <button class="filter-item-btn" data-location="North Miami">
-                            <span class="filter-name">North Miami</span>
-                        </button>
-                        <button class="filter-item-btn" data-location="Brickell">
-                            <span class="filter-name">Brickell</span>
-                        </button>
-                        <button class="filter-item-btn" data-location="Miramar">
-                            <span class="filter-name">Miramar</span>
-                        </button>
-                        <button class="filter-item-btn" data-location="Weston">
-                            <span class="filter-name">Weston</span>
-                        </button>
-                        <button class="filter-item-btn" data-location="Boca Raton">
-                            <span class="filter-name">Boca Raton</span>
-                        </button>
-                        <button class="filter-item-btn" data-location="Miami">
-                            <span class="filter-name">Miami</span>
-                        </button>
-                        <button class="filter-item-btn" data-location="Doral">
-                            <span class="filter-name">Doral</span>
-                        </button>
-                        <button class="filter-item-btn" data-location="Fort Myers">
-                            <span class="filter-name">Fort Myers</span>
-                        </button>
-                        <button class="filter-item-btn" data-location="Coral Gables">
-                            <span class="filter-name">Coral Gables</span>
-                        </button>
-                        <button class="filter-item-btn" data-location="Naples">
-                            <span class="filter-name">Naples</span>
-                        </button>
-                        <button class="filter-item-btn" data-location="Sebastian">
-                            <span class="filter-name">Sebastian</span>
-                        </button>
-                        <button class="filter-item-btn" data-location="Sunrise">
-                            <span class="filter-name">Sunrise</span>
-                        </button>
-                        <button class="filter-item-btn" data-location="Vero Beach">
-                            <span class="filter-name">Vero Beach</span>
-                        </button>
-                    </div>
-                </section>
+                <!-- Scrollable Filter Sections Area (Middle) -->
+                <div class="mobile-drawer-scroll-area">
+                    <!-- Search input block -->
+                    <section class="filter-section search-section">
+                        <h2 class="filter-section-title" onclick="toggleMobileAccordion(this)">
+                            <span>Search <span>Eats</span></span>
+                            <svg class="accordion-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </h2>
+                        <div class="search-wrapper">
+                            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <input type="text" id="search-input" class="search-input" placeholder="Search dish, type, location..." aria-label="Search restaurant name, description, or menu items">
+                        </div>
+                    </section>
 
-                <!-- Tags / Vibes block -->
-                <section class="filter-section">
-                    <h2 class="filter-section-title">Vibe <span>Cuisine</span></h2>
-                    <div class="filter-list" role="group" aria-label="Filter by tags">
-                        <button class="filter-item-btn" data-tag="american">
-                            <span class="filter-name">American</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="asian">
-                            <span class="filter-name">Asian</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="british">
-                            <span class="filter-name">British</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="brunch">
-                            <span class="filter-name">Brunch</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="buffet">
-                            <span class="filter-name">Buffet</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="burgers">
-                            <span class="filter-name">Burgers</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="casual">
-                            <span class="filter-name">Casual</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="comfort food">
-                            <span class="filter-name">Comfort Food</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="cuban">
-                            <span class="filter-name">Cuban</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="date-night">
-                            <span class="filter-name">Date Night</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="ecuadorian">
-                            <span class="filter-name">Ecuadorian</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="family-friendly">
-                            <span class="filter-name">Family-friendly</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="happy hour">
-                            <span class="filter-name">Happy Hour</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="hawaiian">
-                            <span class="filter-name">Hawaiian</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="healthy eats">
-                            <span class="filter-name">Healthy Eats</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="hidden gem">
-                            <span class="filter-name">Hidden Gem</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="italian">
-                            <span class="filter-name">Italian</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="mediterranean">
-                            <span class="filter-name">Mediterranean</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="mexican">
-                            <span class="filter-name">Mexican</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="pasta">
-                            <span class="filter-name">Pasta</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="peruvian">
-                            <span class="filter-name">Peruvian</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="pizza">
-                            <span class="filter-name">Pizza</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="seafood">
-                            <span class="filter-name">Seafood</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="sports bar">
-                            <span class="filter-name">Sports Bar</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="trendy">
-                            <span class="filter-name">Trendy</span>
-                        </button>
-                        <button class="filter-item-btn" data-tag="waterfront">
-                            <span class="filter-name">Waterfront</span>
-                        </button>
-                    </div>
-                </section>
+                    <!-- Location Selector block -->
+                    <section class="filter-section">
+                        <h2 class="filter-section-title" onclick="toggleMobileAccordion(this)">
+                            <span>Location <span>Area</span></span>
+                            <svg class="accordion-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </h2>
+                        <div class="filter-list" role="group" aria-label="Filter by location">
+                            <button class="filter-item-btn active" data-location="all">
+                                <span class="filter-name">All Locations</span>
+                            </button>
+                            <button class="filter-item-btn" data-location="Aventura">
+                                <span class="filter-name">Aventura</span>
+                            </button>
+                            <button class="filter-item-btn" data-location="Plantation">
+                                <span class="filter-name">Plantation</span>
+                            </button>
+                            <button class="filter-item-btn" data-location="Coconut Creek">
+                                <span class="filter-name">Coconut Creek</span>
+                            </button>
+                            <button class="filter-item-btn" data-location="Pembroke Pines">
+                                <span class="filter-name">Pembroke Pines</span>
+                            </button>
+                            <button class="filter-item-btn" data-location="Southwest Ranches">
+                                <span class="filter-name">Southwest Ranches</span>
+                            </button>
+                            <button class="filter-item-btn" data-location="North Miami">
+                                <span class="filter-name">North Miami</span>
+                            </button>
+                            <button class="filter-item-btn" data-location="Brickell">
+                                <span class="filter-name">Brickell</span>
+                            </button>
+                            <button class="filter-item-btn" data-location="Miramar">
+                                <span class="filter-name">Miramar</span>
+                            </button>
+                            <button class="filter-item-btn" data-location="Weston">
+                                <span class="filter-name">Weston</span>
+                            </button>
+                            <button class="filter-item-btn" data-location="Boca Raton">
+                                <span class="filter-name">Boca Raton</span>
+                            </button>
+                            <button class="filter-item-btn" data-location="Miami">
+                                <span class="filter-name">Miami</span>
+                            </button>
+                            <button class="filter-item-btn" data-location="Doral">
+                                <span class="filter-name">Doral</span>
+                            </button>
+                            <button class="filter-item-btn" data-location="Fort Myers">
+                                <span class="filter-name">Fort Myers</span>
+                            </button>
+                            <button class="filter-item-btn" data-location="Coral Gables">
+                                <span class="filter-name">Coral Gables</span>
+                            </button>
+                            <button class="filter-item-btn" data-location="Naples">
+                                <span class="filter-name">Naples</span>
+                            </button>
+                            <button class="filter-item-btn" data-location="Sebastian">
+                                <span class="filter-name">Sebastian</span>
+                            </button>
+                            <button class="filter-item-btn" data-location="Sunrise">
+                                <span class="filter-name">Sunrise</span>
+                            </button>
+                            <button class="filter-item-btn" data-location="Vero Beach">
+                                <span class="filter-name">Vero Beach</span>
+                            </button>
+                        </div>
+                    </section>
 
-                <!-- Dining Perks block -->
-                <section class="filter-section">
-                    <h2 class="filter-section-title">Dining <span>Perks</span></h2>
-                    <div class="filter-list" role="group" aria-label="Filter by dining perks">
-                        <button class="filter-item-btn" data-inkind="true" aria-label="Filter by inKind Rewards">
-                            <span class="filter-name">inKind Rewards</span>
+                    <!-- Tags / Vibes block -->
+                    <section class="filter-section">
+                        <h2 class="filter-section-title" onclick="toggleMobileAccordion(this)">
+                            <span>Vibe <span>Cuisine</span></span>
+                            <svg class="accordion-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </h2>
+                        <div class="filter-list" role="group" aria-label="Filter by tags">
+                            <button class="filter-item-btn" data-tag="american">
+                                <span class="filter-name">American</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="asian">
+                                <span class="filter-name">Asian</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="british">
+                                <span class="filter-name">British</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="brunch">
+                                <span class="filter-name">Brunch</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="buffet">
+                                <span class="filter-name">Buffet</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="burgers">
+                                <span class="filter-name">Burgers</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="casual">
+                                <span class="filter-name">Casual</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="comfort food">
+                                <span class="filter-name">Comfort Food</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="cuban">
+                                <span class="filter-name">Cuban</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="date-night">
+                                <span class="filter-name">Date Night</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="ecuadorian">
+                                <span class="filter-name">Ecuadorian</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="family-friendly">
+                                <span class="filter-name">Family-friendly</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="happy hour">
+                                <span class="filter-name">Happy Hour</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="hawaiian">
+                                <span class="filter-name">Hawaiian</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="healthy eats">
+                                <span class="filter-name">Healthy Eats</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="hidden gem">
+                                <span class="filter-name">Hidden Gem</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="italian">
+                                <span class="filter-name">Italian</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="mediterranean">
+                                <span class="filter-name">Mediterranean</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="mexican">
+                                <span class="filter-name">Mexican</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="pasta">
+                                <span class="filter-name">Pasta</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="peruvian">
+                                <span class="filter-name">Peruvian</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="pizza">
+                                <span class="filter-name">Pizza</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="seafood">
+                                <span class="filter-name">Seafood</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="sports bar">
+                                <span class="filter-name">Sports Bar</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="trendy">
+                                <span class="filter-name">Trendy</span>
+                            </button>
+                            <button class="filter-item-btn" data-tag="waterfront">
+                                <span class="filter-name">Waterfront</span>
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- Dining Perks block -->
+                    <section class="filter-section">
+                        <h2 class="filter-section-title" onclick="toggleMobileAccordion(this)">
+                            <span>Dining <span>Perks</span></span>
+                            <svg class="accordion-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </h2>
+                        <div class="filter-list" role="group" aria-label="Filter by dining perks">
+                            <button class="filter-item-btn" data-inkind="true" aria-label="Filter by inKind Rewards">
+                                <span class="filter-name">inKind Rewards</span>
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- Price Range block -->
+                    <section class="filter-section">
+                        <h2 class="filter-section-title" onclick="toggleMobileAccordion(this)">
+                            <span>Price <span>Range</span></span>
+                            <svg class="accordion-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </h2>
+                        <div class="price-selectors" role="group" aria-label="Filter by price range">
+                            <button class="price-btn" data-price="$" aria-label="Inexpensive">$</button>
+                            <button class="price-btn" data-price="$$" aria-label="Moderate">$$</button>
+                            <button class="price-btn" data-price="$$$" aria-label="Expensive">$$$</button>
+                            <button class="price-btn" data-price="$$$$" aria-label="Luxury">$$$$</button>
+                        </div>
+                    </section>
+
+                    <!-- Reset block (Desktop) -->
+                    <section class="filter-section reset-section desktop-only-reset">
+                        <button class="reset-filters-btn" id="reset-filters" aria-label="Reset all filters">
+                            Clear All Filters
                         </button>
-                    </div>
-                </section>
+                    </section>
+                </div>
 
-                <!-- Price Range block -->
-                <section class="filter-section">
-                    <h2 class="filter-section-title">Price <span>Range</span></h2>
-                    <div class="price-selectors" role="group" aria-label="Filter by price range">
-                        <button class="price-btn" data-price="$" aria-label="Inexpensive">$</button>
-                        <button class="price-btn" data-price="$$" aria-label="Moderate">$$</button>
-                        <button class="price-btn" data-price="$$$" aria-label="Expensive">$$$</button>
-                        <button class="price-btn" data-price="$$$$" aria-label="Luxury">$$$$</button>
-                    </div>
-                </section>
-
-                <!-- Reset block -->
-                <section class="filter-section reset-section">
-                    <button class="reset-filters-btn" id="reset-filters" aria-label="Reset all filters">
-                        Clear All Filters
-                    </button>
-                </section>
+                <!-- Mobile Drawer Pinned Action Footer (Fixed Bottom) -->
+                <div class="mobile-drawer-footer">
+                    <button type="button" class="mobile-drawer-reset-btn" onclick="resetAllFilters()">Clear All</button>
+                    <button type="button" class="mobile-drawer-apply-btn" onclick="applyMobileFilters()">Apply Filters</button>
+                </div>
 
             </aside>
 

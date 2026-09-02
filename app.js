@@ -2650,14 +2650,59 @@ function updateActiveFilterBadges() {
     }
     const label = document.getElementById("active-filters-label");
     const clearBtn = document.getElementById("clear-all-filters-btn");
+    const mobileBadge = document.getElementById("mobile-filter-count-badge");
     if (activeCount > 0) {
         if (label) label.style.display = "inline-block";
         if (clearBtn) clearBtn.style.display = "inline-flex";
+        if (mobileBadge) {
+            mobileBadge.textContent = activeCount;
+            mobileBadge.style.display = "inline-flex";
+        }
     } else {
         if (label) label.style.display = "none";
         if (clearBtn) clearBtn.style.display = "none";
+        if (mobileBadge) {
+            mobileBadge.style.display = "none";
+        }
     }
 }
+
+// Mobile Filter Window Handlers
+function openMobileFilters() {
+    const sidebar = document.getElementById("filter-sidebar");
+    const backdrop = document.getElementById("sidebar-backdrop");
+    if (sidebar) sidebar.classList.add("active");
+    if (backdrop) backdrop.classList.add("active");
+    document.body.style.overflow = "hidden";
+}
+window.openMobileFilters = openMobileFilters;
+
+function closeMobileFilters() {
+    const sidebar = document.getElementById("filter-sidebar");
+    const backdrop = document.getElementById("sidebar-backdrop");
+    if (sidebar) sidebar.classList.remove("active");
+    if (backdrop) backdrop.classList.remove("active");
+    document.body.style.overflow = "";
+}
+window.closeMobileFilters = closeMobileFilters;
+
+function applyMobileFilters() {
+    closeMobileFilters();
+    const gridEl = document.getElementById("restaurant-grid");
+    if (gridEl) {
+        gridEl.scrollIntoView({ behavior: "smooth" });
+    }
+}
+window.applyMobileFilters = applyMobileFilters;
+
+function toggleMobileAccordion(titleEl) {
+    if (window.innerWidth > 768) return;
+    const section = titleEl.closest(".filter-section");
+    if (section) {
+        section.classList.toggle("is-expanded");
+    }
+}
+window.toggleMobileAccordion = toggleMobileAccordion;
 function createBadge(parent, text, removeCallback) {
     const badge = document.createElement("div");
     badge.className = "active-badge";
