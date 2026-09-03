@@ -2686,11 +2686,22 @@ function closeMobileFilters() {
 }
 window.closeMobileFilters = closeMobileFilters;
 
+function getDirectoryScrollTarget() {
+    const isMobile = window.innerWidth <= 768;
+    const filterTrigger = document.getElementById("mobile-filter-trigger-bar") || document.querySelector(".mobile-filter-trigger-bar") || document.getElementById("mobile-filter-btn");
+    const gridEl = document.getElementById("restaurant-grid");
+    if (isMobile && filterTrigger && filterTrigger.offsetParent !== null) {
+        return filterTrigger;
+    }
+    return gridEl;
+}
+window.getDirectoryScrollTarget = getDirectoryScrollTarget;
+
 function applyMobileFilters() {
     closeMobileFilters();
-    const gridEl = document.getElementById("restaurant-grid");
-    if (gridEl) {
-        gridEl.scrollIntoView({ behavior: "smooth" });
+    const targetEl = getDirectoryScrollTarget();
+    if (targetEl) {
+        targetEl.scrollIntoView({ behavior: "smooth" });
     }
 }
 window.applyMobileFilters = applyMobileFilters;
@@ -4717,16 +4728,19 @@ function handleRoute() {
                           STATE.shouldRestoreScrollForPath === '/' || 
                           STATE.shouldRestoreScrollForPath === '/#restaurant-grid';
 
-    if (shouldRestore) {
-        const targetY = STATE.scrollPositions["/"] || STATE.savedScrollPosition || (STATE.restaurantReferrer ? STATE.restaurantReferrer.scrollY : 0) || 0;
+    const targetY = STATE.scrollPositions["/"] || STATE.savedScrollPosition || (STATE.restaurantReferrer ? STATE.restaurantReferrer.scrollY : 0) || 0;
+
+    if (shouldRestore && targetY > 50) {
         STATE.shouldRestoreScroll = false;
         STATE.shouldRestoreScrollForPath = null;
         restoreScrollPosition(targetY);
     } else {
+        STATE.shouldRestoreScroll = false;
+        STATE.shouldRestoreScrollForPath = null;
         if (hash === "#restaurant-grid") {
-            const gridEl = document.getElementById("restaurant-grid");
-            if (gridEl) {
-                gridEl.scrollIntoView({ behavior: "smooth" });
+            const targetEl = getDirectoryScrollTarget();
+            if (targetEl) {
+                targetEl.scrollIntoView({ behavior: "smooth" });
             }
         } else if (hash === "#suggest-section") {
             const suggestEl = document.getElementById("suggest-section");
@@ -5265,10 +5279,11 @@ document.addEventListener("click", (e) => {
     // Handle home-page anchor clicks when already on the home page
     if (isHomePage && (href === "/#restaurant-grid" || href === "#restaurant-grid" || href === "/#suggest-section" || href === "#suggest-section")) {
         e.preventDefault();
-        const targetId = href.includes("suggest") ? "suggest-section" : "restaurant-grid";
-        const targetEl = document.getElementById(targetId);
+        const isSuggest = href.includes("suggest");
+        const targetEl = isSuggest ? document.getElementById("suggest-section") : getDirectoryScrollTarget();
         if (targetEl) {
             targetEl.scrollIntoView({ behavior: "smooth" });
+            const targetId = isSuggest ? "suggest-section" : "restaurant-grid";
             if (window.location.protocol !== 'file:') {
                 history.pushState(null, "", "/" + "#" + targetId);
             } else {
